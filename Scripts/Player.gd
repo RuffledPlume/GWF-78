@@ -72,7 +72,7 @@ func _input(event: InputEvent) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		
 	if Input.is_action_just_pressed("Interact") && hovering_interactable:
-		print("Player interacted with: " % hovering_interactable)
+		print("Player interacted with: %s" % hovering_interactable)
 		hovering_interactable.on_interact_with()
 			
 func _handle_camera_rotation() -> void:
