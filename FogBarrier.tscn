@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://co51g5vsdgrm0"]
+
+[ext_resource type="Shader" uid="uid://b8m5vepjk5yr5" path="res://FogBarrier.tres" id="1_mlnvh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lnbvd"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_mlnvh")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mo8e6"]
+size = Vector2(1000, 1000)
+
+[node name="FogBarrier" type="MeshInstance3D"]
+material_override = SubResource("ShaderMaterial_lnbvd")
+mesh = SubResource("PlaneMesh_mo8e6")

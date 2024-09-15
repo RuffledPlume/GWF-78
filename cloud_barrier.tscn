@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqldusysobkbt"]
+
+[ext_resource type="Shader" uid="uid://ly8w1k6cebeq" path="res://CloudPath.tres" id="1_fsb5v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a7cfd"]
+render_priority = 0
+shader = ExtResource("1_fsb5v")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3n56y"]
+size = Vector2(1000, 1000)
+
+[node name="CloudBarrier" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+material_override = SubResource("ShaderMaterial_a7cfd")
+mesh = SubResource("PlaneMesh_3n56y")
