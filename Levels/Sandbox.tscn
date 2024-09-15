@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://datu3rc6g2iod"]
+[gd_scene load_steps=24 format=3 uid="uid://datu3rc6g2iod"]
 
 [ext_resource type="Texture2D" uid="uid://dt48n212okjo6" path="res://Materials/prototype-texture-with-size.png" id="1_chle4"]
 [ext_resource type="PackedScene" uid="uid://dikcrsr171oyg" path="res://Prefabs/Player.tscn" id="2_k8lnm"]
@@ -74,6 +74,29 @@ shader = ExtResource("3_cvv1y")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g75bd"]
 render_priority = 0
 shader = ExtResource("6_2rskb")
+
+[sub_resource type="BoxMesh" id="BoxMesh_2ct2b"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pylcg"]
+
+[sub_resource type="GDScript" id="GDScript_8j3rr"]
+resource_name = "TestInteractable"
+script/source = "extends Interactable
+
+@export var mesh : MeshInstance3D
+
+func get_interact_text() -> String:
+	return \"Test Cube\"
+
+func can_interact_with() -> bool:
+	return true
+	
+func on_interact_with() -> void:
+	var mat := mesh.get_active_material(0) as StandardMaterial3D
+	mat.albedo_color = Color(randf(), randf(), randf())
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nhlk1"]
 
 [node name="Sandbox" type="Node3D"]
 
@@ -412,5 +435,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.841, 0)
 material_override = null
 instance_shader_parameters/DisplacementStrength = 50.0
 surface_material_override/0 = SubResource("ShaderMaterial_g75bd")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 51, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+mesh = SubResource("BoxMesh_2ct2b")
+surface_material_override/0 = SubResource("StandardMaterial3D_pylcg")
+
+[node name="Area3D" type="StaticBody3D" parent="Node3D" node_paths=PackedStringArray("mesh")]
+script = SubResource("GDScript_8j3rr")
+mesh = NodePath("../MeshInstance3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Area3D"]
+shape = SubResource("BoxShape3D_nhlk1")
 
 [editable path="Player"]
