@@ -1,7 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://datu3rc6g2iod"]
+[gd_scene load_steps=18 format=3 uid="uid://datu3rc6g2iod"]
 
 [ext_resource type="Texture2D" uid="uid://dt48n212okjo6" path="res://Materials/prototype-texture-with-size.png" id="1_chle4"]
 [ext_resource type="PackedScene" uid="uid://dikcrsr171oyg" path="res://Prefabs/Player.tscn" id="2_k8lnm"]
+[ext_resource type="PackedScene" uid="uid://co51g5vsdgrm0" path="res://Prefabs/FogBarrier.tscn" id="3_jf1dm"]
+[ext_resource type="PackedScene" uid="uid://cqldusysobkbt" path="res://Prefabs/cloud_barrier.tscn" id="4_tisy8"]
 [ext_resource type="PackedScene" uid="uid://fnvvxl6bxw5h" path="res://Prefabs/interaction_test.tscn" id="5_cqemu"]
 [ext_resource type="PackedScene" uid="uid://c0k1dgeaxg3v7" path="res://Prefabs/teleporter.tscn" id="5_lvwsf"]
 
@@ -390,6 +392,10 @@ light_energy = 200.0
 light_size = 100.0
 omni_range = 32.422
 omni_attenuation = -0.375
+
+[node name="FogBarrier" parent="." instance=ExtResource("3_jf1dm")]
+
+[node name="CloudBarrier" parent="." instance=ExtResource("4_tisy8")]
 
 [node name="InteractionTest" parent="." instance=ExtResource("5_cqemu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 51, -10)
