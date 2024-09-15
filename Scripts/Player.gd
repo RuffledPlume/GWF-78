@@ -1,4 +1,6 @@
-extends CharacterBody3D
+class_name Player extends CharacterBody3D
+
+static var instance : Player
 
 @export var mouse_sensitivity := 0.001
 @export var interaction_distance := 5.0
@@ -13,6 +15,7 @@ var mouse_motion := Vector2.ZERO
 var hovering_interactable : Interactable
 
 func _ready() -> void:
+	instance = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _physics_process(delta: float) -> void:

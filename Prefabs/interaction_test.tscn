@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://fnvvxl6bxw5h"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_2ct2b"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pylcg"]
+
+[sub_resource type="GDScript" id="GDScript_8j3rr"]
+resource_name = "TestInteractable"
+script/source = "extends Interactable
+
+@export var mesh : MeshInstance3D
+
+func get_interact_text() -> String:
+	return \"Test Cube\"
+
+func can_interact_with() -> bool:
+	return true
+	
+func on_interact_with() -> void:
+	var mat := mesh.get_active_material(0) as StandardMaterial3D
+	mat.albedo_color = Color(randf(), randf(), randf())
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nhlk1"]
+
+[node name="InteractionTest" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 51, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_2ct2b")
+surface_material_override/0 = SubResource("StandardMaterial3D_pylcg")
+
+[node name="Area3D" type="StaticBody3D" parent="." node_paths=PackedStringArray("mesh")]
+script = SubResource("GDScript_8j3rr")
+mesh = NodePath("../MeshInstance3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_nhlk1")

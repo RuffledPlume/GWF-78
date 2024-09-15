@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0k1dgeaxg3v7"]
+
+[ext_resource type="Script" path="res://Scripts/teleporter.gd" id="1_h3a3j"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i0tk0"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_nipnd"]
+inner_radius = 2.0
+outer_radius = 2.5
+
+[node name="Teleporter" type="Area3D"]
+gravity = 0.0
+script = ExtResource("1_h3a3j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+shape = SubResource("BoxShape3D_i0tk0")
+
+[node name="Torus" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("TorusMesh_nipnd")
+skeleton = NodePath("")
+
+[node name="PointA" type="Node3D" parent="."]
+
+[node name="PointB" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.31527, -12.8)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
