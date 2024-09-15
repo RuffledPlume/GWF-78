@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://datu3rc6g2iod"]
+[gd_scene load_steps=20 format=3 uid="uid://datu3rc6g2iod"]
 
 [ext_resource type="Texture2D" uid="uid://dt48n212okjo6" path="res://Materials/prototype-texture-with-size.png" id="1_chle4"]
-[ext_resource type="PackedScene" uid="uid://dikcrsr171oyg" path="res://Player/Player.tscn" id="2_k8lnm"]
-[ext_resource type="PackedScene" uid="uid://co51g5vsdgrm0" path="res://FogBarrier.tscn" id="2_pdfes"]
-[ext_resource type="Shader" uid="uid://b8m5vepjk5yr5" path="res://FogBarrier.tres" id="3_cvv1y"]
-[ext_resource type="PackedScene" uid="uid://cqldusysobkbt" path="res://cloud_barrier.tscn" id="5_5sm1n"]
+[ext_resource type="PackedScene" uid="uid://dikcrsr171oyg" path="res://Prefabs/Player.tscn" id="2_k8lnm"]
+[ext_resource type="PackedScene" uid="uid://co51g5vsdgrm0" path="res://Prefabs/FogBarrier.tscn" id="2_pdfes"]
+[ext_resource type="Shader" uid="uid://b8m5vepjk5yr5" path="res://Shader/FogBarrier.tres" id="3_cvv1y"]
+[ext_resource type="PackedScene" uid="uid://cqldusysobkbt" path="res://Prefabs/cloud_barrier.tscn" id="5_5sm1n"]
+[ext_resource type="Shader" uid="uid://ly8w1k6cebeq" path="res://Shader/CloudPath.tres" id="6_2rskb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dl0db"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -69,6 +70,10 @@ uv1_triplanar = true
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("3_cvv1y")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g75bd"]
+render_priority = 0
+shader = ExtResource("6_2rskb")
 
 [node name="Sandbox" type="Node3D"]
 
@@ -404,5 +409,8 @@ skeleton = NodePath("../Player/CameraPivot")
 
 [node name="CloudBarrier" parent="." instance=ExtResource("5_5sm1n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.841, 0)
+material_override = null
+instance_shader_parameters/DisplacementStrength = 50.0
+surface_material_override/0 = SubResource("ShaderMaterial_g75bd")
 
 [editable path="Player"]
