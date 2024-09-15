@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dikcrsr171oyg"]
+[gd_scene load_steps=7 format=3 uid="uid://dikcrsr171oyg"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_uuae0"]
 [ext_resource type="Script" path="res://Scripts/camera_3d.gd" id="2_1ye7i"]
@@ -7,6 +7,10 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_esqpa"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_uh5sm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6hp2n"]
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 script = ExtResource("1_uuae0")
@@ -24,9 +28,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 fov = 90.0
 script = ExtResource("2_1ye7i")
 
-[node name="HUD" type="Node2D" parent="."]
+[node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("3_k1q5m")
 
 [node name="Interaction_Text" type="Label" parent="HUD"]
 offset_right = 40.0
 offset_bottom = 23.0
+text = "Test"
+label_settings = SubResource("LabelSettings_6hp2n")
+horizontal_alignment = 1

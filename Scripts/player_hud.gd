@@ -1,4 +1,4 @@
-class_name PlayerHUD extends Node2D
+class_name PlayerHUD extends CanvasLayer
 
 @onready var interaction_text_label := $Interaction_Text
 	
