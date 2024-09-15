@@ -433,7 +433,7 @@ skeleton = NodePath("../Player/CameraPivot")
 [node name="CloudBarrier" parent="." instance=ExtResource("5_5sm1n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.841, 0)
 material_override = null
-instance_shader_parameters/DisplacementStrength = 50.0
+instance_shader_parameters/DisplacementStrength = 0.0
 surface_material_override/0 = SubResource("ShaderMaterial_g75bd")
 
 [node name="Node3D" type="Node3D" parent="."]
