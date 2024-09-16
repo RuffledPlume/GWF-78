@@ -5,7 +5,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v8xaa"]
 render_priority = 0
 shader = ExtResource("1_3ch8k")
-shader_parameter/FloatParameter = -1.0
+shader_parameter/Mix = -2.0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_ew42f"]
 top_radius = 2.0
@@ -13,6 +13,6 @@ bottom_radius = 2.0
 height = 0.1
 
 [node name="Portal" type="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.957599, -0.0397538, -0.0551462)
 material_override = SubResource("ShaderMaterial_v8xaa")
 mesh = SubResource("CylinderMesh_ew42f")

@@ -1,6 +1,8 @@
 extends Area3D
 
 
+
+
 var is_within_a: bool = false
 var is_within_b: bool = false
 var is_teleporting_from_a: bool = false
@@ -9,6 +11,7 @@ var generating_teleport: bool = false
 
 @onready var point_a: Node3D = $TorusA/PointA
 @onready var point_b: Node3D = $"../TeleporterB/TorusB/PointB"
+@onready var portal_a: MeshInstance3D = $TorusA/PortalA
 
 @onready var teleport_audio: AudioStreamPlayer3D = $TeleportAudio
 @onready var generation_audio: AudioStreamPlayer3D = $GenerationAudio
@@ -20,7 +23,13 @@ var generating_teleport: bool = false
 
 @onready var player_camera_pivot = Player.instance.camera_pivot
 
+@export var portal_material: ShaderMaterial
+
+func _ready() -> void:
+	portal_material.set_shader_parameter("Mix", 0.0)
+	
 func _process(delta: float) -> void:
+
 	
 	
 	var distance_to_a = point_a.global_position.distance_to(Player.instance.global_position)
