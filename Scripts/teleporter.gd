@@ -12,6 +12,7 @@ var generating_teleport: bool = false
 @onready var point_a: Node3D = $TorusA/PointA
 @onready var point_b: Node3D = $"../TeleporterB/TorusB/PointB"
 @onready var portal_a: MeshInstance3D = $TorusA/PortalA
+@onready var portal_b: MeshInstance3D = $"../TeleporterB/TorusB/PortalB"
 
 @onready var teleport_audio: AudioStreamPlayer3D = $TeleportAudio
 @onready var generation_audio: AudioStreamPlayer3D = $GenerationAudio
@@ -23,10 +24,15 @@ var generating_teleport: bool = false
 
 @onready var player_camera_pivot = Player.instance.camera_pivot
 
-@export var portal_material: ShaderMaterial
+var portal_a_material: ShaderMaterial
+var portal_b_material: ShaderMaterial
 
 func _ready() -> void:
-	portal_material.set_shader_parameter("Mix", 0.0)
+	portal_a_material = portal_a.get_active_material(0) as ShaderMaterial
+	portal_b_material = portal_b.get_active_material(0) as ShaderMaterial
+	
+	portal_a_material.set_shader_parameter("Mix", 0.0)
+	portal_b_material.set_shader_parameter("Mix", 0.0)
 	
 func _process(delta: float) -> void:
 
