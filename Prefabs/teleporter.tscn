@@ -1,6 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c0k1dgeaxg3v7"]
+[gd_scene load_steps=9 format=3 uid="uid://c0k1dgeaxg3v7"]
 
 [ext_resource type="Script" path="res://Scripts/teleporter.gd" id="1_h3a3j"]
+[ext_resource type="PackedScene" uid="uid://bx58q4jf6ownj" path="res://Prefabs/Portal.tscn" id="2_oy6gn"]
+[ext_resource type="AudioStream" uid="uid://c7ryh3k8771w5" path="res://Audio/461022__alanmcki__whoosh_into_hit_and_debris_001.wav" id="3_ljs67"]
+[ext_resource type="AudioStream" uid="uid://ckqsuaisa1803" path="res://Audio/112836__dymewiz__whoosh_20.wav" id="4_1bews"]
+[ext_resource type="AudioStream" uid="uid://cgfy4dyy1hfo8" path="res://Audio/162842__beman87__whoosh-data-x2.wav" id="4_r2tse"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i0tk0"]
 
@@ -28,6 +32,24 @@ skeleton = NodePath("")
 [node name="PointA" type="Node3D" parent="TeleporterA/TorusA"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -8.74228e-08, -2)
 
+[node name="PortalA" parent="TeleporterA/TorusA" instance=ExtResource("2_oy6gn")]
+transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, -8.74228e-08, -1, 8.74228e-08, 3.82137e-15, 8.74228e-08, 1, 0, 0, 0)
+skeleton = NodePath("../../..")
+
+[node name="TeleportAudio" type="AudioStreamPlayer3D" parent="TeleporterA"]
+stream = ExtResource("3_ljs67")
+volume_db = -8.0
+unit_size = 15.0
+max_distance = 200.0
+
+[node name="GenerationAudio" type="AudioStreamPlayer3D" parent="TeleporterA"]
+stream = ExtResource("4_1bews")
+pitch_scale = 1.5
+
+[node name="TransitAudio" type="AudioStreamPlayer" parent="TeleporterA"]
+stream = ExtResource("4_r2tse")
+volume_db = -20.0
+
 [node name="TeleporterB" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
 
@@ -42,6 +64,10 @@ skeleton = NodePath("")
 
 [node name="PointB" type="Node3D" parent="TeleporterB/TorusB"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -2)
+
+[node name="PortalB" parent="TeleporterB/TorusB" instance=ExtResource("2_oy6gn")]
+transform = Transform3D(1, -1.74846e-07, 7.64274e-15, 1.74846e-07, 1, 2.13163e-14, -7.64274e-15, -2.13163e-14, 1, 0, 0, 0)
+skeleton = NodePath("../../..")
 
 [connection signal="body_entered" from="TeleporterA" to="TeleporterA" method="_on_body_entered"]
 [connection signal="body_exited" from="TeleporterA" to="TeleporterA" method="_on_body_exited"]

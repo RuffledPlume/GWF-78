@@ -8,9 +8,11 @@ var is_teleporting_from_b: bool = false
 
 @onready var point_a: Node3D = $TorusA/PointA
 @onready var point_b: Node3D = $"../TeleporterB/TorusB/PointB"
+@onready var teleport_audio: AudioStreamPlayer3D = $TeleportAudio
+@onready var generation_audio: AudioStreamPlayer3D = $GenerationAudio
+@onready var transit_audio: AudioStreamPlayer = $TransitAudio
 
 
-	
 func _process(delta: float) -> void:
 	
 	var distance_to_a = point_a.global_position.distance_to(Player.instance.global_position)
@@ -18,7 +20,14 @@ func _process(delta: float) -> void:
 	
 	if is_within_a and Input.is_action_just_pressed("Interact"):
 		print("Teleporting")
+		generation_audio.play()
+		await get_tree().create_timer(2).timeout
+		teleport_audio.play(0.4)
+		generation_audio.stop()
+		transit_audio.play(5.6)
+		#await get_tree().create_timer(0.8).timeout
 		is_teleporting_from_a = true
+		
 	if is_teleporting_from_a:
 		Player.instance.global_position = lerp(Player.instance.global_position, point_b.global_position, delta * 5)
 		if distance_to_b <= 2.0:
