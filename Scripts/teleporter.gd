@@ -41,12 +41,16 @@ func _process(delta: float) -> void:
 	var distance_to_a = point_a.global_position.distance_to(Player.instance.global_position)
 	var distance_to_b = point_b.global_position.distance_to(Player.instance.global_position)
 	
-	if is_within_a and Input.is_action_just_pressed("Interact"):
-
-		#Below needs to be put into 'working teleporter' function which executes once is_working = true
+	#Below needs to be put into 'working teleporter' function which executes once is_working = true
+	if Input.is_action_just_pressed("Interact"):
 		var tween := create_tween()
 		tween.tween_method(func(t): portal_a_material.set_shader_parameter("Mix", t), 0.0, 1.0, 2.0)
 	
+	
+	if is_within_a and Input.is_action_just_pressed("Interact"):
+
+	
+		
 		generation_audio.play()
 		await get_tree().create_timer(2).timeout
 		teleport_audio.play(0.4)

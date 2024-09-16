@@ -75,7 +75,6 @@ op_type = 1
 [sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_fotqt"]
 parameter_name = "Mix"
 hint = 2
-step = 0.01
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_dmgxh"]
 noise_type = 2
@@ -111,7 +110,7 @@ render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_s
 uniform sampler2D tex_frg_7;
 uniform sampler2D tex_frg_38;
 uniform sampler2D tex_frg_59;
-uniform float Mix : hint_range(0, 1, 0.00999999977648);
+uniform float Mix : hint_range(0, 1, 0.10000000149012);
 uniform sampler2D tex_frg_66;
 
 
@@ -200,7 +199,7 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-256.519, 19.3375)
+graph_offset = Vector2(-405.212, 518.737)
 flags/unshaded = true
 nodes/fragment/0/position = Vector2(1860, -100)
 nodes/fragment/2/node = SubResource("VisualShaderNodeFresnel_fjihv")
