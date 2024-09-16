@@ -5,7 +5,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v8xaa"]
 render_priority = 0
 shader = ExtResource("1_3ch8k")
-shader_parameter/Mix = -2.0
+shader_parameter/Mix = -0.13
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_ew42f"]
 top_radius = 2.0

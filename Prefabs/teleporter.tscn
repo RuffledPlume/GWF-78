@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c0k1dgeaxg3v7"]
+[gd_scene load_steps=12 format=3 uid="uid://c0k1dgeaxg3v7"]
 
 [ext_resource type="Script" path="res://Scripts/teleporter.gd" id="1_h3a3j"]
 [ext_resource type="Shader" uid="uid://dogm0sjk631j0" path="res://Shader/Portal.tres" id="2_6d5h0"]
@@ -6,11 +6,6 @@
 [ext_resource type="AudioStream" uid="uid://c7ryh3k8771w5" path="res://Audio/461022__alanmcki__whoosh_into_hit_and_debris_001.wav" id="3_ljs67"]
 [ext_resource type="AudioStream" uid="uid://ckqsuaisa1803" path="res://Audio/112836__dymewiz__whoosh_20.wav" id="4_1bews"]
 [ext_resource type="AudioStream" uid="uid://cgfy4dyy1hfo8" path="res://Audio/162842__beman87__whoosh-data-x2.wav" id="4_r2tse"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_neunn"]
-render_priority = 0
-shader = ExtResource("2_6d5h0")
-shader_parameter/Mix = null
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i0tk0"]
 
@@ -21,7 +16,7 @@ outer_radius = 2.5
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v8xaa"]
 render_priority = 0
 shader = ExtResource("2_6d5h0")
-shader_parameter/Mix = -2.0
+shader_parameter/Mix = -0.13
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_ew42f"]
 top_radius = 2.0
@@ -35,7 +30,6 @@ height = 0.1
 [node name="TeleporterA" type="Area3D" parent="."]
 gravity = 0.0
 script = ExtResource("1_h3a3j")
-portal_material = SubResource("ShaderMaterial_neunn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TeleporterA"]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
@@ -68,6 +62,13 @@ pitch_scale = 1.5
 [node name="TransitAudio" type="AudioStreamPlayer" parent="TeleporterA"]
 stream = ExtResource("4_r2tse")
 volume_db = -20.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="TeleporterA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+light_color = Color(0.439216, 0.862745, 0.788235, 1)
+light_energy = 2.0
+omni_range = 8.0
+omni_attenuation = 0.5
 
 [node name="TeleporterB" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)

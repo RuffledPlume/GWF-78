@@ -1,8 +1,8 @@
 extends Area3D
+class_name Teleporter
 
 
-
-
+var is_working: bool
 var is_within_a: bool = false
 var is_within_b: bool = false
 var is_teleporting_from_a: bool = false
@@ -26,11 +26,9 @@ var generating_teleport: bool = false
 @export var portal_material: ShaderMaterial
 
 func _ready() -> void:
-	portal_material.set_shader_parameter("Mix", 0.0)
+	is_working = false
 	
 func _process(delta: float) -> void:
-
-	
 	
 	var distance_to_a = point_a.global_position.distance_to(Player.instance.global_position)
 	var distance_to_b = point_b.global_position.distance_to(Player.instance.global_position)
