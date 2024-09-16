@@ -5,8 +5,8 @@ class_name Teleporter
 var is_working: bool
 var is_within_a: bool = false
 var is_within_b: bool = false
-var is_teleporting_from_a: bool = false
-var is_teleporting_from_b: bool = false
+@export var is_teleporting_from_a: bool = false
+@export var is_teleporting_from_b: bool = false
 var generating_teleport: bool = false
 
 @onready var point_a: Node3D = $TorusA/PointA

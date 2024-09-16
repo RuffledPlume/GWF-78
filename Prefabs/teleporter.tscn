@@ -16,7 +16,7 @@ outer_radius = 2.5
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v8xaa"]
 render_priority = 0
 shader = ExtResource("2_6d5h0")
-shader_parameter/Mix = -0.13
+shader_parameter/Mix = -2.0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_ew42f"]
 top_radius = 2.0
@@ -25,7 +25,7 @@ height = 0.1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dy0tn"]
 
-[node name="Teleporter" type="Node3D"]
+[node name="Teleporter" type="Node3D" groups=["Teleporter"]]
 
 [node name="TeleporterA" type="Area3D" parent="."]
 gravity = 0.0
@@ -67,8 +67,13 @@ volume_db = -20.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 light_color = Color(0.439216, 0.862745, 0.788235, 1)
 light_energy = 2.0
-omni_range = 8.0
-omni_attenuation = 0.5
+omni_attenuation = 0.8
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="TeleporterA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
+light_color = Color(0.439216, 0.862745, 0.788235, 1)
+light_energy = 2.0
+omni_attenuation = 0.8
 
 [node name="TeleporterB" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
