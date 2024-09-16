@@ -10,7 +10,7 @@ const JUMP_VELOCITY = 4.5
 
 @onready var camera_pivot: Node3D = $CameraPivot
 @onready var hud: PlayerHUD = $HUD
-@onready var teleporter: Teleporter
+
 
 var mouse_motion := Vector2.ZERO
 var hovering_interactable : Interactable
@@ -19,13 +19,9 @@ var is_teleporting: bool
 func _ready() -> void:
 	instance = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	
+
 
 	
-	
-func _process(delta: float) -> void:
-	pass
-
 func _physics_process(delta: float) -> void:
 	_handle_player_movement(delta)
 	_handle_camera_rotation()
@@ -49,8 +45,7 @@ func _handle_interactions() -> void:
 	hovering_interactable = new_hovering_interactable
 	hud.update_interactable_label(hovering_interactable)
 	
-	
-	
+			
 func _handle_player_movement(delta: float) -> void:
 		# Add the gravity.
 	if not is_on_floor():

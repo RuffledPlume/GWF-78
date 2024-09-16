@@ -1,12 +1,12 @@
 extends Area3D
 class_name Teleporter
 
+@export var is_teleporting_from_a: bool = false
+@export var is_teleporting_from_b: bool = false
 
 var is_working: bool
 var is_within_a: bool = false
 var is_within_b: bool = false
-@export var is_teleporting_from_a: bool = false
-@export var is_teleporting_from_b: bool = false
 var generating_teleport: bool = false
 
 @onready var point_a: Node3D = $TorusA/PointA
@@ -35,17 +35,17 @@ func _ready() -> void:
 	portal_b_material.set_shader_parameter("Mix", 0.0)
 	
 	is_working = false
-	
+
 func _process(delta: float) -> void:
 	
 	var distance_to_a = point_a.global_position.distance_to(Player.instance.global_position)
 	var distance_to_b = point_b.global_position.distance_to(Player.instance.global_position)
 	
 	if is_within_a and Input.is_action_just_pressed("Interact"):
-		
-		#generating_teleport = true
-		#if generating_teleport:
-			#player_camera_pivot.look_at(point_b.global_position)
+
+		#Below needs to be put into 'working teleporter' function which executes once is_working = true
+		var tween := create_tween()
+		tween.tween_method(func(t): portal_a_material.set_shader_parameter("Mix", t), 0.0, 1.0, 2.0)
 	
 		generation_audio.play()
 		await get_tree().create_timer(2).timeout
