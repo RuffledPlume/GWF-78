@@ -76,7 +76,7 @@ emission_energy_multiplier = 3.0
 albedo_texture = ExtResource("1_chle4")
 uv1_triplanar = true
 
-[sub_resource type="Curve3D" id="Curve3D_o4pkv"]
+[sub_resource type="Curve3D" id="Curve3D_30dc1"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector3Array(0, 0.9, -1.9, 0, -0.9, 1.9, 0.00066185, 0.0150528, -0.00864792, 0, 6, -1, 0, -6, 1, 0.000610352, -11.5198, 3.25143, 0, 13, -10, 0, -13, 10, 0.000610352, -46.932, 16.5907, 0, 0, 0, 0, 0, 0, 0.000610352, -69.5294, 51.1294),
@@ -533,7 +533,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 51, -10)
 
 [node name="Path3D" parent="." instance=ExtResource("7_0jmtq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 71, -61)
-curve = SubResource("Curve3D_o4pkv")
+curve = SubResource("Curve3D_30dc1")
 
 [node name="Teleporter" parent="." instance=ExtResource("5_lvwsf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 52.7, 0)
