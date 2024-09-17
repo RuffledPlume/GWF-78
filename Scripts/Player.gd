@@ -39,13 +39,13 @@ func _process(delta: float) -> void:
 	
 	var depltion_rate := breath_depletion_rate
 	if last_input.length() > 0.1:
-		if Input.is_key_pressed(KEY_SHIFT):
+		if Input.is_action_pressed("UseMask"):
 			depltion_rate *= 2.0
 		else:
 			depltion_rate *= 1.5
 	breath -= depltion_rate * delta
 	
-	if Input.is_key_pressed(KEY_F):
+	if Input.is_action_pressed("UseMask"):
 		if !has_put_on_mask:
 			mask_animator.play("Mask_Place")
 			has_put_on_mask = true
