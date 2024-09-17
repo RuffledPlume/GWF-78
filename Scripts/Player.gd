@@ -22,6 +22,7 @@ var has_put_on_mask : bool
 var oxygen_reserve : float = 1.0
 var breath : float = 1.0
 var last_input : Vector2
+var is_within_safe_zone : bool
 
 func _ready() -> void:
 	instance = self
@@ -29,6 +30,13 @@ func _ready() -> void:
 	mask_root.visible = false
 	
 func _process(delta: float) -> void:
+	if is_within_safe_zone:
+		if breath < 1.0:
+			breath += breath_replenishment_rate * delta
+		if oxygen_reserve < 1.0:
+			oxygen_reserve += breath_replenishment_rate * delta
+		return
+	
 	var depltion_rate := breath_depletion_rate
 	if last_input.length() > 0.1:
 		if Input.is_key_pressed(KEY_SHIFT):
