@@ -22,7 +22,11 @@ sky_material = SubResource("ProceduralSkyMaterial_dl0db")
 background_mode = 2
 background_energy_multiplier = 0.1
 sky = SubResource("Sky_txvol")
+ambient_light_color = Color(0.396078, 0.513726, 0.470588, 1)
+ambient_light_sky_contribution = 0.6
+ambient_light_energy = 1.5
 tonemap_mode = 2
+ssao_power = 1.72305
 glow_enabled = true
 fog_enabled = true
 fog_light_color = Color(0.517647, 0.682353, 0.607843, 1)
@@ -98,7 +102,9 @@ environment = SubResource("Environment_36owp")
 transform = Transform3D(0.866025, 0.433013, 0.25, -0.482963, 0.595035, 0.642402, 0.129409, -0.677077, 0.724445, 0, 0, 0)
 light_color = Color(0.909804, 1, 1, 1)
 light_energy = 2.0
+light_bake_mode = 1
 shadow_enabled = true
+directional_shadow_blend_splits = true
 
 [node name="Player" parent="." instance=ExtResource("2_k8lnm")]
 transform = Transform3D(0.766044, 0, -0.642788, 0, 1, 0, 0.642788, 0, 0.766044, 5.23062, 51.5, 0.386765)
@@ -568,6 +574,11 @@ script = ExtResource("10_t3pil")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SafeZone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.516663, 0.391098, -0.264801)
 shape = SubResource("BoxShape3D_iha80")
+
+[node name="LightmapGI" type="LightmapGI" parent="."]
+quality = 3
+bounces = 4
+directional = true
 
 [editable path="Player"]
 [editable path="Teleporter"]
