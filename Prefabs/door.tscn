@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://brl17jlt1wlcf"]
+
+[ext_resource type="Script" path="res://Scripts/door_panel.gd" id="1_4y0hi"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_52bua"]
+size = Vector3(0.395203, 0.316528, 0.337708)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8e6b2"]
+size = Vector3(2.21619, 1.45569, 1.59982)
+
+[node name="Door" type="Node3D"]
+
+[node name="Frame" type="CSGCombiner3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Frame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2164, -0.00842211)
+size = Vector3(0.271484, 2.4328, 1.66235)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Frame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00646973, 1.13748, 0.0110894)
+operation = 2
+size = Vector3(0.375244, 2.27497, 1.47478)
+
+[node name="DoorPanel_Left" type="CSGCombiner3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="DoorPanel_Left"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00369263, 1.15461, -0.379761)
+size = Vector3(0.210754, 2.30626, 0.768311)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="DoorPanel_Left"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 1.2542, 0)
+operation = 2
+radius = 0.170336
+height = 0.508407
+
+[node name="DoorPanel_Right" type="CSGCombiner3D" parent="."]
+
+[node name="DoorPanel" type="StaticBody3D" parent="DoorPanel_Right" node_paths=PackedStringArray("Close_Zone")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2394, 0)
+script = ExtResource("1_4y0hi")
+Slide_Amount = 0.5
+Slide_Speed = 1.25
+Close_Delay = 1.0
+Close_Zone = NodePath("../../Area3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DoorPanel_Right/DoorPanel"]
+shape = SubResource("BoxShape3D_52bua")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="DoorPanel_Right"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00369263, 1.13966, 0.395782)
+size = Vector3(0.210754, 2.27635, 0.781555)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="DoorPanel_Right"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 1.2542, 0)
+radius = 0.170336
+height = 0.295792
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0838013, 0.813159, 0.0349579)
+shape = SubResource("BoxShape3D_8e6b2")

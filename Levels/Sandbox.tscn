@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://datu3rc6g2iod"]
+[gd_scene load_steps=24 format=3 uid="uid://datu3rc6g2iod"]
 
 [ext_resource type="Texture2D" uid="uid://dt48n212okjo6" path="res://Materials/prototype-texture-with-size.png" id="1_chle4"]
 [ext_resource type="PackedScene" uid="uid://dikcrsr171oyg" path="res://Prefabs/Player.tscn" id="2_k8lnm"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://fnvvxl6bxw5h" path="res://Prefabs/interaction_test.tscn" id="5_cqemu"]
 [ext_resource type="PackedScene" uid="uid://c0k1dgeaxg3v7" path="res://Prefabs/teleporter.tscn" id="5_lvwsf"]
 [ext_resource type="PackedScene" uid="uid://cy6eqkcaqivhv" path="res://Prefabs/WirePath.tscn" id="7_0jmtq"]
+[ext_resource type="PackedScene" uid="uid://brl17jlt1wlcf" path="res://Prefabs/door.tscn" id="9_yrmud"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dl0db"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -76,7 +77,7 @@ emission_energy_multiplier = 3.0
 albedo_texture = ExtResource("1_chle4")
 uv1_triplanar = true
 
-[sub_resource type="Curve3D" id="Curve3D_ukirk"]
+[sub_resource type="Curve3D" id="Curve3D_muruf"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector3Array(0, 0.9, -1.9, 0, -0.9, 1.9, 0.00066185, 0.0150528, -0.00864792, 0, 6, -1, 0, -6, 1, 0.000610352, -11.5198, 3.25143, 0, 13, -10, 0, -13, 10, 0.000610352, -46.932, 16.5907, 0, 0, 0, 0, 0, 0, 0.000610352, -69.5294, 51.1294),
@@ -533,7 +534,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 51, -10)
 
 [node name="Path3D" parent="." instance=ExtResource("7_0jmtq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 71, -61)
-curve = SubResource("Curve3D_ukirk")
+curve = SubResource("Curve3D_muruf")
 
 [node name="Teleporter" parent="." instance=ExtResource("5_lvwsf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 52.7, 0)
@@ -549,6 +550,9 @@ transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 
 
 [node name="TeleporterB" parent="Teleporter2" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.13303, 28.2, -88.3088)
+
+[node name="Door" parent="." instance=ExtResource("9_yrmud")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.96963, 50.5477, -3.21781)
 
 [editable path="Player"]
 [editable path="Teleporter"]
