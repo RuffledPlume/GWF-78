@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://rf8st73cwaom"]
+
+[ext_resource type="Shader" path="res://Levels/UITex.gdshader" id="1_tkiou"]
+[ext_resource type="Script" path="res://Scripts/teleporter_wave_game.gd" id="2_kox6y"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_osec2"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_rsenh"]
+viewport_path = NodePath("MeshInstance3D2/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uy0b6"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_tkiou")
+shader_parameter/ui_viewport = SubResource("ViewportTexture_rsenh")
+
+[sub_resource type="Curve" id="Curve_pqyaq"]
+_data = [Vector2(0.0231023, 0.552318), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_2mpkw"]
+
+[node name="TeleporterFrequency" type="Node3D"]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.18557e-08, 0.970258, -0.242074, 3.78552e-08, 0.242074, 0.970258, 1, 1.20419e-08, -4.202e-08, -0.0535222, 0.986072, 1.17989e-08)
+mesh = SubResource("QuadMesh_osec2")
+surface_material_override/0 = SubResource("ShaderMaterial_uy0b6")
+
+[node name="SubViewport" type="SubViewport" parent="MeshInstance3D2"]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+gui_disable_input = true
+
+[node name="TeleporterMiniGame" type="Panel" parent="MeshInstance3D2/SubViewport"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -150.0
+offset_right = 300.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(100, 50)
+script = ExtResource("2_kox6y")
+
+[node name="Line2D" type="Line2D" parent="MeshInstance3D2/SubViewport/TeleporterMiniGame"]
+width_curve = SubResource("Curve_pqyaq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.73065, 0, 0, 0, 0.737811, 0, 0, 0, 1, 0.0681748, 0.364413, 0)
+mesh = SubResource("BoxMesh_2mpkw")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.096225, 0.595912, 0, -0.359116, 0.159674, 0, 0, 0, 1, -0.00549786, 0.78921, 0)
+mesh = SubResource("BoxMesh_2mpkw")

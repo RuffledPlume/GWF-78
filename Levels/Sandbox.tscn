@@ -1,14 +1,15 @@
-[gd_scene load_steps=26 format=3 uid="uid://datu3rc6g2iod"]
+[gd_scene load_steps=27 format=3 uid="uid://datu3rc6g2iod"]
 
 [ext_resource type="Texture2D" uid="uid://dt48n212okjo6" path="res://Materials/prototype-texture-with-size.png" id="1_chle4"]
 [ext_resource type="PackedScene" uid="uid://dikcrsr171oyg" path="res://Prefabs/Player.tscn" id="2_k8lnm"]
 [ext_resource type="PackedScene" uid="uid://co51g5vsdgrm0" path="res://Prefabs/FogBarrier.tscn" id="3_jf1dm"]
-[ext_resource type="PackedScene" uid="uid://bb30g1n8ji8rw" path="res://Greybox/TowerOne_Interior.tscn" id="3_xenud"]
+[ext_resource type="PackedScene" uid="uid://bb30g1n8ji8rw" path="res://Prefabs/Interiors/TowerOne_Interior.tscn" id="3_xenud"]
 [ext_resource type="PackedScene" uid="uid://cqldusysobkbt" path="res://Prefabs/cloud_barrier.tscn" id="4_tisy8"]
 [ext_resource type="PackedScene" uid="uid://fnvvxl6bxw5h" path="res://Prefabs/interaction_test.tscn" id="5_cqemu"]
 [ext_resource type="PackedScene" uid="uid://c0k1dgeaxg3v7" path="res://Prefabs/teleporter.tscn" id="5_lvwsf"]
 [ext_resource type="PackedScene" uid="uid://cy6eqkcaqivhv" path="res://Prefabs/WirePath.tscn" id="7_0jmtq"]
 [ext_resource type="PackedScene" uid="uid://brl17jlt1wlcf" path="res://Prefabs/door.tscn" id="9_yrmud"]
+[ext_resource type="PackedScene" uid="uid://rf8st73cwaom" path="res://Prefabs/teleporter_frequency.tscn" id="10_i0ju0"]
 [ext_resource type="Script" path="res://Scripts/safe_zone.gd" id="10_t3pil"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dl0db"]
@@ -82,7 +83,7 @@ emission_energy_multiplier = 3.0
 albedo_texture = ExtResource("1_chle4")
 uv1_triplanar = true
 
-[sub_resource type="Curve3D" id="Curve3D_l23c3"]
+[sub_resource type="Curve3D" id="Curve3D_prnq5"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector3Array(0, 0.9, -1.9, 0, -0.9, 1.9, 0.00066185, 0.0150528, -0.00864792, 0, 6, -1, 0, -6, 1, 0.000610352, -11.5198, 3.25143, 0, 13, -10, 0, -13, 10, 0.000610352, -46.932, 16.5907, 0, 0, 0, 0, 0, 0, 0.000610352, -69.5294, 51.1294),
@@ -112,6 +113,9 @@ mouse_sensitivity = 0.002
 
 [node name="Camera3D" parent="Player/CameraPivot" index="0"]
 fov = 75.0
+
+[node name="Mask" parent="Player/CameraPivot/Camera3D" index="0"]
+transform = Transform3D(0.769831, 0, 0, 0, -2.78678e-06, 0.769831, 0, -0.769831, -2.78678e-06, 0, -0.5, -0.7)
 
 [node name="Lights" type="Node3D" parent="."]
 
@@ -544,21 +548,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 51, -10)
 
 [node name="Path3D" parent="." instance=ExtResource("7_0jmtq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 71, -61)
-curve = SubResource("Curve3D_l23c3")
+curve = SubResource("Curve3D_prnq5")
 
 [node name="Teleporter" parent="." instance=ExtResource("5_lvwsf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 52.7, 0)
 
-[node name="TeleporterA" parent="Teleporter" index="0"]
-transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -1, -0.5, -11)
-
-[node name="TeleporterB" parent="Teleporter" index="1"]
+[node name="TeleporterB" parent="Teleporter" index="7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 20.3, -63.2)
 
 [node name="Teleporter2" parent="." instance=ExtResource("5_lvwsf")]
 transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 29, 72, -87)
 
-[node name="TeleporterB" parent="Teleporter2" index="1"]
+[node name="TeleporterB" parent="Teleporter2" index="7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.13303, 28.2, -88.3088)
 
 [node name="Door" parent="." instance=ExtResource("9_yrmud")]
@@ -579,6 +580,9 @@ shape = SubResource("BoxShape3D_iha80")
 quality = 3
 bounces = 4
 directional = true
+
+[node name="TeleporterFrequency" parent="." instance=ExtResource("10_i0ju0")]
+transform = Transform3D(-0.0157771, 0, 0.999876, 0, 1, 0, -0.999876, 0, -0.0157771, 1.28181, 50.3749, -9.07563)
 
 [editable path="Player"]
 [editable path="Teleporter"]
