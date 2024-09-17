@@ -1,30 +1,46 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=26 format=3 uid="uid://datu3rc6g2iod"]
+=======
+[gd_scene load_steps=35 format=3 uid="uid://datu3rc6g2iod"]
+>>>>>>> Stashed changes
 
 [ext_resource type="Texture2D" uid="uid://dt48n212okjo6" path="res://Materials/prototype-texture-with-size.png" id="1_chle4"]
 [ext_resource type="PackedScene" uid="uid://dikcrsr171oyg" path="res://Prefabs/Player.tscn" id="2_k8lnm"]
 [ext_resource type="PackedScene" uid="uid://co51g5vsdgrm0" path="res://Prefabs/FogBarrier.tscn" id="3_jf1dm"]
-[ext_resource type="PackedScene" uid="uid://bb30g1n8ji8rw" path="res://Greybox/TowerOne_Interior.tscn" id="3_xenud"]
+[ext_resource type="PackedScene" uid="uid://bb30g1n8ji8rw" path="res://Prefabs/Interiors/TowerOne_Interior.tscn" id="3_xenud"]
 [ext_resource type="PackedScene" uid="uid://cqldusysobkbt" path="res://Prefabs/cloud_barrier.tscn" id="4_tisy8"]
 [ext_resource type="PackedScene" uid="uid://fnvvxl6bxw5h" path="res://Prefabs/interaction_test.tscn" id="5_cqemu"]
-[ext_resource type="PackedScene" uid="uid://c0k1dgeaxg3v7" path="res://Prefabs/teleporter.tscn" id="5_lvwsf"]
 [ext_resource type="PackedScene" uid="uid://cy6eqkcaqivhv" path="res://Prefabs/WirePath.tscn" id="7_0jmtq"]
+<<<<<<< Updated upstream
 [ext_resource type="PackedScene" uid="uid://brl17jlt1wlcf" path="res://Prefabs/door.tscn" id="9_yrmud"]
 [ext_resource type="Script" path="res://Scripts/safe_zone.gd" id="10_t3pil"]
+=======
+[ext_resource type="Script" path="res://Scripts/teleporter.gd" id="8_1xmaq"]
+[ext_resource type="Shader" uid="uid://dogm0sjk631j0" path="res://Shader/Portal.tres" id="9_yp2rt"]
+[ext_resource type="AudioStream" uid="uid://c7ryh3k8771w5" path="res://Audio/461022__alanmcki__whoosh_into_hit_and_debris_001.wav" id="10_kuvuq"]
+[ext_resource type="AudioStream" uid="uid://ckqsuaisa1803" path="res://Audio/112836__dymewiz__whoosh_20.wav" id="11_n06rt"]
+[ext_resource type="AudioStream" uid="uid://cgfy4dyy1hfo8" path="res://Audio/162842__beman87__whoosh-data-x2.wav" id="12_j4utf"]
+[ext_resource type="PackedScene" uid="uid://drbsattuk6qio" path="res://Particles/toxic_cloud_particles.tscn" id="13_vy6gn"]
+>>>>>>> Stashed changes
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dl0db"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
-[sub_resource type="Sky" id="Sky_txvol"]
+[sub_resource type="Sky" id="Sky_vhpo3"]
 sky_material = SubResource("ProceduralSkyMaterial_dl0db")
 
 [sub_resource type="Environment" id="Environment_36owp"]
 background_mode = 2
 background_energy_multiplier = 0.1
+<<<<<<< Updated upstream
 sky = SubResource("Sky_txvol")
 ambient_light_color = Color(0.396078, 0.513726, 0.470588, 1)
 ambient_light_sky_contribution = 0.6
 ambient_light_energy = 1.5
+=======
+sky = SubResource("Sky_vhpo3")
+>>>>>>> Stashed changes
 tonemap_mode = 2
 ssao_power = 1.72305
 glow_enabled = true
@@ -82,7 +98,11 @@ emission_energy_multiplier = 3.0
 albedo_texture = ExtResource("1_chle4")
 uv1_triplanar = true
 
+<<<<<<< Updated upstream
 [sub_resource type="Curve3D" id="Curve3D_l23c3"]
+=======
+[sub_resource type="Curve3D" id="Curve3D_w11c2"]
+>>>>>>> Stashed changes
 resource_local_to_scene = true
 _data = {
 "points": PackedVector3Array(0, 0.9, -1.9, 0, -0.9, 1.9, 0.00066185, 0.0150528, -0.00864792, 0, 6, -1, 0, -6, 1, 0.000610352, -11.5198, 3.25143, 0, 13, -10, 0, -13, 10, 0.000610352, -46.932, 16.5907, 0, 0, 0, 0, 0, 0, 0.000610352, -69.5294, 51.1294),
@@ -90,8 +110,38 @@ _data = {
 }
 point_count = 4
 
+<<<<<<< Updated upstream
 [sub_resource type="BoxShape3D" id="BoxShape3D_iha80"]
 size = Vector3(12.4154, 3.72427, 8.07196)
+=======
+[sub_resource type="BoxShape3D" id="BoxShape3D_nx65m"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_vvlmt"]
+inner_radius = 2.0
+outer_radius = 2.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v8xaa"]
+render_priority = 0
+shader = ExtResource("9_yp2rt")
+shader_parameter/Mix = 0.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_v3qn3"]
+top_radius = 2.0
+bottom_radius = 2.0
+height = 0.1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nwtwy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y20c2"]
+render_priority = 0
+shader = ExtResource("9_yp2rt")
+shader_parameter/Mix = 0.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jfm5d"]
+top_radius = 2.0
+bottom_radius = 2.0
+height = 0.1
+>>>>>>> Stashed changes
 
 [node name="Sandbox" type="Node3D"]
 
@@ -544,22 +594,128 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 51, -10)
 
 [node name="Path3D" parent="." instance=ExtResource("7_0jmtq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 71, -61)
+<<<<<<< Updated upstream
 curve = SubResource("Curve3D_l23c3")
+=======
+curve = SubResource("Curve3D_w11c2")
+>>>>>>> Stashed changes
 
-[node name="Teleporter" parent="." instance=ExtResource("5_lvwsf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 52.7, 0)
+[node name="TeleporterA" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 52, -13)
+gravity = 0.0
+script = ExtResource("8_1xmaq")
 
+<<<<<<< Updated upstream
 [node name="TeleporterA" parent="Teleporter" index="0"]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -1, -0.5, -11)
+=======
+[node name="Timer" type="Timer" parent="TeleporterA"]
+wait_time = 2.0
+one_shot = true
+>>>>>>> Stashed changes
 
-[node name="TeleporterB" parent="Teleporter" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 20.3, -63.2)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TeleporterA"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+shape = SubResource("BoxShape3D_nx65m")
 
-[node name="Teleporter2" parent="." instance=ExtResource("5_lvwsf")]
-transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 29, 72, -87)
+[node name="TorusA" type="MeshInstance3D" parent="TeleporterA"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("TorusMesh_vvlmt")
+skeleton = NodePath("")
 
+<<<<<<< Updated upstream
 [node name="TeleporterB" parent="Teleporter2" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.13303, 28.2, -88.3088)
+=======
+[node name="PointA" type="Node3D" parent="TeleporterA/TorusA"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -8.74228e-08, -2)
+
+[node name="PortalA" type="MeshInstance3D" parent="TeleporterA/TorusA"]
+unique_name_in_owner = true
+transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, -8.74228e-08, -1, 8.74228e-08, 3.82137e-15, 8.74228e-08, 1, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_v8xaa")
+mesh = SubResource("CylinderMesh_v3qn3")
+skeleton = NodePath("../../..")
+
+[node name="TeleportAudio" type="AudioStreamPlayer3D" parent="TeleporterA"]
+unique_name_in_owner = true
+stream = ExtResource("10_kuvuq")
+volume_db = -8.0
+unit_size = 15.0
+max_distance = 200.0
+
+[node name="GenerationAudio" type="AudioStreamPlayer3D" parent="TeleporterA"]
+unique_name_in_owner = true
+stream = ExtResource("11_n06rt")
+pitch_scale = 1.5
+
+[node name="TransitAudio" type="AudioStreamPlayer" parent="TeleporterA"]
+unique_name_in_owner = true
+stream = ExtResource("12_j4utf")
+volume_db = -20.0
+
+[node name="LightA" type="OmniLight3D" parent="TeleporterA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+light_color = Color(0.439216, 0.862745, 0.788235, 1)
+light_energy = 2.0
+omni_attenuation = 0.8
+
+[node name="TeleporterB" type="Area3D" parent="TeleporterA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 21, -50)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TeleporterA/TeleporterB"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+shape = SubResource("BoxShape3D_nwtwy")
+
+[node name="TorusB" type="MeshInstance3D" parent="TeleporterA/TeleporterB"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("TorusMesh_vvlmt")
+skeleton = NodePath("")
+
+[node name="PointB" type="Node3D" parent="TeleporterA/TeleporterB/TorusB"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -2)
+
+[node name="PortalB" type="MeshInstance3D" parent="TeleporterA/TeleporterB/TorusB"]
+unique_name_in_owner = true
+transform = Transform3D(1, -1.74846e-07, 7.64274e-15, 1.74846e-07, 1, 2.13163e-14, -7.64274e-15, -2.13163e-14, 1, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_y20c2")
+mesh = SubResource("CylinderMesh_jfm5d")
+skeleton = NodePath("")
+
+[node name="TeleportAudioB" type="AudioStreamPlayer3D" parent="TeleporterA/TeleporterB"]
+unique_name_in_owner = true
+stream = ExtResource("10_kuvuq")
+volume_db = -8.0
+unit_size = 15.0
+max_distance = 200.0
+
+[node name="GenerationAudioB" type="AudioStreamPlayer3D" parent="TeleporterA/TeleporterB"]
+unique_name_in_owner = true
+stream = ExtResource("11_n06rt")
+pitch_scale = 1.5
+
+[node name="TransitAudioB" type="AudioStreamPlayer" parent="TeleporterA/TeleporterB"]
+unique_name_in_owner = true
+stream = ExtResource("12_j4utf")
+volume_db = -20.0
+
+[node name="LightB" type="OmniLight3D" parent="TeleporterA/TeleporterB"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+light_color = Color(0.439216, 0.862745, 0.788235, 1)
+light_energy = 2.0
+omni_attenuation = 0.8
+
+[node name="ToxicParticles" parent="." instance=ExtResource("13_vy6gn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 50.5477, -5)
+
+[connection signal="body_entered" from="TeleporterA" to="TeleporterA" method="_on_body_entered"]
+[connection signal="body_exited" from="TeleporterA" to="TeleporterA" method="_on_body_exited"]
+[connection signal="timeout" from="TeleporterA/Timer" to="TeleporterA" method="_on_timer_timeout"]
+[connection signal="body_entered" from="TeleporterA/TeleporterB" to="TeleporterA" method="_on_teleporter_b_body_entered"]
+[connection signal="body_exited" from="TeleporterA/TeleporterB" to="TeleporterA" method="_on_teleporter_b_body_exited"]
+>>>>>>> Stashed changes
 
 [node name="Door" parent="." instance=ExtResource("9_yrmud")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.96963, 50.5477, -3.21781)
@@ -581,5 +737,3 @@ bounces = 4
 directional = true
 
 [editable path="Player"]
-[editable path="Teleporter"]
-[editable path="Teleporter2"]
