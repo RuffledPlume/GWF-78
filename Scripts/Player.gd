@@ -4,23 +4,50 @@ static var instance : Player
 
 @export var mouse_sensitivity := 0.001
 @export var interaction_distance := 5.0
+@export var breath_replenishment_rate := 0.5
+@export var breath_depletion_rate := 0.075
+@export var oxygen_depletion_rate := 0.05
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 @onready var camera_pivot: Node3D = $CameraPivot
-@onready var hud: PlayerHUD = $HUD
-
+@onready var mask_animator := $CameraPivot/Camera3D/AnimationPlayer
+@onready var mask_root := $CameraPivot/Camera3D/Mask
 
 var mouse_motion := Vector2.ZERO
 var hovering_interactable : Interactable
 var is_teleporting: bool
+var has_put_on_mask : bool
+var oxygen_reserve : float = 1.0
+var breath : float = 1.0
+var last_input : Vector2
 
 func _ready() -> void:
 	instance = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
-
+	mask_root.visible = false
+	
+func _process(delta: float) -> void:
+	var depltion_rate := breath_depletion_rate
+	if last_input.length() > 0.1:
+		if Input.is_key_pressed(KEY_SHIFT):
+			depltion_rate *= 2.0
+		else:
+			depltion_rate *= 1.5
+	breath -= depltion_rate * delta
+	
+	if Input.is_key_pressed(KEY_F):
+		if !has_put_on_mask:
+			mask_animator.play("Mask_Place")
+			has_put_on_mask = true
+		elif !mask_animator.is_playing():
+			if breath < 1.0 && oxygen_depletion_rate > 0.0:
+				breath += (breath_depletion_rate + breath_replenishment_rate) * delta
+				oxygen_reserve -= oxygen_depletion_rate * delta
+	elif has_put_on_mask:
+		mask_animator.play_backwards("Mask_Place")
+		has_put_on_mask = false
 	
 func _physics_process(delta: float) -> void:
 	_handle_player_movement(delta)
@@ -43,7 +70,7 @@ func _handle_interactions() -> void:
 				new_hovering_interactable = collider_interactable
 	
 	hovering_interactable = new_hovering_interactable
-	hud.update_interactable_label(hovering_interactable)
+	PlayerHUD.instance.update_interactable_label(hovering_interactable)
 	
 			
 func _handle_player_movement(delta: float) -> void:
@@ -55,16 +82,22 @@ func _handle_player_movement(delta: float) -> void:
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
+	var Current_Speed := SPEED
+	if Input.is_key_pressed(KEY_SHIFT):
+		Current_Speed *= 2.0
+
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("Left", "Right", "Forward", "Back")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.x = direction.x * Current_Speed
+		velocity.z = direction.z * Current_Speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, Current_Speed)
+		velocity.z = move_toward(velocity.z, 0, Current_Speed)
+		
+	last_input = input_dir
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:

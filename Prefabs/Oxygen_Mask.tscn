@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://c57h31f2dn6c1"]
+
+[node name="Mask" type="Node3D"]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGCombiner3D"]
+radial_segments = 32
+rings = 16
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.11423)
+operation = 2
+radius = 0.511998
+radial_segments = 32
+rings = 16
+
+[node name="CSGSphere3D3" type="CSGSphere3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.227088, 0.205672, -0.408687)
+operation = 2
+radius = 0.215347
+radial_segments = 32
+rings = 16
+
+[node name="CSGSphere3D4" type="CSGSphere3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.249531, 0.205672, -0.408687)
+operation = 2
+radius = 0.215347
+radial_segments = 32
+rings = 16
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.220703, -0.708847, -0.424128)
+operation = 2
+size = Vector3(1.55078, 1, 1)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, -0.311366, -0.336498)
+radius = 0.177819
+height = 1.39254
