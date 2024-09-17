@@ -1,18 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://bx58q4jf6ownj"]
+[gd_scene load_steps=6 format=3 uid="uid://bx58q4jf6ownj"]
 
 [ext_resource type="Shader" uid="uid://dogm0sjk631j0" path="res://Shader/Portal.tres" id="1_3ch8k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y20c2"]
 render_priority = 0
 shader = ExtResource("1_3ch8k")
-shader_parameter/Mix = 0.0
+shader_parameter/Mix = 1.0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_jfm5d"]
 top_radius = 2.0
 bottom_radius = 2.0
 height = 0.1
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gjgpd"]
+render_priority = 0
+shader = ExtResource("1_3ch8k")
+shader_parameter/Mix = 1.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xds0l"]
+
 [node name="Portal" type="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.957599, -0.0397538, -0.0551462)
 material_override = SubResource("ShaderMaterial_y20c2")
 mesh = SubResource("CylinderMesh_jfm5d")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 4.32134e-07)
+material_override = SubResource("ShaderMaterial_gjgpd")
+mesh = SubResource("PlaneMesh_xds0l")

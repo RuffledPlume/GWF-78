@@ -21,14 +21,10 @@ var interact_timer = false
 @onready var generation_audio_b: AudioStreamPlayer3D = %GenerationAudioB
 @onready var transit_audio_b: AudioStreamPlayer = %TransitAudioB
 
-@onready var player_camera_pivot = Player.instance.camera_pivot
-
 @onready var timer: Timer = $Timer
-
 
 var portal_a_material: ShaderMaterial
 var portal_b_material: ShaderMaterial
-
 
 func _ready() -> void:
 	
@@ -82,15 +78,16 @@ func _process(delta: float) -> void:
 
 func fix_teleporter() -> void:
 		#Below needs to be put into 'working teleporter' function which executes once is_working = true
-	if Input.is_action_just_pressed("Interact"):
+	if Input.is_action_just_pressed("Interact") and  not is_working:
 		var tween := create_tween()
 		tween.tween_method(func(t): portal_a_material.set_shader_parameter("Mix", t), 0.0, 1.0, 2.0)
 		tween.tween_method(func(t): portal_b_material.set_shader_parameter("Mix", t), 0.0, 1.0, 2.0)
+		is_working = true
 		
 func _on_timer_timeout() -> void:
 	interact_timer = false
 
-func _on_body_entered(body: Node3D) -> void:
+func _on_body_entered(body: CharacterBody3D) -> void:
 	if body == Player.instance:
 		print("Player in bounds")
 		is_within_a = true
