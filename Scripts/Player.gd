@@ -5,7 +5,7 @@ static var instance : Player
 @export var mouse_sensitivity := 0.001
 @export var interaction_distance := 5.0
 @export var breath_replenishment_rate := 0.5
-@export var breath_depletion_rate := 0.075
+@export var breath_depletion_rate := 0.025
 @export var oxygen_depletion_rate := 0.05
 
 const SPEED = 5.0

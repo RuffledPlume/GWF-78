@@ -6,30 +6,30 @@
 [ext_resource type="AudioStream" uid="uid://ckqsuaisa1803" path="res://Audio/112836__dymewiz__whoosh_20.wav" id="4_1bews"]
 [ext_resource type="AudioStream" uid="uid://cgfy4dyy1hfo8" path="res://Audio/162842__beman87__whoosh-data-x2.wav" id="4_r2tse"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_nx65m"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_muw4y"]
 
-[sub_resource type="TorusMesh" id="TorusMesh_vvlmt"]
+[sub_resource type="TorusMesh" id="TorusMesh_8jtot"]
 inner_radius = 2.0
 outer_radius = 2.5
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_v8xaa"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g7fsu"]
 render_priority = 0
 shader = ExtResource("2_6d5h0")
 shader_parameter/Mix = 0.0
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_v3qn3"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_q7176"]
 top_radius = 2.0
 bottom_radius = 2.0
 height = 0.1
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_nwtwy"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_rdrxw"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_y20c2"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_txeos"]
 render_priority = 0
 shader = ExtResource("2_6d5h0")
 shader_parameter/Mix = 0.0
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_jfm5d"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_k2dec"]
 top_radius = 2.0
 bottom_radius = 2.0
 height = 0.1
@@ -39,15 +39,16 @@ gravity = 0.0
 script = ExtResource("1_h3a3j")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
 one_shot = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
-shape = SubResource("BoxShape3D_nx65m")
+shape = SubResource("BoxShape3D_muw4y")
 
 [node name="TorusA" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-mesh = SubResource("TorusMesh_vvlmt")
+mesh = SubResource("TorusMesh_8jtot")
 skeleton = NodePath("")
 
 [node name="PointA" type="Node3D" parent="TorusA"]
@@ -57,8 +58,8 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -8.
 [node name="PortalA" type="MeshInstance3D" parent="TorusA"]
 unique_name_in_owner = true
 transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, -8.74228e-08, -1, 8.74228e-08, 3.82137e-15, 8.74228e-08, 1, 0, 0, 0)
-material_override = SubResource("ShaderMaterial_v8xaa")
-mesh = SubResource("CylinderMesh_v3qn3")
+material_override = SubResource("ShaderMaterial_g7fsu")
+mesh = SubResource("CylinderMesh_q7176")
 skeleton = NodePath("../../..")
 
 [node name="TeleportAudio" type="AudioStreamPlayer3D" parent="."]
@@ -89,11 +90,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TeleporterB"]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
-shape = SubResource("BoxShape3D_nwtwy")
+shape = SubResource("BoxShape3D_rdrxw")
 
 [node name="TorusB" type="MeshInstance3D" parent="TeleporterB"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-mesh = SubResource("TorusMesh_vvlmt")
+mesh = SubResource("TorusMesh_8jtot")
 skeleton = NodePath("")
 
 [node name="PointB" type="Node3D" parent="TeleporterB/TorusB"]
@@ -103,8 +104,8 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 
 [node name="PortalB" type="MeshInstance3D" parent="TeleporterB/TorusB"]
 unique_name_in_owner = true
 transform = Transform3D(1, -1.74846e-07, 7.64274e-15, 1.74846e-07, 1, 2.13163e-14, -7.64274e-15, -2.13163e-14, 1, 0, 0, 0)
-material_override = SubResource("ShaderMaterial_y20c2")
-mesh = SubResource("CylinderMesh_jfm5d")
+material_override = SubResource("ShaderMaterial_txeos")
+mesh = SubResource("CylinderMesh_k2dec")
 skeleton = NodePath("")
 
 [node name="TeleportAudioB" type="AudioStreamPlayer3D" parent="TeleporterB"]

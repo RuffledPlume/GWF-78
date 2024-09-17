@@ -1,0 +1,208 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7slp67cdg080"]
+
+[ext_resource type="Texture2D" uid="uid://dt48n212okjo6" path="res://Materials/prototype-texture-with-size.png" id="1_gfiwd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_62oow"]
+albedo_texture = ExtResource("1_gfiwd")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_prs6i"]
+albedo_texture = ExtResource("1_gfiwd")
+uv1_triplanar = true
+
+[node name="TowerTwoInterior" type="CSGCombiner3D"]
+material_override = SubResource("StandardMaterial3D_62oow")
+use_collision = true
+
+[node name="BoundingBox" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+material_override = SubResource("StandardMaterial3D_prs6i")
+size = Vector3(30, 20.6, 30)
+
+[node name="EntranceOuterLedge" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 1.5, -12)
+material_override = SubResource("StandardMaterial3D_prs6i")
+size = Vector3(4, 1, 6)
+
+[node name="EntranceOuterLedge2" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -15.05, 1.5, -17)
+material_override = SubResource("StandardMaterial3D_prs6i")
+size = Vector3(4, 1, 8.7)
+
+[node name="OuterLedgeSupport" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0.707107, 0.707107, -3.09086e-08, 0.707107, -0.707107, -3.09086e-08, -12.95, -0.207107, -16.2929)
+material_override = SubResource("StandardMaterial3D_prs6i")
+size = Vector3(0.5, 5, 0.5)
+
+[node name="OuterLedgeSupport2" type="CSGBox3D" parent="."]
+transform = Transform3D(0.707107, -0.707107, 1.28028e-08, 0.707107, 0.707107, -3.09086e-08, 1.28028e-08, 3.09086e-08, 1, -16.05, -0.207107, -12.9929)
+material_override = SubResource("StandardMaterial3D_prs6i")
+size = Vector3(0.5, 5, 0.5)
+
+[node name="EntrancePoint" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 4, -12.5)
+material_override = SubResource("StandardMaterial3D_prs6i")
+operation = 2
+size = Vector3(4, 4, 5)
+
+[node name="CorridorMain" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8, -5.5)
+material_override = SubResource("StandardMaterial3D_prs6i")
+operation = 2
+size = Vector3(4, 3.6, 17)
+
+[node name="CorridorMain2" type="CSGBox3D" parent="."]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -1.84952, 3.8, 1.08577)
+material_override = SubResource("StandardMaterial3D_prs6i")
+operation = 2
+size = Vector3(2.8, 3.6, 1.5)
+
+[node name="CorridorMain3" type="CSGBox3D" parent="."]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 1.85048, 3.8, 1.08577)
+material_override = SubResource("StandardMaterial3D_prs6i")
+operation = 2
+size = Vector3(2.8, 3.6, 1.5)
+
+[node name="SecondFloorCutout" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 8.35727, 0)
+material_override = SubResource("StandardMaterial3D_prs6i")
+operation = 2
+size = Vector3(3, 3.2, 16)
+
+[node name="SecondFloorCutout2" type="CSGBox3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 6.99382e-07, 8.35727, -8)
+material_override = SubResource("StandardMaterial3D_prs6i")
+operation = 2
+size = Vector3(4, 3.2, 13)
+
+[node name="ExitRoom" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10.75, 8.35727, 7.5)
+material_override = SubResource("StandardMaterial3D_prs6i")
+operation = 2
+size = Vector3(4, 3.2, 4.5)
+
+[node name="CorridorCutout" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 3.8, -12)
+material_override = SubResource("StandardMaterial3D_prs6i")
+operation = 2
+size = Vector3(5, 3.6, 4)
+
+[node name="CorridorCutout2" type="CSGBox3D" parent="."]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -2.93934, 3.8, -9.64645)
+material_override = SubResource("StandardMaterial3D_prs6i")
+operation = 2
+size = Vector3(7, 3.6, 3)
+
+[node name="Door" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.6, 3.15, -12)
+material_override = SubResource("StandardMaterial3D_prs6i")
+operation = 2
+size = Vector3(1, 2.3, 1.5)
+
+[node name="Door2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2, 3.15, -2.5)
+material_override = SubResource("StandardMaterial3D_prs6i")
+operation = 2
+size = Vector3(1, 2.3, 1.5)
+
+[node name="Door4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.4, 7.90622, 7.5)
+material_override = SubResource("StandardMaterial3D_prs6i")
+operation = 2
+size = Vector3(1, 2.3, 1.5)
+
+[node name="ExitRoomCutout" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.8, 11.006, 6.5)
+material_override = SubResource("StandardMaterial3D_prs6i")
+operation = 2
+size = Vector3(2.3, 2.3, 2)
+
+[node name="Door3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.2, 3.15, -6.2)
+material_override = SubResource("StandardMaterial3D_prs6i")
+operation = 2
+size = Vector3(1, 2.3, 1.5)
+
+[node name="Room" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, 3.8, -12)
+material_override = SubResource("StandardMaterial3D_prs6i")
+operation = 2
+size = Vector3(5, 3.6, 4)
+
+[node name="Room2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 3.8, -11)
+material_override = SubResource("StandardMaterial3D_prs6i")
+operation = 2
+size = Vector3(4, 3.6, 10)
+
+[node name="Room3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 3.8, -2.5)
+material_override = SubResource("StandardMaterial3D_prs6i")
+operation = 2
+size = Vector3(12, 3.6, 4)
+
+[node name="Room4" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11.5, 3.8, -7)
+material_override = SubResource("StandardMaterial3D_prs6i")
+operation = 2
+size = Vector3(5, 3.6, 6)
+
+[node name="Room5" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.25, 3.8, -7.5)
+material_override = SubResource("StandardMaterial3D_prs6i")
+operation = 2
+size = Vector3(5, 3.6, 5.5)
+
+[node name="Room6" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -2.3, 0, 1, 0, 1, 0, -1.00536e-07, 0, 6, 8)
+material_override = SubResource("StandardMaterial3D_prs6i")
+operation = 2
+size = Vector3(13, 8, 7)
+
+[node name="Elevator" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 6, 10.601)
+size = Vector3(3, 8, 3)
+
+[node name="MainHallStairs" type="CSGBox3D" parent="Elevator"]
+transform = Transform3D(-4.37114e-08, 0.573576, -0.819152, 0, 0.819152, 0.573576, 1, 2.50718e-08, -3.58063e-08, 0.400009, -3.69109, -2.8)
+size = Vector3(2.5, 0.5, 5)
+
+[node name="MainHallStairs2" type="CSGBox3D" parent="Elevator"]
+transform = Transform3D(1, 0, -3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 1, -2.79999, -2.29109, -2.75)
+size = Vector3(2.5, 0.5, 2.5)
+
+[node name="MainHallStairs3" type="CSGBox3D" parent="Elevator"]
+transform = Transform3D(1, 1.77636e-15, -3.55271e-15, 0, 0.819152, 0.573576, 3.55271e-15, -0.573576, 0.819152, -2.69999, -1.69109, -0.600001)
+size = Vector3(2.5, 0.5, 5)
+
+[node name="MainHallStairs4" type="CSGBox3D" parent="Elevator"]
+transform = Transform3D(1, 0, -3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 1, -2.69999, -0.29109, 2.65)
+size = Vector3(2.5, 0.5, 2.7)
+
+[node name="MainHallStairs5" type="CSGBox3D" parent="Elevator"]
+transform = Transform3D(-4.37114e-08, -0.573576, 0.819152, 0, 0.819152, 0.573576, -1, 2.50718e-08, -3.58063e-08, -0.951591, 0.0625129, 2.7)
+size = Vector3(2.5, 0.5, 1.7)
+
+[node name="MainHallWall" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37105e-08, 0, 1, 0, 1, 0, -1, 0, -4.37105e-08, 4.6, 4.20891, 10.751)
+size = Vector3(0.5, 4.5, 7)
+
+[node name="MainHallWall3" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37105e-08, 0, 1, 0, 1, 0, -1, 0, -4.37105e-08, -6.05, 5.95891, 12.501)
+size = Vector3(4, 8, 4.1)
+
+[node name="MainHallWall2" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37105e-08, 0, 1, 0, 1, 0, -1, 0, -4.37105e-08, 6.05, 7.90891, 12.501)
+size = Vector3(4, 4, 4.1)
+
+[node name="MainHallSecondFloor" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37103e-08, 0, 1, 0, 1, 0, -1, 0, -4.37103e-08, 2.36928e-06, 6.50892, 8.85099)
+size = Vector3(4.3, 0.5, 16.2)
+
+[node name="MainHallSecondFloor2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, -1.34293e-12, 0, 1, 0, 1.37135e-12, 0, 1, 6.5, 6.50892, 4.10099)
+size = Vector3(3, 0.5, 5.3)
+
+[node name="MainHallSecondFloor3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, -1.35003e-12, 0, 1, 0, 1.37845e-12, 0, 1, -6.5, 6.50893, 4.10099)
+size = Vector3(3, 0.5, 5.3)
