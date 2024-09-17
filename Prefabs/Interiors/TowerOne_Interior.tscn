@@ -1,0 +1,87 @@
+[gd_scene load_steps=3 format=3 uid="uid://bb30g1n8ji8rw"]
+
+[ext_resource type="Texture2D" uid="uid://dt48n212okjo6" path="res://Materials/prototype-texture-with-size.png" id="1_w1jc5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uaapu"]
+albedo_texture = ExtResource("1_w1jc5")
+uv1_triplanar = true
+
+[node name="TowerOne_Interior" type="CSGCombiner3D"]
+material_override = SubResource("StandardMaterial3D_uaapu")
+use_collision = true
+
+[node name="BoundingBox" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1, 0.15, 4.6)
+size = Vector3(30, 4.3, 30)
+
+[node name="StairwellRoom" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 0.25, 13.4)
+operation = 2
+size = Vector3(11, 3.5, 6)
+
+[node name="StairwellToOutside" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7, 2.4, 15.6)
+operation = 2
+size = Vector3(5, 1, 1.5)
+
+[node name="StairwellDoor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19209e-07, -0.25, 10.3)
+operation = 2
+size = Vector3(3, 2.5, 1)
+
+[node name="Corridor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+operation = 2
+size = Vector3(4, 3.5, 20)
+
+[node name="CorridorWindow" type="CSGBox3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 3.35276e-07, 0.05, -10.2)
+operation = 2
+size = Vector3(2, 1.5, 1)
+
+[node name="CorridorWindow2" type="CSGBox3D" parent="."]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -10.6, 0.25, -4.5)
+operation = 2
+size = Vector3(2, 2, 1)
+
+[node name="CorridorWindow3" type="CSGBox3D" parent="."]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -10.6, 0.25, -7)
+operation = 2
+size = Vector3(2, 2, 1)
+
+[node name="CorridorWindow4" type="CSGBox3D" parent="."]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -10.6, 0.55, 0.7)
+operation = 2
+size = Vector3(3, 1.4, 1)
+
+[node name="ApartmentRoom" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4, 0.25, -5.5)
+operation = 2
+size = Vector3(8, 3.5, 6)
+
+[node name="ApartmentDoor" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.2, -0.35, -7.2)
+operation = 2
+size = Vector3(1.5, 2.3, 1)
+
+[node name="ApartmentKitchen" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0.25, 0.9)
+operation = 2
+size = Vector3(6, 3.5, 6)
+
+[node name="ApartmentKitchenDoor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -0.25, -2.2)
+operation = 2
+size = Vector3(3, 2.5, 1)
+
+[node name="Staircase" type="CSGBox3D" parent="."]
+transform = Transform3D(0.766044, -0.642788, 0, 0.642788, 0.766044, 0, 0, 0, 1, -2, 0.55, 15.6)
+size = Vector3(5, 0.4, 1.5)
+
+[node name="Staircase2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -1.05, 15.6)
+size = Vector3(2, 0.4, 1.5)
+
+[node name="Staircase3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, -5, -1.35716, 14.5298)
+size = Vector3(1.5, 0.4, 1.1)
