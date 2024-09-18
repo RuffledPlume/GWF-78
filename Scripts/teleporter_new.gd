@@ -1,6 +1,7 @@
 class_name TeleporterNew extends Area3D
 
 @export var teleporter_target : TeleporterNew
+@export var teleporter_path : Path3D
 
 @export_category("Internal")
 @export var exit_target: Node3D
@@ -27,6 +28,11 @@ func _ready() -> void:
 	
 	is_working = false
 
+func _camera_finish_following_path() -> void:
+	is_teleporting = false
+	Player.instance.global_position = teleporter_target.exit_target.global_position
+	PlayerCamera.instance.on_finish_following_path.disconnect(_camera_finish_following_path)
+
 func _process(delta: float) -> void:
 	fix_teleporter()
 	
@@ -40,8 +46,12 @@ func _process(delta: float) -> void:
 			generation_audio.stop()
 			transit_audio.play(5.6)
 			is_teleporting = true
+			
+			if teleporter_path != null:
+				PlayerCamera.instance.on_finish_following_path.connect(_camera_finish_following_path)
+				PlayerCamera.instance.follow_path(teleporter_path)
 							
-	if is_teleporting:
+	if is_teleporting && teleporter_path == null:
 		Player.instance.global_position = lerp(Player.instance.global_position, teleporter_target.exit_target.global_position, delta * 5)
 		if Player.instance.global_position.distance_to(teleporter_target.exit_target.global_position) <= 2.0:
 			is_teleporting = false

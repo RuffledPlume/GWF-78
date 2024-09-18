@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://datu3rc6g2iod"]
+[gd_scene load_steps=28 format=3 uid="uid://datu3rc6g2iod"]
 
 [ext_resource type="Texture2D" uid="uid://dt48n212okjo6" path="res://Materials/prototype-texture-with-size.png" id="1_chle4"]
 [ext_resource type="PackedScene" uid="uid://dikcrsr171oyg" path="res://Prefabs/Player.tscn" id="2_k8lnm"]
@@ -39,6 +39,13 @@ volumetric_fog_enabled = true
 volumetric_fog_albedo = Color(0.517647, 0.682353, 0.607843, 1)
 volumetric_fog_length = 16.0
 volumetric_fog_sky_affect = 0.3
+
+[sub_resource type="Curve3D" id="Curve3D_ynyhy"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, -4.05649, -2.03922, 5.09185, 4.05649, 2.03922, -5.09185, 9.46943, 2.20076, -10.8442, -1.53186, -1.58578, 8.54891, 1.53186, 1.58578, -8.54891, 4.64602, 16.9503, -33.7849, 0, 0, 0, 0, 0, 0, 18.9559, 19.8309, -55.9288),
+"tilts": PackedFloat32Array(-0.745, -0.565, 1.25, 0)
+}
+point_count = 4
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3wi8h"]
 albedo_texture = ExtResource("1_chle4")
@@ -107,9 +114,13 @@ light_bake_mode = 1
 shadow_enabled = true
 directional_shadow_blend_splits = true
 
-[node name="Teleporter" parent="." node_paths=PackedStringArray("teleporter_target") instance=ExtResource("11_a0wa4")]
+[node name="Teleporter" parent="." node_paths=PackedStringArray("teleporter_target", "teleporter_path") instance=ExtResource("11_a0wa4")]
 transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 9, 52.75, -9)
 teleporter_target = NodePath("../Teleporter2")
+teleporter_path = NodePath("Path3D")
+
+[node name="Path3D" type="Path3D" parent="Teleporter"]
+curve = SubResource("Curve3D_ynyhy")
 
 [node name="Teleporter2" parent="." node_paths=PackedStringArray("teleporter_target") instance=ExtResource("11_a0wa4")]
 transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 28, 72.75, -65)
