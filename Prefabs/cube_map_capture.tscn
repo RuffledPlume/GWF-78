@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwicsvnhvy8g2"]
+
+[ext_resource type="Script" path="res://Scripts/cubemap_capture.gd" id="1_iy50x"]
+
+[node name="CubeMapCapture" type="Node3D"]
+script = ExtResource("1_iy50x")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+cull_mask = 1048573
