@@ -48,9 +48,10 @@ func _process(delta: float) -> void:
 
 func fix_teleporter() -> void:
 		#Below needs to be put into 'working teleporter' function which executes once is_working = true
-	if Input.is_action_just_pressed("Interact"):
+	if Input.is_action_just_pressed("Interact") and not is_working:
 		var tween := create_tween()
 		tween.tween_method(func(t): portal_material.set_shader_parameter("Mix", t), 0.0, 1.0, 2.0)
+		is_working = true
 		
 func _on_timer_timeout() -> void:
 	interact_timer = false

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bp5dsew7bkfrc"
-path.s3tc="res://.godot/imported/CloudAlpha.png-d73b9daed99dc22d2fa14df4c4fb1883.s3tc.ctex"
+path.s3tc="res://.godot/imported/CloudAlpha.png-23efe8fb479100e6092791c18f80563a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://CloudAlpha.png"
-dest_files=["res://.godot/imported/CloudAlpha.png-d73b9daed99dc22d2fa14df4c4fb1883.s3tc.ctex"]
+source_file="res://Textures/CloudAlpha.png"
+dest_files=["res://.godot/imported/CloudAlpha.png-23efe8fb479100e6092791c18f80563a.s3tc.ctex"]
 
 [params]
 
