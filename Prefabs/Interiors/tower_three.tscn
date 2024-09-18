@@ -1,0 +1,239 @@
+[gd_scene load_steps=11 format=3 uid="uid://cr1u7jts1uf3m"]
+
+[ext_resource type="Texture2D" uid="uid://dt48n212okjo6" path="res://Materials/prototype-texture-with-size.png" id="1_n5ve7"]
+[ext_resource type="PackedScene" uid="uid://dikcrsr171oyg" path="res://Prefabs/Player.tscn" id="2_qyg6p"]
+[ext_resource type="PackedScene" uid="uid://cy6eqkcaqivhv" path="res://Prefabs/WirePath.tscn" id="3_akoco"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bxsof"]
+albedo_texture = ExtResource("1_n5ve7")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u7rse"]
+albedo_texture = ExtResource("1_n5ve7")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aok6m"]
+albedo_texture = ExtResource("1_n5ve7")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_1fyna"]
+size = Vector3(1, 2, 1.5)
+
+[sub_resource type="Curve3D" id="Curve3D_vw7jc"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(-0.1, 0.3, 0.8, 0.1, -0.3, -0.8, 0.800001, 0, 0.999999, 0.1, 1, 1, -0.1, -1, -1, 0.6, -1.7, -0.800001, 0, 0, 3.3, 0, 0, -3.3, 0.7, -3.2, -8.3, 0, -0.9, 1.8, 0, 0.9, -1.8, 0.900001, -1.8, -16.3, 0, -1.3, 0, 0, 1.3, 0, 0.853174, 2.09972, -20.0034, 1.5, -0.9, 0, -1.5, 0.9, 0, 0.2, 10.9, -20, 1.2, 0.1, 0, -1.2, -0.1, 0, -4.7, 11.4, -20.2, 2.1, 0, 0, -2.1, 0, 0, -10.4, 11, -20, 0.7, -0.3, 0, -0.7, 0.3, 0, -14.7902, 11.405, -19.9979, 0.1, -0.2, 0, -0.1, 0.2, 0, -15.7, 12.3, -20, 0, 0, 1, 0, 0, -1, -15.7, 13.1, -21),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 11
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_hdsig"]
+top_radius = 0.4
+bottom_radius = 0.4
+height = 0.5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ynfdi"]
+top_radius = 0.3
+bottom_radius = 0.3
+height = 0.5
+
+[node name="TowerThree" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1.04063e-08, 0.499998, 0.866027, -0.499997, -0.750003, 0.433012, 0.866027, -0.43301, 0.249997, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Bridge2" type="CSGBox3D" parent="."]
+transform = Transform3D(0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 0, 0, 1, 28.4477, 5.32605, -10.3)
+material_override = SubResource("StandardMaterial3D_bxsof")
+use_collision = true
+size = Vector3(7.3, 0.1, 3)
+
+[node name="Bridge3" type="CSGBox3D" parent="."]
+transform = Transform3D(0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 0, 0, 1, 11.804, 4.86985, -10.3)
+material_override = SubResource("StandardMaterial3D_bxsof")
+use_collision = true
+size = Vector3(4, 0.1, 3)
+
+[node name="Bridge" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, 4.7, -10.4)
+material_override = SubResource("StandardMaterial3D_bxsof")
+use_collision = true
+size = Vector3(15, 0.1, 2)
+
+[node name="Bridge4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.2, -7.8, -6.75)
+material_override = SubResource("StandardMaterial3D_bxsof")
+use_collision = true
+size = Vector3(22.4, 0.5, 0.7)
+
+[node name="Tower1" type="CSGCombiner3D" parent="."]
+material_override = SubResource("StandardMaterial3D_u7rse")
+use_collision = true
+
+[node name="T3BoundingBox" type="CSGBox3D" parent="Tower1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11, 3)
+material_override = SubResource("StandardMaterial3D_bxsof")
+use_collision = true
+size = Vector3(20, 34, 30)
+
+[node name="Cutout" type="CSGBox3D" parent="Tower1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -5.46302, 5)
+material_override = SubResource("StandardMaterial3D_bxsof")
+operation = 2
+use_collision = true
+size = Vector3(4, 4, 4)
+
+[node name="Cutout3" type="CSGBox3D" parent="Tower1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, -5.96302, 2.5)
+material_override = SubResource("StandardMaterial3D_bxsof")
+operation = 2
+use_collision = true
+size = Vector3(4, 3, 9)
+
+[node name="Cutout5" type="CSGBox3D" parent="Tower1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -5.963, -5)
+material_override = SubResource("StandardMaterial3D_bxsof")
+operation = 2
+use_collision = true
+size = Vector3(7, 3, 5)
+
+[node name="Cutout6" type="CSGBox3D" parent="Tower1"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.5, -5.963, -9)
+material_override = SubResource("StandardMaterial3D_bxsof")
+operation = 2
+use_collision = true
+size = Vector3(3, 3, 4)
+
+[node name="Door" type="CSGBox3D" parent="Tower1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9, -6.3, 5)
+material_override = SubResource("StandardMaterial3D_bxsof")
+operation = 2
+use_collision = true
+size = Vector3(1, 2.3, 1.5)
+
+[node name="Door2" type="CSGBox3D" parent="Tower1"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.5, -6.3, -2.1)
+material_override = SubResource("StandardMaterial3D_bxsof")
+operation = 2
+use_collision = true
+size = Vector3(1, 2.3, 1.5)
+
+[node name="Cutout2" type="CSGBox3D" parent="Tower1"]
+transform = Transform3D(0.683013, -0.258819, -0.683013, -0.00623602, 0.933013, -0.359789, 0.73038, 0.25, 0.635646, 10, -5.46302, 5)
+material_override = SubResource("StandardMaterial3D_bxsof")
+operation = 2
+use_collision = true
+size = Vector3(4, 4, 4)
+
+[node name="Tower2" type="CSGCombiner3D" parent="."]
+material_override = SubResource("StandardMaterial3D_aok6m")
+use_collision = true
+
+[node name="T4BoundingBox" type="CSGBox3D" parent="Tower2"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 47, -6, -18)
+material_override = SubResource("StandardMaterial3D_bxsof")
+size = Vector3(20, 24, 30)
+
+[node name="LadderCutout" type="CSGBox3D" parent="Tower2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41, 4.5, -25)
+operation = 2
+size = Vector3(2, 3, 2)
+
+[node name="Door" type="CSGBox3D" parent="Tower2"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 39.7, -7.2, -16.1)
+operation = 2
+size = Vector3(0.8, 2.3, 1.5)
+
+[node name="Door2" type="CSGBox3D" parent="Tower2"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 39.7, -7.2, -14.4)
+operation = 2
+size = Vector3(3, 2.3, 4)
+
+[node name="Cutout" type="CSGBox3D" parent="Tower2"]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 33.067, -5.9, -15.4206)
+operation = 2
+size = Vector3(5, 3, 5)
+
+[node name="Cutout2" type="CSGBox3D" parent="Tower2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.2, -6.9, -18.421)
+operation = 2
+size = Vector3(9.6, 3, 4)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Tower2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 1.5, -26)
+operation = 2
+size = Vector3(4, 3, 4)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Tower2"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 45.0607, 1.5, -27.0607)
+operation = 2
+size = Vector3(7, 3, 4)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Tower2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, -29.5)
+size = Vector3(9, 0.1, 3)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Tower2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.75, 0, -29.5)
+size = Vector3(8.5, 0.1, 3)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Tower2"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 63.45, 0, -16.55)
+size = Vector3(23, 0.1, 3)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Tower2"]
+transform = Transform3D(-0.8694, -0.494109, 7.60054e-08, -0.494109, 0.8694, 4.31964e-08, -8.74228e-08, 4.31954e-16, -1, 57.6235, -2.46473, -6.55)
+size = Vector3(10, 0.1, 3)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Tower2"]
+transform = Transform3D(-0.999977, 0.0067893, 8.74207e-08, 0.0067893, 0.999977, -5.93541e-10, -8.74228e-08, 4.31954e-16, -1, 37.5, -7.53461, -6.55)
+size = Vector3(17, 0.1, 3)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Tower2"]
+transform = Transform3D(1.31133e-07, -2.9677e-10, 1, 0.0067893, 0.999977, -5.93541e-10, -0.999977, 0.0067893, 1.31132e-07, 30.5, -7.46516, -12.0501)
+size = Vector3(8, 0.1, 3)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Tower2"]
+transform = Transform3D(1.31133e-07, -2.9677e-10, 1, 0.0067893, 0.999977, -5.93541e-10, -0.999977, 0.0067893, 1.31132e-07, 11.5, -7.55, -0.05)
+size = Vector3(16, 0.1, 3)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Tower2"]
+transform = Transform3D(1.31133e-07, -2.9677e-10, 1, 0.0067893, 0.999977, -5.93541e-10, -0.999977, 0.0067893, 1.31132e-07, 8.50001, -7.49231, 4.9498)
+size = Vector3(2, 0.1, 3)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Tower2"]
+transform = Transform3D(-0.909156, -0.416455, 7.9481e-08, -0.416455, 0.909156, 3.64077e-08, -8.74228e-08, 4.53832e-15, -1, 50.5735, -6.91304, -7.55)
+size = Vector3(2.5, 1, 1)
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("2_qyg6p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -5)
+floor_constant_speed = true
+
+[node name="Generator" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.6, 0, 0, 0, 1, 0, 0, 0, 1, 9.2, -6, -8.7)
+mesh = SubResource("BoxMesh_1fyna")
+
+[node name="Generator2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 33.7, 7, -25.3)
+mesh = SubResource("BoxMesh_1fyna")
+
+[node name="Path3D" parent="." instance=ExtResource("3_akoco")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11.8, -5.9, -9.6)
+curve = SubResource("Curve3D_vw7jc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 33, 7.17212, -25.2487)
+mesh = SubResource("CylinderMesh_hdsig")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 10.5, -5.9, -8.75)
+mesh = SubResource("CylinderMesh_hdsig")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 10.6, -5.9, -8.75)
+mesh = SubResource("CylinderMesh_ynfdi")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 32.9, 7.2, -25.25)
+mesh = SubResource("CylinderMesh_ynfdi")

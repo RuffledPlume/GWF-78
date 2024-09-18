@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://1mtqn8awys4t"
-path.s3tc="res://.godot/imported/CloudTrailAlpha.png-69aba9e5019e520bae60db33b8c0ed12.s3tc.ctex"
+path.s3tc="res://.godot/imported/CloudTrailAlpha.png-4461d52acdd9c0e754a050fc347e342f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://CloudTrailAlpha.png"
-dest_files=["res://.godot/imported/CloudTrailAlpha.png-69aba9e5019e520bae60db33b8c0ed12.s3tc.ctex"]
+source_file="res://Textures/CloudTrailAlpha.png"
+dest_files=["res://.godot/imported/CloudTrailAlpha.png-4461d52acdd9c0e754a050fc347e342f.s3tc.ctex"]
 
 [params]
 
