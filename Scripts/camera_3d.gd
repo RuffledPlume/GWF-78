@@ -16,6 +16,8 @@ signal on_finish_following_path()
 func follow_path(path: Path3D) -> void:
 	_current_path = path
 	_current_path_frac = 0.0
+	camera_animator.stop()
+	animation_tree.active = false
 	
 func _ready() -> void:
 	instance = self
@@ -28,6 +30,8 @@ func _physics_process(delta: float) -> void:
 		_current_path_frac += delta * 0.5
 		if _current_path_frac >= 1.0:
 			_current_path = null
+			animation_tree.active = true
+			camera_animator.play()
 			on_finish_following_path.emit()
 		return
 	
