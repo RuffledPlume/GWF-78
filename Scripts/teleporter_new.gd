@@ -1,5 +1,7 @@
 class_name TeleporterNew extends Area3D
 
+static var instance : TeleporterNew
+
 @export var teleporter_target : TeleporterNew
 @export var teleporter_path : Path3D
 

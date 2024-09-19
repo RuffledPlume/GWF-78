@@ -1,0 +1,128 @@
+[gd_scene load_steps=15 format=3 uid="uid://djwfip7r5is05"]
+
+[ext_resource type="Texture2D" uid="uid://bmshbga5jao3o" path="res://Textures/RainDrop.png" id="1_iudxp"]
+[ext_resource type="Texture2D" uid="uid://cyon5ky8ve67t" path="res://Textures/RainContact.png" id="2_lob5o"]
+[ext_resource type="Texture2D" uid="uid://cu2c8kdaeetbc" path="res://Textures/RainSplash.png" id="3_a0xew"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_21jbo"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_iudxp")
+albedo_texture_msdf = true
+billboard_mode = 2
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mxqwt"]
+emission_shape = 3
+emission_box_extents = Vector3(10, 1, 10)
+direction = Vector3(0, -1, 0)
+spread = 5.0
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+gravity = Vector3(0, 0, 0)
+collision_mode = 2
+sub_emitter_mode = 3
+sub_emitter_amount_at_collision = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_ho3dj"]
+resource_local_to_scene = true
+custom_aabb = AABB(0, 0, 0, 10, 1, 10)
+size = Vector2(0.01, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3l6wb"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_lob5o")
+
+[sub_resource type="Curve" id="Curve_efpac"]
+max_value = 3.0
+_data = [Vector2(0, 2), 0.0, 0.0, 0, 0, Vector2(0.1, 2.5), 0.0, 0.0, 0, 0, Vector2(0.75, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_jcvcf"]
+curve = SubResource("Curve_efpac")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v6er2"]
+resource_local_to_scene = true
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_jcvcf")
+sub_emitter_mode = 3
+sub_emitter_amount_at_collision = 1
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7r77i"]
+size = Vector2(0.1, 0.1)
+subdivide_width = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r0f67"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("3_a0xew")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ypteb"]
+resource_local_to_scene = true
+lifetime_randomness = 0.5
+particle_flag_rotate_y = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.0
+emission_ring_radius = 0.2
+emission_ring_inner_radius = 0.0
+direction = Vector3(0, 1, 0)
+spread = 5.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+scale_min = 0.1
+scale_max = 0.3
+
+[sub_resource type="QuadMesh" id="QuadMesh_qg2wi"]
+size = Vector2(0.1, 0.1)
+
+[node name="Rain" type="Node3D"]
+
+[node name="RainDrops" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+material_override = SubResource("StandardMaterial3D_21jbo")
+amount = 512
+sub_emitter = NodePath("../HitRipple")
+lifetime = 0.3
+speed_scale = 0.3
+fixed_fps = 60
+transform_align = 2
+process_material = SubResource("ParticleProcessMaterial_mxqwt")
+draw_pass_1 = SubResource("QuadMesh_ho3dj")
+
+[node name="HitRipple" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_3l6wb")
+emitting = false
+amount = 512
+sub_emitter = NodePath("../HitSplash")
+randomness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_v6er2")
+draw_pass_1 = SubResource("PlaneMesh_7r77i")
+
+[node name="HitSplash" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_r0f67")
+emitting = false
+amount = 512
+explosiveness = 1.0
+randomness = 1.0
+fixed_fps = 60
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_ypteb")
+draw_pass_1 = SubResource("QuadMesh_qg2wi")
+
+[node name="CollisionBox" type="GPUParticlesCollisionBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+size = Vector3(15, 1, 15)

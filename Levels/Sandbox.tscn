@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://datu3rc6g2iod"]
+[gd_scene load_steps=30 format=3 uid="uid://datu3rc6g2iod"]
 
 [ext_resource type="Texture2D" uid="uid://dt48n212okjo6" path="res://Materials/prototype-texture-with-size.png" id="1_chle4"]
 [ext_resource type="PackedScene" uid="uid://dikcrsr171oyg" path="res://Prefabs/Player.tscn" id="2_k8lnm"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://Scripts/safe_zone.gd" id="10_t3pil"]
 [ext_resource type="PackedScene" uid="uid://ukmadykyy3j3" path="res://Prefabs/teleporter_new.tscn" id="11_a0wa4"]
 [ext_resource type="PackedScene" uid="uid://ct488yssioitj" path="res://Particles/ToxicCloudStylized.tscn" id="12_e2vi3"]
+[ext_resource type="PackedScene" uid="uid://djwfip7r5is05" path="res://Particles/rain.tscn" id="13_xagji"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dl0db"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -594,5 +595,8 @@ transform = Transform3D(-0.0157771, 0, 0.999876, 0, 1, 0, -0.999876, 0, -0.01577
 
 [node name="ToxicClouds" parent="." instance=ExtResource("12_e2vi3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 51, 6)
+
+[node name="Rain" parent="." instance=ExtResource("13_xagji")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50.3, 0)
 
 [editable path="Player"]

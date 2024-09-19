@@ -7,7 +7,6 @@ static var instance : PlayerCamera
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/playback"]
 
-
 var _current_path : Path3D
 var _current_path_frac : float
 
