@@ -7,14 +7,17 @@ static var instance : Player
 @export var breath_replenishment_rate := 0.5
 @export var breath_depletion_rate := 0.025
 @export var oxygen_depletion_rate := 0.05
+@export var direction: Vector3
 
-const SPEED = 5.0
+@export var speed = 3.0
+
 const JUMP_VELOCITY = 4.5
 
 @onready var camera_pivot: Node3D = $CameraPivot
 @onready var mask_animator := $CameraPivot/Camera3D/AnimationPlayer
 @onready var mask_root := $CameraPivot/Camera3D/Mask
 
+var current_speed: float
 var mouse_motion := Vector2.ZERO
 var hovering_interactable : Interactable
 var is_teleporting: bool
@@ -23,6 +26,8 @@ var oxygen_reserve : float = 1.0
 var breath : float = 1.0
 var last_input : Vector2
 var is_within_safe_zone : bool
+var is_walking: bool
+var is_sprinting: bool
 
 func _ready() -> void:
 	instance = self
@@ -30,6 +35,7 @@ func _ready() -> void:
 	mask_root.visible = false
 	
 func _process(delta: float) -> void:
+	print(is_walking)
 	if is_within_safe_zone:
 		if breath < 1.0:
 			breath += breath_replenishment_rate * delta
@@ -90,20 +96,26 @@ func _handle_player_movement(delta: float) -> void:
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	var Current_Speed := SPEED
+	current_speed = speed
 	if Input.is_key_pressed(KEY_SHIFT):
-		Current_Speed *= 2.0
-
+		is_sprinting = true
+		current_speed *= 1.5
+	else:
+		is_sprinting = false
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("Left", "Right", "Forward", "Back")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
-		velocity.x = direction.x * Current_Speed
-		velocity.z = direction.z * Current_Speed
+		is_walking = true
+		velocity.x = direction.x * current_speed
+		velocity.z = direction.z * current_speed
+
 	else:
-		velocity.x = move_toward(velocity.x, 0, Current_Speed)
-		velocity.z = move_toward(velocity.z, 0, Current_Speed)
+		is_walking = false
+		velocity.x = move_toward(velocity.x, 0, current_speed)
+		velocity.z = move_toward(velocity.z, 0, current_speed)
+	
 		
 	last_input = input_dir
 

@@ -1,0 +1,75 @@
+[gd_scene load_steps=10 format=3 uid="uid://ct488yssioitj"]
+
+[ext_resource type="Shader" uid="uid://b41spna05buu" path="res://ToxicCloudStylized.tres" id="1_qir87"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7jk6w"]
+render_priority = 0
+shader = ExtResource("1_qir87")
+shader_parameter/Speed = 0.2
+shader_parameter/Amp = Vector3(0, 2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dbtje"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+billboard_keep_scale = true
+grow_amount = 4.29
+proximity_fade_enabled = true
+
+[sub_resource type="Curve" id="Curve_tb3rp"]
+_data = [Vector2(0.0351563, 0), 0.0, 0.0, 0, 0, Vector2(0.507812, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_cabrt"]
+curve = SubResource("Curve_tb3rp")
+
+[sub_resource type="Gradient" id="Gradient_inheh"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.210526, 0.842105, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.381315, 0.71389, 0.387049, 1, 0.521569, 0.976471, 0.529412, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_k3hcf"]
+gradient = SubResource("Gradient_inheh")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fancf"]
+emission_shape_scale = Vector3(1, 0, 0)
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = 1.07288e-05
+angle_max = 1.07288e-05
+velocity_pivot = Vector3(0, 1, 0)
+direction = Vector3(0, 1, 0)
+flatness = 0.5
+initial_velocity_min = 0.1
+initial_velocity_max = 0.5
+gravity = Vector3(0, 1, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = -2.23517e-06
+tangential_accel_min = -3.0
+tangential_accel_max = 3.0
+damping_min = 2.0
+damping_max = 2.0
+scale_max = 2.0
+scale_over_velocity_max = 3.0
+color_ramp = SubResource("GradientTexture1D_k3hcf")
+alpha_curve = SubResource("CurveTexture_cabrt")
+turbulence_noise_scale = 5.0
+turbulence_noise_speed = Vector3(0, 2, 0)
+turbulence_influence_max = 0.2
+
+[sub_resource type="SphereMesh" id="SphereMesh_bdxrx"]
+lightmap_size_hint = Vector2i(17, 9)
+flip_faces = true
+
+[node name="ToxicClouds" type="GPUParticles3D"]
+material_override = SubResource("ShaderMaterial_7jk6w")
+material_overlay = SubResource("StandardMaterial3D_dbtje")
+transparency = 1.0
+amount = 25
+lifetime = 2.0
+speed_scale = 0.2
+fixed_fps = 60
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_fancf")
+draw_pass_1 = SubResource("SphereMesh_bdxrx")

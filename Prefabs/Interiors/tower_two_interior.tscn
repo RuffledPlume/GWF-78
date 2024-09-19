@@ -15,9 +15,9 @@ material_override = SubResource("StandardMaterial3D_62oow")
 use_collision = true
 
 [node name="BoundingBox" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0.25)
 material_override = SubResource("StandardMaterial3D_prs6i")
-size = Vector3(30, 20.6, 30)
+size = Vector3(30, 20.6, 29.5)
 
 [node name="EntranceOuterLedge" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 1.5, -12)
@@ -28,6 +28,11 @@ size = Vector3(4, 1, 6)
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -15.05, 1.5, -17)
 material_override = SubResource("StandardMaterial3D_prs6i")
 size = Vector3(4, 1, 8.7)
+
+[node name="EntranceOuterLedge3" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.0500002, 6.8, -16.4)
+material_override = SubResource("StandardMaterial3D_prs6i")
+size = Vector3(4, 0.1, 8.7)
 
 [node name="OuterLedgeSupport" type="CSGBox3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0.707107, 0.707107, -3.09086e-08, 0.707107, -0.707107, -3.09086e-08, -12.95, -0.207107, -16.2929)
@@ -40,10 +45,10 @@ material_override = SubResource("StandardMaterial3D_prs6i")
 size = Vector3(0.5, 5, 0.5)
 
 [node name="EntrancePoint" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 4, -12.5)
+transform = Transform3D(0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, -13.4651, 5.75, -14.5)
 material_override = SubResource("StandardMaterial3D_prs6i")
 operation = 2
-size = Vector3(4, 4, 5)
+size = Vector3(7, 3, 2)
 
 [node name="CorridorMain" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8, -5.5)
@@ -56,6 +61,30 @@ transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -1.84952, 
 material_override = SubResource("StandardMaterial3D_prs6i")
 operation = 2
 size = Vector3(2.8, 3.6, 1.5)
+
+[node name="CorridorMain4" type="CSGBox3D" parent="."]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 1.96602, 10.8, 4.44116)
+material_override = SubResource("StandardMaterial3D_prs6i")
+operation = 2
+size = Vector3(4, 3.6, 5)
+
+[node name="CorridorMain5" type="CSGBox3D" parent="."]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -0.551014, 10.8, 4.31175)
+material_override = SubResource("StandardMaterial3D_prs6i")
+operation = 2
+size = Vector3(5, 3.6, 5)
+
+[node name="CorridorMain6" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, -2.38419e-07, -1.19209e-07, 0.866025, -0.5, 2.06477e-07, 0.5, 0.866025, 0.387215, 10.05, 6.92044)
+material_override = SubResource("StandardMaterial3D_prs6i")
+operation = 2
+size = Vector3(5.5, 1, 2.6)
+
+[node name="CorridorMain7" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, -2.38419e-07, -1.19209e-07, 0.866025, -0.5, 2.06477e-07, 0.5, 0.866025, 0.187215, 11.9799, 1.99544)
+material_override = SubResource("StandardMaterial3D_prs6i")
+operation = 2
+size = Vector3(7.1, 1.3, 2.6)
 
 [node name="CorridorMain3" type="CSGBox3D" parent="."]
 transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 1.85048, 3.8, 1.08577)
@@ -99,6 +128,30 @@ material_override = SubResource("StandardMaterial3D_prs6i")
 operation = 2
 size = Vector3(1, 2.3, 1.5)
 
+[node name="Window" type="CSGBox3D" parent="."]
+transform = Transform3D(6.70552e-08, 0, -1, 0, 1, 0, 1, 0, 6.70552e-08, 6.70552e-09, 3.85, -14.4)
+material_override = SubResource("StandardMaterial3D_prs6i")
+operation = 2
+size = Vector3(1.2, 1.8, 3)
+
+[node name="Window2" type="CSGBox3D" parent="."]
+transform = Transform3D(6.70552e-08, 0, -1, 0, 1, 0, 1, 0, 6.70552e-08, -4, 3.85, -14.4)
+material_override = SubResource("StandardMaterial3D_prs6i")
+operation = 2
+size = Vector3(1.2, 1.8, 3)
+
+[node name="Window3" type="CSGBox3D" parent="."]
+transform = Transform3D(-1, 0, -2.33438e-08, 0, 1, 0, 2.33438e-08, 0, -1, 15, 4.05, -7)
+material_override = SubResource("StandardMaterial3D_prs6i")
+operation = 2
+size = Vector3(1.2, 1.8, 3)
+
+[node name="Window4" type="CSGBox3D" parent="."]
+transform = Transform3D(-1, 0, -2.33438e-08, 0, 1, 0, 2.33438e-08, 0, -1, 14.8, 4.05, -3.1)
+material_override = SubResource("StandardMaterial3D_prs6i")
+operation = 2
+size = Vector3(1.2, 1.8, 3)
+
 [node name="Door2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2, 3.15, -2.5)
 material_override = SubResource("StandardMaterial3D_prs6i")
@@ -130,10 +183,10 @@ operation = 2
 size = Vector3(5, 3.6, 4)
 
 [node name="Room2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 3.8, -11)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5, 3.8, -11)
 material_override = SubResource("StandardMaterial3D_prs6i")
 operation = 2
-size = Vector3(4, 3.6, 10)
+size = Vector3(5, 3.6, 10)
 
 [node name="Room3" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 3.8, -2.5)

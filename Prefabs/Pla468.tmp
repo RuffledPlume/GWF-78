@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dikcrsr171oyg"]
+[gd_scene load_steps=17 format=3 uid="uid://dikcrsr171oyg"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_uuae0"]
 [ext_resource type="Script" path="res://Scripts/camera_3d.gd" id="2_1ye7i"]
@@ -179,62 +179,6 @@ _data = {
 "RESET": SubResource("Animation_n3o8t")
 }
 
-[sub_resource type="Animation" id="Animation_56b6o"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(0.5),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(0.5),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_l46fl"]
-resource_name = "Idle"
-length = 20.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 10, 11.5, 12, 12.1, 15.0333, 15.5, 16, 17.0667, 20),
-"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2, -2, -2, -2),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 10, 11.5, 12, 12.1, 15.0333, 15.5, 16, 17.0667, 20),
-"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2, -2, -2, -2),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0.0872665, 0.698132, 0), Vector3(0.261799, 0.785398, 0), Vector3(0.261799, 0.785398, 0), Vector3(0.0872665, -0.785398, 0), Vector3(0.139626, -0.872665, 0), Vector3(0.20944, -0.959931, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_beei6"]
 resource_name = "Head_Bob"
 loop_mode = 1
@@ -263,9 +207,35 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0, 0, 0.0872665), Vector3(0, 0, 0), Vector3(0, 0, -0.0872665), Vector3(0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_56b6o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_g2mpl"]
 resource_name = "Head_Bob_Walk"
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -293,64 +263,10 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uf5qs"]
 _data = {
-"Idle": SubResource("Animation_l46fl"),
-"RESET": SubResource("Animation_56b6o"),
-"Run": SubResource("Animation_beei6"),
-"Walk": SubResource("Animation_g2mpl")
+"Head_Bob": SubResource("Animation_beei6"),
+"Head_Bob_Walk": SubResource("Animation_g2mpl"),
+"RESET": SubResource("Animation_56b6o")
 }
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4gxfc"]
-animation = &"Idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_76i1b"]
-animation = &"Run"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bjsrs"]
-animation = &"Walk"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h108l"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4fxa3"]
-priority = 2
-advance_mode = 2
-advance_condition = &"is_walking"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uon3e"]
-xfade_time = 0.2
-advance_mode = 2
-advance_condition = &"is_idle"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g0rvy"]
-priority = 3
-advance_mode = 2
-advance_condition = &"is_sprinting"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_almk3"]
-xfade_time = 0.2
-advance_mode = 2
-advance_condition = &"is_walking"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_416n0"]
-xfade_time = 0.2
-advance_mode = 2
-advance_condition = &"is_idle"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q03ka"]
-priority = 3
-advance_mode = 2
-advance_condition = &"is_sprinting"
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_msst4"]
-states/Idle/node = SubResource("AnimationNodeAnimation_4gxfc")
-states/Idle/position = Vector2(316, 161)
-states/Run/node = SubResource("AnimationNodeAnimation_76i1b")
-states/Run/position = Vector2(576, 161)
-states/Start/position = Vector2(203, 161)
-states/Walk/node = SubResource("AnimationNodeAnimation_bjsrs")
-states/Walk/position = Vector2(435, 57)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_h108l"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_4fxa3"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_uon3e"), "Walk", "Run", SubResource("AnimationNodeStateMachineTransition_g0rvy"), "Run", "Walk", SubResource("AnimationNodeStateMachineTransition_almk3"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_416n0"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_q03ka")]
-graph_offset = Vector2(-90, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_6hp2n"]
 outline_size = 10
@@ -370,7 +286,6 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 fov = 90.0
 script = ExtResource("2_1ye7i")
 
@@ -386,14 +301,6 @@ libraries = {
 libraries = {
 "": SubResource("AnimationLibrary_uf5qs")
 }
-autoplay = "Idle"
-
-[node name="AnimationTree" type="AnimationTree" parent="CameraPivot/Camera3D"]
-tree_root = SubResource("AnimationNodeStateMachine_msst4")
-anim_player = NodePath("../CameraAnimator")
-parameters/conditions/is_idle = false
-parameters/conditions/is_sprinting = false
-parameters/conditions/is_walking = false
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("3_k1q5m")

@@ -3,6 +3,10 @@ class_name PlayerCamera extends Camera3D
 static var instance : PlayerCamera
 
 @export var speed := 40.0
+@onready var camera_animator: AnimationPlayer = $CameraAnimator
+@onready var animation_tree: AnimationTree = $AnimationTree
+@onready var playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/playback"]
+
 
 var _current_path : Path3D
 var _current_path_frac : float
@@ -30,3 +34,20 @@ func _physics_process(delta: float) -> void:
 	var weight = clamp(delta * speed, 0.0, 1.0)
 	global_transform = global_transform.interpolate_with(get_parent().global_transform, weight)
 	global_position = get_parent().global_position
+	
+	if Player.instance.velocity.length() <= 0.0:
+		playback.travel("Idle")
+		animation_tree["parameters/conditions/is_idle"] = true
+		animation_tree["parameters/conditions/is_walking"] = false
+		animation_tree["parameters/conditions/is_sprinting"] = false
+	elif Player.instance.velocity.length() <= 3.0:
+		playback.travel("Walk")
+		animation_tree["parameters/conditions/is_walking"] = true
+		animation_tree["parameters/conditions/is_idle"] = false
+		animation_tree["parameters/conditions/is_sprinting"] = false
+	elif Player.instance.velocity.length() > 4.0:
+		playback.travel("Run")
+		animation_tree["parameters/conditions/is_sprinting"] = true
+		animation_tree["parameters/conditions/is_walking"] = false
+		animation_tree["parameters/conditions/is_idle"] = false
+		
