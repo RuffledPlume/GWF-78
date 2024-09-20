@@ -32,7 +32,7 @@ func _ready() -> void:
 
 func _camera_finish_following_path() -> void:
 	is_teleporting = false
-	transit_audio.play(5.6)
+	transit_audio.play(6)
 	Player.instance.global_position = teleporter_target.exit_target.global_position
 	PlayerCamera.instance.on_finish_following_path.disconnect(_camera_finish_following_path)
 
@@ -53,7 +53,7 @@ func _process(delta: float) -> void:
 				PlayerCamera.instance.on_finish_following_path.connect(_camera_finish_following_path)
 				PlayerCamera.instance.follow_path(teleporter_path)
 			else:
-				transit_audio.play(5.6)
+				transit_audio.play(6)
 							
 	if is_teleporting && teleporter_path == null:
 		Player.instance.global_position = lerp(Player.instance.global_position, teleporter_target.exit_target.global_position, delta * 5)

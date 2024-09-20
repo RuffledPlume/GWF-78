@@ -16,6 +16,8 @@ const JUMP_VELOCITY = 4.5
 @onready var camera_pivot: Node3D = $CameraPivot
 @onready var mask_animator := $CameraPivot/Camera3D/AnimationPlayer
 @onready var mask_root := $CameraPivot/Camera3D/Mask
+@onready var footsteps_audio: AudioStreamPlayer3D = $CameraPivot/Camera3D/FootstepsAudio
+
 
 var current_speed: float
 var mouse_motion := Vector2.ZERO
@@ -103,16 +105,19 @@ func _handle_player_movement(delta: float) -> void:
 		current_speed *= 1.5
 	else:
 		is_sprinting = false
+		
 	var input_dir := Input.get_vector("Left", "Right", "Forward", "Back")
 	direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	if direction:
 		is_walking = true
+		
 		velocity.x = direction.x * current_speed
 		velocity.z = direction.z * current_speed
 
 	else:
 		is_walking = false
+		
 		velocity.x = move_toward(velocity.x, 0, current_speed)
 		velocity.z = move_toward(velocity.z, 0, current_speed)
 	
@@ -136,4 +141,7 @@ func _handle_camera_rotation() -> void:
 	camera_pivot.rotate_x(mouse_motion.y)
 	camera_pivot.rotation_degrees.x = clampf(camera_pivot.rotation_degrees.x, -90.0, 90.0)
 	mouse_motion = Vector2.ZERO
-	
+
+func _handle_footstep_audio() -> void:
+	footsteps_audio.pitch_scale = randf_range(0.8, 1.1)
+	footsteps_audio.play()

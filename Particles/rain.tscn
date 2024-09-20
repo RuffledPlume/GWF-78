@@ -16,6 +16,7 @@ albedo_texture_msdf = true
 billboard_mode = 2
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mxqwt"]
+particle_flag_align_y = true
 emission_shape = 3
 emission_box_extents = Vector3(10, 1, 10)
 direction = Vector3(0, -1, 0)
@@ -93,7 +94,7 @@ size = Vector2(0.1, 0.1)
 [node name="RainDrops" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
 material_override = SubResource("StandardMaterial3D_21jbo")
-amount = 512
+amount = 1024
 sub_emitter = NodePath("../HitRipple")
 lifetime = 0.3
 speed_scale = 0.3
@@ -105,24 +106,22 @@ draw_pass_1 = SubResource("QuadMesh_ho3dj")
 [node name="HitRipple" type="GPUParticles3D" parent="."]
 material_override = SubResource("StandardMaterial3D_3l6wb")
 emitting = false
-amount = 512
+amount = 1024
 sub_emitter = NodePath("../HitSplash")
 randomness = 1.0
 fixed_fps = 60
+transform_align = 2
 process_material = SubResource("ParticleProcessMaterial_v6er2")
 draw_pass_1 = SubResource("PlaneMesh_7r77i")
 
 [node name="HitSplash" type="GPUParticles3D" parent="."]
 material_override = SubResource("StandardMaterial3D_r0f67")
 emitting = false
-amount = 512
+amount = 1024
+lifetime = 0.3
 explosiveness = 1.0
 randomness = 1.0
 fixed_fps = 60
 transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_ypteb")
 draw_pass_1 = SubResource("QuadMesh_qg2wi")
-
-[node name="CollisionBox" type="GPUParticlesCollisionBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
-size = Vector3(15, 1, 15)

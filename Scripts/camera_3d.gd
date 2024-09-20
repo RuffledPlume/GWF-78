@@ -7,6 +7,7 @@ static var instance : PlayerCamera
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/playback"]
 
+
 var _current_path : Path3D
 var _current_path_frac : float
 
@@ -48,6 +49,7 @@ func _physics_process(delta: float) -> void:
 		animation_tree["parameters/conditions/is_walking"] = true
 		animation_tree["parameters/conditions/is_idle"] = false
 		animation_tree["parameters/conditions/is_sprinting"] = false
+		
 	elif Player.instance.velocity.length() > 4.0:
 		playback.travel("Run")
 		animation_tree["parameters/conditions/is_sprinting"] = true
