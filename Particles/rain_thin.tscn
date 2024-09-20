@@ -1,8 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://djwfip7r5is05"]
+[gd_scene load_steps=15 format=3 uid="uid://ct2le71r3ww0i"]
 
-[ext_resource type="Texture2D" uid="uid://bmshbga5jao3o" path="res://Textures/RainDrop.png" id="1_iudxp"]
-[ext_resource type="Texture2D" uid="uid://cyon5ky8ve67t" path="res://Textures/RainContact.png" id="2_lob5o"]
-[ext_resource type="Texture2D" uid="uid://cu2c8kdaeetbc" path="res://Textures/RainSplash.png" id="3_a0xew"]
+[ext_resource type="Texture2D" uid="uid://bmshbga5jao3o" path="res://Textures/RainDrop.png" id="1_0dsoo"]
+[ext_resource type="Texture2D" uid="uid://cyon5ky8ve67t" path="res://Textures/RainContact.png" id="2_b1sw7"]
+[ext_resource type="Texture2D" uid="uid://cu2c8kdaeetbc" path="res://Textures/RainSplash.png" id="3_v4225"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_21jbo"]
 transparency = 1
@@ -11,15 +11,15 @@ shading_mode = 0
 disable_ambient_light = true
 disable_fog = true
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("1_iudxp")
+albedo_texture = ExtResource("1_0dsoo")
 albedo_texture_msdf = true
 billboard_mode = 2
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mxqwt"]
 particle_flag_align_y = true
-emission_shape_offset = Vector3(0, 14, 0)
+emission_shape_offset = Vector3(0, 10, 0)
 emission_shape = 3
-emission_box_extents = Vector3(15, 10, 15)
+emission_box_extents = Vector3(15, 10, 5)
 direction = Vector3(0, -1, 0)
 spread = 5.0
 initial_velocity_min = 20.0
@@ -41,7 +41,7 @@ shading_mode = 0
 disable_ambient_light = true
 disable_fog = true
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("2_lob5o")
+albedo_texture = ExtResource("2_b1sw7")
 
 [sub_resource type="Curve" id="Curve_efpac"]
 max_value = 3.0
@@ -69,7 +69,7 @@ shading_mode = 0
 disable_ambient_light = true
 disable_fog = true
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("3_a0xew")
+albedo_texture = ExtResource("3_v4225")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ypteb"]
 resource_local_to_scene = true
@@ -93,7 +93,6 @@ size = Vector2(0.1, 0.1)
 [node name="Rain" type="Node3D"]
 
 [node name="RainDrops" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
 material_override = SubResource("StandardMaterial3D_21jbo")
 amount = 4096
 sub_emitter = NodePath("../HitRipple")

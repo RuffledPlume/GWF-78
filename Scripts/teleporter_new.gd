@@ -73,6 +73,7 @@ func _on_timer_timeout() -> void:
 func _on_body_entered(body: Node3D) -> void:
 	if body == Player.instance:
 		is_within = true
+		print("Within")
 
 func _on_body_exited(body: Node3D) -> void:
 	is_within = false

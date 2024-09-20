@@ -1,8 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://djwfip7r5is05"]
+[gd_scene load_steps=15 format=3 uid="uid://cc28q4dmq3gr1"]
 
-[ext_resource type="Texture2D" uid="uid://bmshbga5jao3o" path="res://Textures/RainDrop.png" id="1_iudxp"]
-[ext_resource type="Texture2D" uid="uid://cyon5ky8ve67t" path="res://Textures/RainContact.png" id="2_lob5o"]
-[ext_resource type="Texture2D" uid="uid://cu2c8kdaeetbc" path="res://Textures/RainSplash.png" id="3_a0xew"]
+[ext_resource type="Texture2D" uid="uid://bmshbga5jao3o" path="res://Textures/RainDrop.png" id="1_080qv"]
+[ext_resource type="Texture2D" uid="uid://cyon5ky8ve67t" path="res://Textures/RainContact.png" id="2_l8cr3"]
+[ext_resource type="Texture2D" uid="uid://cu2c8kdaeetbc" path="res://Textures/RainSplash.png" id="3_su2sw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_21jbo"]
 transparency = 1
@@ -11,7 +11,7 @@ shading_mode = 0
 disable_ambient_light = true
 disable_fog = true
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("1_iudxp")
+albedo_texture = ExtResource("1_080qv")
 albedo_texture_msdf = true
 billboard_mode = 2
 
@@ -19,7 +19,7 @@ billboard_mode = 2
 particle_flag_align_y = true
 emission_shape_offset = Vector3(0, 14, 0)
 emission_shape = 3
-emission_box_extents = Vector3(15, 10, 15)
+emission_box_extents = Vector3(3, 10, 3)
 direction = Vector3(0, -1, 0)
 spread = 5.0
 initial_velocity_min = 20.0
@@ -41,7 +41,7 @@ shading_mode = 0
 disable_ambient_light = true
 disable_fog = true
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("2_lob5o")
+albedo_texture = ExtResource("2_l8cr3")
 
 [sub_resource type="Curve" id="Curve_efpac"]
 max_value = 3.0
@@ -69,7 +69,7 @@ shading_mode = 0
 disable_ambient_light = true
 disable_fog = true
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("3_a0xew")
+albedo_texture = ExtResource("3_su2sw")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ypteb"]
 resource_local_to_scene = true
@@ -95,7 +95,7 @@ size = Vector2(0.1, 0.1)
 [node name="RainDrops" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
 material_override = SubResource("StandardMaterial3D_21jbo")
-amount = 4096
+amount = 1024
 sub_emitter = NodePath("../HitRipple")
 lifetime = 0.3
 speed_scale = 0.3
@@ -120,7 +120,7 @@ draw_pass_1 = SubResource("PlaneMesh_7r77i")
 [node name="HitSplash" type="GPUParticles3D" parent="."]
 material_override = SubResource("StandardMaterial3D_r0f67")
 emitting = false
-amount = 1024
+amount = 4096
 lifetime = 0.3
 explosiveness = 1.0
 randomness = 1.0

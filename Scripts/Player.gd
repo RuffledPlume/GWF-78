@@ -17,6 +17,8 @@ const JUMP_VELOCITY = 4.5
 @onready var mask_animator := $CameraPivot/Camera3D/AnimationPlayer
 @onready var mask_root := $CameraPivot/Camera3D/Mask
 @onready var footsteps_audio: AudioStreamPlayer3D = $CameraPivot/Camera3D/FootstepsAudio
+@onready var run_audio: AudioStreamPlayer3D = $CameraPivot/Camera3D/RunAudio
+@onready var breath_audio: AudioStreamPlayer3D = $CameraPivot/Camera3D/BreathAudio
 
 
 var current_speed: float
@@ -37,7 +39,6 @@ func _ready() -> void:
 	mask_root.visible = false
 	
 func _process(delta: float) -> void:
-	print(is_walking)
 	if is_within_safe_zone:
 		if breath < 1.0:
 			breath += breath_replenishment_rate * delta
@@ -52,6 +53,7 @@ func _process(delta: float) -> void:
 		else:
 			depltion_rate *= 1.5
 	breath -= depltion_rate * delta
+
 	
 	if Input.is_action_pressed("UseMask"):
 		if !has_put_on_mask:
@@ -143,5 +145,14 @@ func _handle_camera_rotation() -> void:
 	mouse_motion = Vector2.ZERO
 
 func _handle_footstep_audio() -> void:
-	footsteps_audio.pitch_scale = randf_range(0.8, 1.1)
-	footsteps_audio.play()
+	if is_on_floor() and !is_sprinting:
+		footsteps_audio.pitch_scale = randf_range(0.5, 0.8)
+		footsteps_audio.play()
+
+func _handle_run_audio() -> void:
+	if is_on_floor() and is_sprinting:
+		run_audio.pitch_scale = randf_range(0.6, 1.0)
+		run_audio.play()
+
+func _handle_breath_audio() -> void:
+	breath_audio.play()
