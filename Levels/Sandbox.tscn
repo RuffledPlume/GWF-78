@@ -270,8 +270,10 @@ mouse_sensitivity = 0.002
 transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0)
 
 [node name="Camera3D" parent="Player/CameraPivot" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 fov = 75.0
+
+[node name="Mask" parent="Player/CameraPivot/Camera3D" index="0"]
+transform = Transform3D(0.769831, 0, 0, 0, -2.78678e-06, 0.769831, 0, -0.769831, -2.78678e-06, 0, -0.5, -0.7)
 
 [node name="Teleporters" type="Node3D" parent="."]
 
@@ -541,6 +543,14 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.310
 [node name="EntranceOuterLedge2" parent="Buildings/TowerTwo/TowerTwoInterior" index="2"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -15.3, 1.5, -17.25)
 size = Vector3(4.5, 1, 9.2)
+
+[node name="SecondFloorCutout" parent="Buildings/TowerTwo/TowerTwoInterior" index="14"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 8.35727, 0.0999985)
+size = Vector3(3.2, 3.2, 16)
+
+[node name="SecondFloorCutout2" parent="Buildings/TowerTwo/TowerTwoInterior" index="15"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 8.35727, -8.1)
+size = Vector3(4, 3.2, 13.2)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Buildings/TowerTwo/TowerTwoInterior"]
 transform = Transform3D(5.71577, 0.5, -2.1668e-08, -3.3, 0.866025, -8.08661e-08, -3.8651e-08, 2.18557e-08, 3.7, -4.65789, 8.75, -16.2)
@@ -1077,6 +1087,10 @@ size = Vector3(7, 0.1, 2)
 transform = Transform3D(0.0575641, 0, 0.998342, 0, 1, 0, -0.998342, 0, 0.0575641, -3.73077, -11.8202, 31.7649)
 size = Vector3(6, 0.1, 2)
 
+[node name="Bridge12" type="CSGBox3D" parent="Buildings/TowerFour/BuildingOne"]
+transform = Transform3D(0.0575641, 0, 0.998342, 0, 1, 0, -0.998342, 0, 0.0575641, -4.57945, -11.3202, 29.1116)
+size = Vector3(2, 1, 1)
+
 [node name="Bridge10" type="CSGBox3D" parent="Buildings/TowerFour/BuildingOne"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.46769, -15.0202, -11.0555)
 size = Vector3(11, 0.1, 2)
@@ -1214,7 +1228,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 17.3, 4.5)
 size = Vector3(7, 0.5, 10)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="Buildings/TowerFour/BuildingTwo/T1BoundingBox"]
-transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -7.79904, 17.3, 2.25)
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -6.06699, 17.3, 0.249999)
 operation = 2
 size = Vector3(6, 0.5, 10)
 
@@ -1222,15 +1236,19 @@ size = Vector3(6, 0.5, 10)
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.25, 13.3, 7.5)
 size = Vector3(3, 0.5, 9.5)
 
+[node name="CSGBox3D14" type="CSGBox3D" parent="Buildings/TowerFour/BuildingTwo/T1BoundingBox"]
+transform = Transform3D(-0.224144, 0.5, -0.836516, 0.12941, 0.866025, 0.482963, 0.965926, 2.1111e-08, -0.258819, 4.94568, 11.7633, 8.45)
+size = Vector3(2.1, 0.5, 4)
+
 [node name="CSGBox3D5" type="CSGBox3D" parent="Buildings/TowerFour/BuildingTwo/T1BoundingBox"]
 transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -7.79904, 13.3, 1.25)
 operation = 2
 size = Vector3(4, 0.5, 14)
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="Buildings/TowerFour/BuildingTwo/T1BoundingBox"]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 1.53109, 13.2, 5.75)
+transform = Transform3D(0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, 0.5, 1.7811, 13.25, 5.31699)
 operation = 2
-size = Vector3(4, 0.7, 4)
+size = Vector3(4, 0.8, 4)
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="Buildings/TowerFour/BuildingTwo/T1BoundingBox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6, 14.3, 2.5)
@@ -1259,6 +1277,14 @@ size = Vector3(3, 3, 1)
 transform = Transform3D(0.260699, -0.285274, -0.922309, 0.00923702, -0.954564, 0.297861, -0.965376, -0.0861717, -0.246219, 0.310957, 18.1775, 2.06115)
 operation = 2
 size = Vector3(3, 6, 2)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="Buildings/TowerFour/BuildingTwo/T1BoundingBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.39999, 9.2, 8.4)
+size = Vector3(3, 0.5, 2)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="Buildings/TowerFour/BuildingTwo/T1BoundingBox"]
+transform = Transform3D(0.866025, 0.5, -5.85622e-09, -0.5, 0.866025, -2.18557e-08, -5.85622e-09, 2.18557e-08, 1, 7.29999, 9.7, 8.4)
+size = Vector3(2, 0.5, 1)
 
 [node name="Wall" type="CSGBox3D" parent="Buildings/TowerFour/BuildingTwo"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5, -15, -0.5)
@@ -1522,7 +1548,7 @@ operation = 2
 size = Vector3(2, 1.5, 1)
 
 [node name="Tuner" type="MeshInstance3D" parent="Buildings/TowerFour"]
-transform = Transform3D(1, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 20, -16, 25)
+transform = Transform3D(1, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 5, -7.6, 36.2)
 material_override = SubResource("StandardMaterial3D_8wmql")
 mesh = SubResource("BoxMesh_irhdi")
 
@@ -1861,6 +1887,7 @@ parameters/looping = true
 stream = ExtResource("14_5xrki")
 volume_db = -20.0
 pitch_scale = 2.0
+parameters/looping = true
 
 [node name="Timer" type="Timer" parent="Audio/MusicHandler"]
 wait_time = 5.0
@@ -2064,6 +2091,9 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 29.392
 
 [node name="Rain16" parent="RainParticles" instance=ExtResource("20_rc2f4")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.6074, 43.433, -199.028)
+
+[node name="Rain25" parent="RainParticles" instance=ExtResource("20_rc2f4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.6074, 38.433, -149.028)
 
 [node name="Rain17" parent="RainParticles" instance=ExtResource("20_rc2f4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, -21.2, 61.2)
