@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dikcrsr171oyg"]
+[gd_scene load_steps=34 format=3 uid="uid://dikcrsr171oyg"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_uuae0"]
 [ext_resource type="Script" path="res://Scripts/camera_3d.gd" id="2_1ye7i"]
@@ -13,6 +13,12 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_esqpa"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_uh5sm"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_b6up7"]
+dof_blur_far_enabled = true
+dof_blur_far_distance = 200.0
+dof_blur_far_transition = 20.0
+dof_blur_amount = 0.01
 
 [sub_resource type="Animation" id="Animation_ggd2m"]
 resource_name = "Mask_Place"
@@ -424,7 +430,8 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
-fov = 90.0
+attributes = SubResource("CameraAttributesPractical_b6up7")
+fov = 37.8493
 script = ExtResource("2_1ye7i")
 
 [node name="Mask" parent="CameraPivot/Camera3D" instance=ExtResource("3_61m2a")]

@@ -18,6 +18,9 @@ billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
+distance_fade_mode = 1
+distance_fade_min_distance = 50.0
+distance_fade_max_distance = 0.0
 
 [sub_resource type="Curve" id="Curve_vm8o3"]
 min_value = -360.0
@@ -71,6 +74,9 @@ heightmap_scale = -16.0
 refraction_scale = 1.0
 refraction_texture_channel = 2
 proximity_fade_enabled = true
+distance_fade_mode = 1
+distance_fade_min_distance = 50.0
+distance_fade_max_distance = 0.0
 
 [sub_resource type="Curve" id="Curve_yvr5m"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.45946, 0.0, 0, 0]
@@ -174,6 +180,9 @@ disable_fog = true
 vertex_color_use_as_albedo = true
 albedo_color = Color(0, 1, 0.262745, 0.270588)
 proximity_fade_enabled = true
+distance_fade_mode = 1
+distance_fade_min_distance = 50.0
+distance_fade_max_distance = 0.0
 
 [sub_resource type="Curve" id="Curve_ti88r"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.89011, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]

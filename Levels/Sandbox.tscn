@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://datu3rc6g2iod"]
+[gd_scene load_steps=77 format=3 uid="uid://datu3rc6g2iod"]
 
 [ext_resource type="Texture2D" uid="uid://dt48n212okjo6" path="res://Materials/prototype-texture-with-size.png" id="1_chle4"]
 [ext_resource type="PackedScene" uid="uid://dikcrsr171oyg" path="res://Prefabs/Player.tscn" id="2_k8lnm"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://cqldusysobkbt" path="res://Prefabs/cloud_barrier.tscn" id="4_tisy8"]
 [ext_resource type="PackedScene" uid="uid://bna5kxya77wuf" path="res://Prefabs/generator_wall.tscn" id="6_2ycwf"]
 [ext_resource type="PackedScene" uid="uid://cy6eqkcaqivhv" path="res://Prefabs/WirePath.tscn" id="7_0jmtq"]
+[ext_resource type="PackedScene" uid="uid://b311jrca7i286" path="res://Prefabs/OverheadLight.tscn" id="7_dsxn0"]
+[ext_resource type="PackedScene" uid="uid://dgnvtxkb8dgi6" path="res://Prefabs/teleporter_generator.tscn" id="8_dgva7"]
 [ext_resource type="PackedScene" uid="uid://brl17jlt1wlcf" path="res://Prefabs/door.tscn" id="9_yrmud"]
 [ext_resource type="Script" path="res://Scripts/safe_zone.gd" id="10_t3pil"]
 [ext_resource type="PackedScene" uid="uid://ukmadykyy3j3" path="res://Prefabs/teleporter_new.tscn" id="11_a0wa4"]
@@ -27,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://dsflo3a84pne2" path="res://Prefabs/toxic_spray.tscn" id="24_3q37y"]
 [ext_resource type="PackedScene" uid="uid://bsvbbmttxtcqd" path="res://Prefabs/toxic_spray_triggerable.tscn" id="28_5og6n"]
 [ext_resource type="PackedScene" uid="uid://ybeds6h2jy6x" path="res://Levels/background.tscn" id="29_ntmmt"]
+[ext_resource type="PackedScene" uid="uid://05xwpov0iads" path="res://Prefabs/building_generator.tscn" id="31_hackb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dl0db"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -47,9 +50,13 @@ ssao_power = 1.72305
 glow_enabled = true
 fog_enabled = true
 fog_light_color = Color(0.517647, 0.682353, 0.607843, 1)
-fog_sun_scatter = 0.1
+fog_light_energy = 0.8
+fog_sun_scatter = 0.05
+fog_density = 0.02
 fog_aerial_perspective = 0.65
 fog_sky_affect = 0.8
+fog_height = 70.02
+fog_height_density = 0.05
 fog_depth_curve = 0.5
 volumetric_fog_enabled = true
 volumetric_fog_albedo = Color(0.517647, 0.682353, 0.607843, 1)
@@ -86,15 +93,15 @@ point_count = 3
 
 [sub_resource type="Curve3D" id="Curve3D_xeofl"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 7.9, -2.7, 13.7, -7.9, 2.7, -13.7, -3.09778, 2, -42.5835, 10.2, -2.2, -0.8, -10.2, 2.2, 0.8, -41.5616, 14, -62.0238, 0, 0, 0, 0, 0, 0, -63.6879, 17, -62.0895),
-"tilts": PackedFloat32Array(0, -1.0472, 0.261799, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 1, -3, 11, -1, 3, -11, -5.69543, 2, -31.7091, 5.8, -2, 12.2, -5.8, 2, -12.2, -3.4116, 13.7, -69.1558, 0, 0, 0, 0, 0, 0, -11.019, 16.7, -91.2041),
+"tilts": PackedFloat32Array(0, 0.785398, -0.523599, 0)
 }
 point_count = 4
 
 [sub_resource type="Curve3D" id="Curve3D_0u288"]
 _data = {
-"points": PackedVector3Array(0, -0.2, -6.4, 0, 0.2, 6.4, 0, 0, 0, 6.6, 7.1, -18.1, -6.6, -7.1, 18.1, -4.46116, -8, 38.3708, 21.1, 0, -0.8, -21.1, 0, 0.8, -62.3878, -17, 64.152),
-"tilts": PackedFloat32Array(0, 0, 0)
+"points": PackedVector3Array(0, 0, -14, 0, 0, 14, 0, 0, 0, 6.6, 7.1, -18.1, -6.6, -7.1, 18.1, 3.25033, -8, 49.0448, -1, 0, -7, 1, 0, 7, 2.66603, -17, 91.0221),
+"tilts": PackedFloat32Array(0, 0.261799, 0)
 }
 point_count = 3
 
@@ -174,6 +181,12 @@ emission_energy_multiplier = 3.0
 albedo_texture = ExtResource("1_chle4")
 uv1_triplanar = true
 
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_ksg8f"]
+dof_blur_far_enabled = true
+dof_blur_far_distance = 500.0
+dof_blur_far_transition = 10.0
+dof_blur_amount = 0.02
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vq472"]
 albedo_texture = ExtResource("1_chle4")
 uv1_triplanar = true
@@ -247,6 +260,14 @@ top_radius = 0.2
 bottom_radius = 0.2
 height = 0.5
 
+[sub_resource type="Curve3D" id="Curve3D_c6i5k"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0.3, 1, 0, -0.3, -1, 0, 0.2, 0.799999, 0.1, -0.6, 0, 0, 0.6, 0, 0, 1.90864, -0.384987, -0.00676727, -1.4, 0, 0, 1.4, 0, 0, 5.04934, -0.384987, 0.0488062, -0.9, 0, -0.3, 0.9, 0, 0.3, 9.42997, -0.384987, 1.26204, -0.6, 0, 0.1, 0.6, 0, -0.1, 13.5323, -0.384987, 2.17987, -0.2, -0.1, 0.1, 0.2, 0.1, -0.1, 14.8428, -0.184986, 0.975989, 0, 0, 0.8, 0, 0, -0.8, 15.0137, 0.815014, 0.122491),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 7
+
 [node name="Sandbox" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -268,7 +289,6 @@ mouse_sensitivity = 0.002
 transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0)
 
 [node name="Camera3D" parent="Player/CameraPivot" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 fov = 75.0
 
 [node name="Teleporters" type="Node3D" parent="."]
@@ -306,7 +326,7 @@ teleporter_path = NodePath("Path3D")
 curve = SubResource("Curve3D_p6qyi")
 
 [node name="Teleporter5" parent="Teleporters" node_paths=PackedStringArray("teleporter_target", "teleporter_path") instance=ExtResource("11_a0wa4")]
-transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 0, 1, 0, -2.98023e-08, -6.7835, 104.3, -152.602)
+transform = Transform3D(0.642788, 0, -0.766044, 0, 1, 0, 0.766044, 0, 0.642788, -7.7835, 104.3, -149.934)
 teleporter_target = NodePath("../Teleporter6")
 teleporter_path = NodePath("Path3D")
 
@@ -314,11 +334,12 @@ teleporter_path = NodePath("Path3D")
 curve = SubResource("Curve3D_xeofl")
 
 [node name="Teleporter6" parent="Teleporters" node_paths=PackedStringArray("teleporter_target", "teleporter_path") instance=ExtResource("11_a0wa4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.3816, 121, -216.554)
+transform = Transform3D(-0.815128, 0, 0.579281, 0, 1, 0, -0.579281, 0, -0.815128, 55.473, 121, -217.085)
 teleporter_target = NodePath("../Teleporter5")
 teleporter_path = NodePath("Path3D")
 
 [node name="Path3D" type="Path3D" parent="Teleporters/Teleporter6"]
+transform = Transform3D(-0.985996, 0, 0.166769, 0, 1, 0, -0.166769, 0, -0.985996, 0.0125431, 0, -0.140167)
 curve = SubResource("Curve3D_0u288")
 
 [node name="Teleporter7" parent="Teleporters" instance=ExtResource("11_a0wa4")]
@@ -351,6 +372,72 @@ transform = Transform3D(1, 0, 0, 0, -0.34202, 0.939693, 0, -0.939693, -0.34202, 
 light_energy = 2.0
 spot_attenuation = 0.1
 spot_angle = 40.0
+
+[node name="LightsT2" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 33.789, 73.3776, -80.9)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="LightsT2"]
+light_color = Color(0.901961, 1, 1, 1)
+light_energy = 1.5
+light_volumetric_fog_energy = 3.0
+shadow_enabled = true
+omni_attenuation = 0.75
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="LightsT2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+light_color = Color(0.901961, 1, 1, 1)
+light_energy = 1.5
+light_volumetric_fog_energy = 3.0
+shadow_enabled = true
+omni_attenuation = 0.75
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="LightsT2"]
+transform = Transform3D(3.8245e-08, 0, -1, 0, 1, 0, 1, 0, 3.8245e-08, -2.49452, 0.800003, 17.2055)
+light_color = Color(0.901961, 1, 1, 1)
+light_energy = 1.5
+light_volumetric_fog_energy = 3.0
+shadow_enabled = true
+omni_attenuation = 0.75
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="LightsT2"]
+transform = Transform3D(3.8245e-08, 0, -1, 0, 1, 0, 1, 0, 3.8245e-08, -4.29453, 4.50001, 10.4055)
+light_color = Color(0.901961, 1, 1, 1)
+light_energy = 1.5
+light_volumetric_fog_energy = 3.0
+shadow_enabled = true
+omni_attenuation = 0.75
+
+[node name="OmniLight3D6" type="OmniLight3D" parent="LightsT2"]
+transform = Transform3D(3.8245e-08, 0, -1, 0, 1, 0, 1, 0, 3.8245e-08, 5.30547, 4.50001, 10.4055)
+light_color = Color(0.901961, 1, 1, 1)
+light_energy = 1.5
+light_volumetric_fog_energy = 3.0
+shadow_enabled = true
+omni_attenuation = 0.75
+
+[node name="OmniLight3D7" type="OmniLight3D" parent="LightsT2"]
+transform = Transform3D(1, 0, -2.88102e-08, 0, 1, 0, 2.88102e-08, 0, 1, 0.299995, 4.50001, 2.3)
+light_color = Color(0.901961, 1, 1, 1)
+light_energy = 1.5
+light_volumetric_fog_energy = 3.0
+shadow_enabled = true
+omni_attenuation = 0.75
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="LightsT2"]
+transform = Transform3D(3.8245e-08, 0, -1, 0, 1, 0, 1, 0, 3.8245e-08, 3.10548, 0.800003, 17.2055)
+light_color = Color(0.901961, 1, 1, 1)
+light_energy = 1.5
+light_volumetric_fog_energy = 3.0
+shadow_enabled = true
+omni_attenuation = 0.75
+
+[node name="SpotLight3D" type="SpotLight3D" parent="LightsT2"]
+transform = Transform3D(0.819152, 1.86396e-08, 0.573577, -0.573577, -3.58063e-08, 0.819152, 3.58063e-08, -1, -1.86396e-08, -8.4, 5.1, 17.1)
+light_color = Color(1, 1, 0.886275, 1)
+light_energy = 2.0
+light_volumetric_fog_energy = 4.0
+shadow_enabled = true
+spot_range = 7.0
 
 [node name="Buildings" type="Node3D" parent="."]
 
@@ -551,6 +638,27 @@ size = Vector3(4, 3.2, 13.2)
 [node name="CSGBox3D" type="CSGBox3D" parent="Buildings/TowerTwo/TowerTwoInterior"]
 transform = Transform3D(5.71577, 0.5, -2.1668e-08, -3.3, 0.866025, -8.08661e-08, -3.8651e-08, 2.18557e-08, 3.7, -4.65789, 8.75, -16.2)
 size = Vector3(2, 1, 1)
+
+[node name="Light" parent="Buildings" instance=ExtResource("7_dsxn0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 34, 74, -80.9)
+
+[node name="Light2" parent="Buildings" instance=ExtResource("7_dsxn0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 40, 74, -80.9)
+
+[node name="Light3" parent="Buildings" instance=ExtResource("7_dsxn0")]
+transform = Transform3D(1, 0, 9.68575e-08, 0, 1, 0, -9.68575e-08, 0, 1, 50.9945, 74.8, -78.1945)
+
+[node name="Light5" parent="Buildings" instance=ExtResource("7_dsxn0")]
+transform = Transform3D(1, 0, 9.68575e-08, 0, 1, 0, -9.68575e-08, 0, 1, 44.1945, 78.5, -76.3945)
+
+[node name="Light6" parent="Buildings" instance=ExtResource("7_dsxn0")]
+transform = Transform3D(1, 0, 9.68575e-08, 0, 1, 0, -9.68575e-08, 0, 1, 44.1945, 78.5, -85.9945)
+
+[node name="Light7" parent="Buildings" instance=ExtResource("7_dsxn0")]
+transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, 36.3, 78.5, -81.2)
+
+[node name="Light4" parent="Buildings" instance=ExtResource("7_dsxn0")]
+transform = Transform3D(1, 0, 9.68575e-08, 0, 1, 0, -9.68575e-08, 0, 1, 50.9945, 74.8, -83.7945)
 
 [node name="TowerThree" type="Node3D" parent="Buildings"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.6, 72.8, -123.4)
@@ -902,6 +1010,11 @@ light_energy = 200.0
 light_size = 100.0
 omni_range = 32.422
 omni_attenuation = -0.375
+
+[node name="Camera3D" type="Camera3D" parent="Buildings/MotherTower"]
+transform = Transform3D(-0.482963, 4.30737e-09, -0.12941, 0, 0.5, -7.45058e-09, 0.12941, 0, -0.482963, -30.0846, 50.5, -27.8446)
+attributes = SubResource("CameraAttributesPractical_ksg8f")
+fov = 90.0
 
 [node name="TowerFour" type="Node3D" parent="Buildings"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 61.4, 118, -224.2)
@@ -1623,16 +1736,8 @@ script = ExtResource("10_t3pil")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.516663, 0.391098, -0.264801)
 shape = SubResource("BoxShape3D_iha80")
 
-[node name="LightmapGI" type="LightmapGI" parent="."]
-quality = 3
-bounces = 4
-directional = true
-
 [node name="Antenna" parent="." instance=ExtResource("21_ym3od")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 51.2977, -13)
-
-[node name="ToxicSpray" parent="." instance=ExtResource("24_3q37y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 51, 6)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 4.1, 50.8977, -8.5)
 
 [node name="Audio" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -5.96046e-08, -1, 0, 1, -5.96046e-08, 61.4, 120, -283)
@@ -2109,132 +2214,152 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 15, 7.
 [node name="Rain24" parent="RainParticles" instance=ExtResource("20_rc2f4")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25, 7.8, 2.2)
 
+[node name="ToxicParticles" type="Node3D" parent="."]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 55.3816, 121, -216.978)
+
+[node name="ToxicSpray2" parent="ToxicParticles" instance=ExtResource("24_3q37y")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -6.79059, -26.9, 95.2896)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ToxicParticles/ToxicSpray2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_0h6wk")
+
+[node name="ToxicSpray3" parent="ToxicParticles" instance=ExtResource("24_3q37y")]
+transform = Transform3D(0.707107, 0.122788, 0.696364, 0, 0.984808, -0.173648, -0.707107, 0.122788, 0.696364, -0.357338, -27.1174, 88.9949)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ToxicParticles/ToxicSpray3"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_0h6wk")
+
+[node name="ToxicSpray4" parent="ToxicParticles" instance=ExtResource("24_3q37y")]
+transform = Transform3D(-0.707107, -0.0616284, -0.704416, -7.6194e-09, 0.996195, -0.0871557, 0.707107, -0.0616284, -0.704416, 9.0472, -32.8174, 107.733)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ToxicParticles/ToxicSpray4"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_0h6wk")
+
+[node name="ToxicSpray6" parent="ToxicParticles" instance=ExtResource("24_3q37y")]
+transform = Transform3D(-0.707107, 0.183013, -0.683013, 6.18172e-08, 0.965926, 0.258819, 0.707107, 0.183013, -0.683013, 6.07734, -34.5174, 110.562)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ToxicParticles/ToxicSpray6"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_0h6wk")
+
+[node name="ToxicSpray7" parent="ToxicParticles" instance=ExtResource("28_5og6n")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 6.29089, -27, 91.2591)
+
+[node name="TriggerArea" parent="ToxicParticles/ToxicSpray7" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.6, -4, 0, -1.22)
+
+[node name="ToxicSpray8" parent="ToxicParticles" instance=ExtResource("28_5og6n")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 9.11932, -27, 94.0875)
+
+[node name="ToxicSprayParticle" parent="ToxicParticles/ToxicSpray8" index="0"]
+transform = Transform3D(1, -5.17512e-09, 4.52765e-10, 5.17512e-09, 0.984808, -0.173648, 4.52765e-10, 0.173648, 0.984808, 0, 0, 0)
+
+[node name="Area3D" parent="ToxicParticles/ToxicSpray8" index="1"]
+transform = Transform3D(1, -5.17512e-09, 4.52765e-10, 5.17512e-09, 0.984808, -0.173648, 4.52765e-10, 0.173648, 0.984808, 0, 0, 0)
+
+[node name="TriggerArea" parent="ToxicParticles/ToxicSpray8" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.6, -4, 1, -1.22)
+
+[node name="ToxicSpray9" parent="ToxicParticles" instance=ExtResource("28_5og6n")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 14.7762, -27, 99.7444)
+
+[node name="SporeParticle" parent="ToxicParticles/ToxicSpray9/ToxicSprayParticle" index="0"]
+transform = Transform3D(1, -1.49012e-08, 3.99275e-09, 1.49012e-08, 0.866025, -0.5, 3.99275e-09, 0.5, 0.866025, -3, 1.99, -0.00267935)
+
+[node name="ToxicParticle" parent="ToxicParticles/ToxicSpray9/ToxicSprayParticle" index="1"]
+transform = Transform3D(1, -1.49012e-08, 3.99275e-09, 1.49012e-08, 0.866025, -0.5, 3.99275e-09, 0.5, 0.866025, -3, 1.99, -0.00267935)
+
+[node name="ToxicParticle2" parent="ToxicParticles/ToxicSpray9/ToxicSprayParticle" index="2"]
+transform = Transform3D(1, -1.49012e-08, 3.99275e-09, 1.49012e-08, 0.866025, -0.5, 3.99275e-09, 0.5, 0.866025, -3, 1.99, -0.00267935)
+
+[node name="Area3D" parent="ToxicParticles/ToxicSpray9" index="1"]
+transform = Transform3D(1, -1.49012e-08, 3.99275e-09, 1.49012e-08, 0.866025, -0.5, 3.99275e-09, 0.5, 0.866025, -3, 1.99, -0.00267935)
+
+[node name="TriggerArea" parent="ToxicParticles/ToxicSpray9" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.6, -5.90001, 0.599998, -1.12)
+
+[node name="MeshInstance3D" parent="ToxicParticles/ToxicSpray9" index="6"]
+transform = Transform3D(1, -3.99275e-09, -1.49012e-08, 1.49012e-08, 0.5, 0.866025, 3.99275e-09, -0.866025, 0.5, -3, 2.04, -0.089282)
+
+[node name="ToxicSpray10" parent="ToxicParticles" instance=ExtResource("28_5og6n")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 15.6247, -27, 100.593)
+
+[node name="ToxicSprayParticle" parent="ToxicParticles/ToxicSpray10" index="0"]
+transform = Transform3D(1, -5.17512e-09, 4.52765e-10, 5.17512e-09, 0.984808, -0.173648, 4.52765e-10, 0.173648, 0.984808, -1.2, -0.00579071, -0.000506401)
+
+[node name="Area3D" parent="ToxicParticles/ToxicSpray10" index="1"]
+transform = Transform3D(1, -5.17512e-09, 4.52765e-10, 5.17512e-09, 0.984808, -0.173648, 4.52765e-10, 0.173648, 0.984808, -1.2, -0.00579071, -0.000506401)
+
+[node name="TriggerArea" parent="ToxicParticles/ToxicSpray10" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.6, -4, 0, -1.22)
+
+[node name="MeshInstance3D" parent="ToxicParticles/ToxicSpray10" index="6"]
+transform = Transform3D(1, -4.52765e-10, -5.17512e-09, 5.17512e-09, 0.173648, 0.984808, 4.52765e-10, -0.984808, 0.173648, -1.2, 0.0115738, -0.0989871)
+
+[node name="ToxicSpray11" parent="ToxicParticles" instance=ExtResource("28_5og6n")]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 5.23022, -30.7, 111.412)
+
+[node name="ToxicSprayParticle" parent="ToxicParticles/ToxicSpray11" index="0"]
+transform = Transform3D(1, -5.17512e-09, 4.52765e-10, 5.17512e-09, 0.984808, -0.173648, 4.52765e-10, 0.173648, 0.984808, -2, -0.105797, -0.00050354)
+
+[node name="Area3D" parent="ToxicParticles/ToxicSpray11" index="1"]
+transform = Transform3D(1, -5.17512e-09, 4.52765e-10, 5.17512e-09, 0.984808, -0.173648, 4.52765e-10, 0.173648, 0.984808, -2, -0.105797, -0.00050354)
+
+[node name="TriggerArea" parent="ToxicParticles/ToxicSpray11" index="2"]
+transform = Transform3D(1, 0, 2.84217e-14, 0, 1, 0, 0, 0, 2.6, -7.2, -7.62939e-06, -1.22)
+
+[node name="MeshInstance3D" parent="ToxicParticles/ToxicSpray11" index="6"]
+transform = Transform3D(1, -4.52765e-10, -5.17512e-09, 5.17512e-09, 0.173648, 0.984808, 4.52765e-10, -0.984808, 0.173648, -2, -0.0884323, -0.0989838)
+
+[node name="ToxicSpray12" parent="ToxicParticles" instance=ExtResource("28_5og6n")]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 1.34114, -33.6, 115.301)
+
+[node name="ToxicSprayParticle" parent="ToxicParticles/ToxicSpray12" index="0"]
+transform = Transform3D(1, -5.17512e-09, 4.52765e-10, 5.17512e-09, 0.984808, -0.173648, 4.52765e-10, 0.173648, 0.984808, -2, -0.105797, -0.00050354)
+
+[node name="SporeParticle" parent="ToxicParticles/ToxicSpray12/ToxicSprayParticle" index="0"]
+transform = Transform3D(1, -7.71341e-09, 1.01548e-09, 7.71341e-09, 0.965926, -0.258819, 1.01549e-09, 0.258819, 0.965926, -3.4, -1.67935, 0.294495)
+
+[node name="ToxicParticle" parent="ToxicParticles/ToxicSpray12/ToxicSprayParticle" index="1"]
+transform = Transform3D(1, -7.71341e-09, 1.01548e-09, 7.71341e-09, 0.965926, -0.258819, 1.01549e-09, 0.258819, 0.965926, -3.4, -1.67935, 0.294495)
+
+[node name="ToxicParticle2" parent="ToxicParticles/ToxicSpray12/ToxicSprayParticle" index="2"]
+transform = Transform3D(1, -7.71341e-09, 1.01548e-09, 7.71341e-09, 0.965926, -0.258819, 1.01549e-09, 0.258819, 0.965926, -3.4, -1.67935, 0.294495)
+
+[node name="Area3D" parent="ToxicParticles/ToxicSpray12" index="1"]
+transform = Transform3D(1, -1.2595e-08, 2.79225e-09, 1.2595e-08, 0.906308, -0.422618, 2.79225e-09, 0.422618, 0.906308, -5.39998, -1.81078, -0.0020752)
+
+[node name="TriggerArea" parent="ToxicParticles/ToxicSpray12" index="2"]
+transform = Transform3D(1, 0, 3.55271e-14, 0, 1, 0, 0, 0, 2.6, -7.8, 0.0999908, -1.22)
+
+[node name="MeshInstance3D" parent="ToxicParticles/ToxicSpray12" index="6"]
+transform = Transform3D(1, -2.79225e-09, -1.2595e-08, 1.2595e-08, 0.422618, 0.906308, 2.79225e-09, -0.906308, 0.422618, -5.39998, -1.76851, -0.0927124)
+
+[node name="Background" parent="." instance=ExtResource("29_ntmmt")]
+
+[node name="Path3D2" parent="." instance=ExtResource("7_0jmtq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.5, 51, 7)
+curve = SubResource("Curve3D_c6i5k")
+
+[node name="GeneratorB2" parent="." node_paths=PackedStringArray("lights") instance=ExtResource("31_hackb")]
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91068e-15, 49.0389, 76.6569, -71.1543)
+lights = NodePath("../LightsT2")
+
+[node name="GeneratorT1" parent="." node_paths=PackedStringArray("target_teleporter") instance=ExtResource("8_dgva7")]
+transform = Transform3D(-4.37114e-08, 3.82137e-15, 1, -1, 4.37114e-08, -4.37114e-08, -4.37114e-08, -1, 3.55271e-15, 11, 52.5, 6.89999)
+target_teleporter = NodePath("../Teleporters/Teleporter")
+
 [node name="FogBarrier" parent="." instance=ExtResource("3_jf1dm")]
 
 [node name="CloudBarrier" parent="." instance=ExtResource("4_tisy8")]
 
-[node name="ToxicSpray2" parent="." instance=ExtResource("24_3q37y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.8, 94.1, -154.4)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="ToxicSpray2"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-mesh = SubResource("CylinderMesh_0h6wk")
-
-[node name="ToxicSpray3" parent="." instance=ExtResource("24_3q37y")]
-transform = Transform3D(1, 0, 0, 0, 0.984808, -0.173648, 0, 0.173648, 0.984808, -7.8, 93.8826, -154.302)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="ToxicSpray3"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-mesh = SubResource("CylinderMesh_0h6wk")
-
-[node name="ToxicSpray4" parent="." instance=ExtResource("24_3q37y")]
-transform = Transform3D(-1, 0, 8.74228e-08, -7.6194e-09, 0.996195, -0.0871557, -8.70901e-08, -0.0871557, -0.996195, -14.4, 88.1826, -134.402)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="ToxicSpray4"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-mesh = SubResource("CylinderMesh_0h6wk")
-
-[node name="ToxicSpray6" parent="." instance=ExtResource("24_3q37y")]
-transform = Transform3D(-1, 4.37114e-08, 7.57103e-08, 6.18172e-08, 0.965926, 0.258819, -6.18173e-08, 0.258819, -0.965926, -18.5, 86.4826, -134.502)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="ToxicSpray6"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-mesh = SubResource("CylinderMesh_0h6wk")
-
-[node name="ToxicSpray7" parent="." instance=ExtResource("28_5og6n")]
-transform = Transform3D(2.98023e-08, 0, -1, 0, 1, 0, 1, 0, 2.98023e-08, -4.7, 94, -148)
-
-[node name="TriggerArea" parent="ToxicSpray7" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.6, -4, 0, -1.22)
-
-[node name="ToxicSpray8" parent="." instance=ExtResource("28_5og6n")]
-transform = Transform3D(2.98023e-08, 0, -1, 0, 1, 0, 1, 0, 2.98023e-08, -4.7, 94, -144)
-
-[node name="ToxicSprayParticle" parent="ToxicSpray8" index="0"]
-transform = Transform3D(1, -5.17512e-09, 4.52765e-10, 5.17512e-09, 0.984808, -0.173648, 4.52765e-10, 0.173648, 0.984808, 0, 0, 0)
-
-[node name="Area3D" parent="ToxicSpray8" index="1"]
-transform = Transform3D(1, -5.17512e-09, 4.52765e-10, 5.17512e-09, 0.984808, -0.173648, 4.52765e-10, 0.173648, 0.984808, 0, 0, 0)
-
-[node name="TriggerArea" parent="ToxicSpray8" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.6, -4, 1, -1.22)
-
-[node name="ToxicSpray9" parent="." instance=ExtResource("28_5og6n")]
-transform = Transform3D(2.98023e-08, 0, -1, 0, 1, 0, 1, 0, 2.98023e-08, -4.7, 94, -136)
-
-[node name="SporeParticle" parent="ToxicSpray9/ToxicSprayParticle" index="0"]
-transform = Transform3D(1, -1.49012e-08, 3.99275e-09, 1.49012e-08, 0.866025, -0.5, 3.99275e-09, 0.5, 0.866025, -3, 1.99, -0.00267935)
-
-[node name="ToxicParticle" parent="ToxicSpray9/ToxicSprayParticle" index="1"]
-transform = Transform3D(1, -1.49012e-08, 3.99275e-09, 1.49012e-08, 0.866025, -0.5, 3.99275e-09, 0.5, 0.866025, -3, 1.99, -0.00267935)
-
-[node name="ToxicParticle2" parent="ToxicSpray9/ToxicSprayParticle" index="2"]
-transform = Transform3D(1, -1.49012e-08, 3.99275e-09, 1.49012e-08, 0.866025, -0.5, 3.99275e-09, 0.5, 0.866025, -3, 1.99, -0.00267935)
-
-[node name="Area3D" parent="ToxicSpray9" index="1"]
-transform = Transform3D(1, -1.49012e-08, 3.99275e-09, 1.49012e-08, 0.866025, -0.5, 3.99275e-09, 0.5, 0.866025, -3, 1.99, -0.00267935)
-
-[node name="TriggerArea" parent="ToxicSpray9" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.6, -5.90001, 0.599998, -1.12)
-
-[node name="MeshInstance3D" parent="ToxicSpray9" index="6"]
-transform = Transform3D(1, -3.99275e-09, -1.49012e-08, 1.49012e-08, 0.5, 0.866025, 3.99275e-09, -0.866025, 0.5, -3, 2.04, -0.089282)
-
-[node name="ToxicSpray10" parent="." instance=ExtResource("28_5og6n")]
-transform = Transform3D(2.98023e-08, 0, -1, 0, 1, 0, 1, 0, 2.98023e-08, -4.7, 94, -134.8)
-
-[node name="ToxicSprayParticle" parent="ToxicSpray10" index="0"]
-transform = Transform3D(1, -5.17512e-09, 4.52765e-10, 5.17512e-09, 0.984808, -0.173648, 4.52765e-10, 0.173648, 0.984808, -1.2, -0.00579071, -0.000506401)
-
-[node name="Area3D" parent="ToxicSpray10" index="1"]
-transform = Transform3D(1, -5.17512e-09, 4.52765e-10, 5.17512e-09, 0.984808, -0.173648, 4.52765e-10, 0.173648, 0.984808, -1.2, -0.00579071, -0.000506401)
-
-[node name="TriggerArea" parent="ToxicSpray10" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.6, -4, 0, -1.22)
-
-[node name="MeshInstance3D" parent="ToxicSpray10" index="6"]
-transform = Transform3D(1, -4.52765e-10, -5.17512e-09, 5.17512e-09, 0.173648, 0.984808, 4.52765e-10, -0.984808, 0.173648, -1.2, 0.0115738, -0.0989871)
-
-[node name="ToxicSpray11" parent="." instance=ExtResource("28_5og6n")]
-transform = Transform3D(-1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, -1, -19.7, 90.3, -134.5)
-
-[node name="ToxicSprayParticle" parent="ToxicSpray11" index="0"]
-transform = Transform3D(1, -5.17512e-09, 4.52765e-10, 5.17512e-09, 0.984808, -0.173648, 4.52765e-10, 0.173648, 0.984808, -2, -0.105797, -0.00050354)
-
-[node name="Area3D" parent="ToxicSpray11" index="1"]
-transform = Transform3D(1, -5.17512e-09, 4.52765e-10, 5.17512e-09, 0.984808, -0.173648, 4.52765e-10, 0.173648, 0.984808, -2, -0.105797, -0.00050354)
-
-[node name="TriggerArea" parent="ToxicSpray11" index="2"]
-transform = Transform3D(1, 0, 2.84217e-14, 0, 1, 0, 0, 0, 2.6, -7.2, -7.62939e-06, -1.22)
-
-[node name="MeshInstance3D" parent="ToxicSpray11" index="6"]
-transform = Transform3D(1, -4.52765e-10, -5.17512e-09, 5.17512e-09, 0.173648, 0.984808, 4.52765e-10, -0.984808, 0.173648, -2, -0.0884323, -0.0989838)
-
-[node name="ToxicSpray12" parent="." instance=ExtResource("28_5og6n")]
-transform = Transform3D(-1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, -1, -25.2, 87.4, -134.5)
-
-[node name="ToxicSprayParticle" parent="ToxicSpray12" index="0"]
-transform = Transform3D(1, -5.17512e-09, 4.52765e-10, 5.17512e-09, 0.984808, -0.173648, 4.52765e-10, 0.173648, 0.984808, -2, -0.105797, -0.00050354)
-
-[node name="SporeParticle" parent="ToxicSpray12/ToxicSprayParticle" index="0"]
-transform = Transform3D(1, -7.71341e-09, 1.01548e-09, 7.71341e-09, 0.965926, -0.258819, 1.01549e-09, 0.258819, 0.965926, -3.4, -1.67935, 0.294495)
-
-[node name="ToxicParticle" parent="ToxicSpray12/ToxicSprayParticle" index="1"]
-transform = Transform3D(1, -7.71341e-09, 1.01548e-09, 7.71341e-09, 0.965926, -0.258819, 1.01549e-09, 0.258819, 0.965926, -3.4, -1.67935, 0.294495)
-
-[node name="ToxicParticle2" parent="ToxicSpray12/ToxicSprayParticle" index="2"]
-transform = Transform3D(1, -7.71341e-09, 1.01548e-09, 7.71341e-09, 0.965926, -0.258819, 1.01549e-09, 0.258819, 0.965926, -3.4, -1.67935, 0.294495)
-
-[node name="Area3D" parent="ToxicSpray12" index="1"]
-transform = Transform3D(1, -1.2595e-08, 2.79225e-09, 1.2595e-08, 0.906308, -0.422618, 2.79225e-09, 0.422618, 0.906308, -5.39998, -1.81078, -0.0020752)
-
-[node name="TriggerArea" parent="ToxicSpray12" index="2"]
-transform = Transform3D(1, 0, 3.55271e-14, 0, 1, 0, 0, 0, 2.6, -7.8, 0.0999908, -1.22)
-
-[node name="MeshInstance3D" parent="ToxicSpray12" index="6"]
-transform = Transform3D(1, -2.79225e-09, -1.2595e-08, 1.2595e-08, 0.422618, 0.906308, 2.79225e-09, -0.906308, 0.422618, -5.39998, -1.76851, -0.0927124)
-
-[node name="Background" parent="." instance=ExtResource("29_ntmmt")]
+[node name="LightmapGI" type="LightmapGI" parent="."]
+quality = 3
+bounces = 4
+directional = true
 
 [connection signal="timeout" from="Audio/MusicHandler/Timer" to="Audio/MusicHandler" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Audio/MusicHandler/Area3D" to="Audio/MusicHandler" method="_on_area_3d_body_entered"]
@@ -2244,9 +2369,9 @@ transform = Transform3D(1, -2.79225e-09, -1.2595e-08, 1.2595e-08, 0.422618, 0.90
 
 [editable path="Player"]
 [editable path="Buildings/TowerTwo/TowerTwoInterior"]
-[editable path="ToxicSpray7"]
-[editable path="ToxicSpray8"]
-[editable path="ToxicSpray9"]
-[editable path="ToxicSpray10"]
-[editable path="ToxicSpray11"]
-[editable path="ToxicSpray12"]
+[editable path="ToxicParticles/ToxicSpray7"]
+[editable path="ToxicParticles/ToxicSpray8"]
+[editable path="ToxicParticles/ToxicSpray9"]
+[editable path="ToxicParticles/ToxicSpray10"]
+[editable path="ToxicParticles/ToxicSpray11"]
+[editable path="ToxicParticles/ToxicSpray12"]

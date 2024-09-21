@@ -7,6 +7,7 @@ class_name TeleporterFrequency extends Node3D
 @export var frequency_crank : TeleporterCrank
 @export var amplitude_crank : TeleporterCrank
 
+
 var _target_freq_frac: float
 var _target_amp_frac: float
 

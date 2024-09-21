@@ -44,7 +44,6 @@ func _camera_finish_following_path() -> void:
 	PlayerCamera.instance.on_finish_following_path.disconnect(_camera_finish_following_path)
 
 func _process(delta: float) -> void:
-	fix_teleporter()
 	
 	if is_within and Input.is_action_just_pressed("Interact"):
 		if interact_timer == false:
@@ -67,11 +66,14 @@ func _process(delta: float) -> void:
 		if Player.instance.global_position.distance_to(teleporter_target.exit_target.global_position) <= 2.0:
 			is_teleporting = false
 
-func fix_teleporter() -> void:
-		#Below needs to be put into 'working teleporter' function which executes once is_working = true
-	if Input.is_action_just_pressed("Interact") and not is_working:
+func power_teleporter() -> void:
 		var tween := create_tween()
-		tween.tween_method(func(t): portal_material.set_shader_parameter("Mix", t), 0.0, 1.0, 2.0)
+		tween.tween_method(func(t): portal_material.set_shader_parameter("Mix", t), 0.0, 0.4, 2.0)
+		is_working = true
+		
+func tune_teleporter() -> void:
+		var tween := create_tween()
+		tween.tween_method(func(t): portal_material.set_shader_parameter("Mix", t), 0.4, 1.0, 2.0)
 		is_working = true
 		
 func _on_timer_timeout() -> void:
