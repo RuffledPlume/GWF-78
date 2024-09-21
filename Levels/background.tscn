@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://ybeds6h2jy6x"]
+[gd_scene load_steps=5 format=3 uid="uid://ybeds6h2jy6x"]
 
 [ext_resource type="PackedScene" uid="uid://byad87lgsrl0m" path="res://Prefabs/building_type_c.tscn" id="1_bo6pr"]
 [ext_resource type="PackedScene" uid="uid://px175mjcr8ec" path="res://Prefabs/building_type_b.tscn" id="2_4mg8p"]
 [ext_resource type="PackedScene" uid="uid://bw0y31n8iuib4" path="res://Prefabs/building_type_a.tscn" id="3_pexfj"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_sgamn"]
 
 [node name="Background" type="Node3D"]
 
@@ -3040,3 +3042,19 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -267.3
 
 [node name="Building_Type_9" parent="Tower_52" instance=ExtResource("3_pexfj")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -267.325, 0, -534.12)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 191.601, 0, 0, 0, 3213.85, -1080, 37, 0)
+mesh = SubResource("BoxMesh_sgamn")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 191.601, 0, 0, 0, 3213.85, 2098, 37, 0)
+mesh = SubResource("BoxMesh_sgamn")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 3213.85, 0, 191.601, 0, -1, 0, -0.000140482, 567.464, 37, 1488.89)
+mesh = SubResource("BoxMesh_sgamn")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 3213.85, 0, 191.601, 0, -1, 0, -0.000140482, 567.464, 37, -1513.21)
+mesh = SubResource("BoxMesh_sgamn")
