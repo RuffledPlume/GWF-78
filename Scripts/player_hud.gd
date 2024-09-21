@@ -23,8 +23,6 @@ func _ready() -> void:
 	didyouknow_root.visible = false
 	
 	_delay_random_trivia = didyouknow_trivia_delay
-	
-	show_didyouknow("That your stupid")
 
 func _process(delta: float) -> void:
 	var breath := Player.instance.breath

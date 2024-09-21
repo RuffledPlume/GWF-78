@@ -32,6 +32,7 @@ var last_input : Vector2
 var is_within_safe_zone : bool
 var is_walking: bool
 var is_sprinting: bool
+var shown_breath_dyk: bool
 
 var hovering_interactable : Interactable
 var hovering_interactable_position : Vector3
@@ -57,6 +58,9 @@ func _process(delta: float) -> void:
 			depltion_rate *= 1.5
 	breath -= depltion_rate * delta
 
+	if breath < 0.4 && !shown_breath_dyk:
+		PlayerHUD.instance.show_didyouknow("You can hold right click to take a breath of oxygen!")
+		shown_breath_dyk = true
 	
 	if Input.is_action_pressed("UseMask"):
 		if !has_put_on_mask:
