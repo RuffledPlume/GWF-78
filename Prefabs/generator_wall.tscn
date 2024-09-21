@@ -1,0 +1,83 @@
+[gd_scene load_steps=4 format=3 uid="uid://bna5kxya77wuf"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_1fyna"]
+size = Vector3(1, 2, 1.5)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_hdsig"]
+top_radius = 0.4
+bottom_radius = 0.4
+height = 0.5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ynfdi"]
+top_radius = 0.3
+bottom_radius = 0.3
+height = 0.5
+
+[node name="Generator" type="MeshInstance3D"]
+process_mode = 3
+transform = Transform3D(1.04, 0, 0, 0, 1, 0, 0, 0, 1, -5.73695e-07, 0, 0)
+mesh = SubResource("BoxMesh_1fyna")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.20303e-08, -0.961538, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.48077, 0.0999985, -0.0500031)
+mesh = SubResource("CylinderMesh_hdsig")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.20303e-08, 0.961538, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.576927, 0.0999985, -0.0500031)
+mesh = SubResource("CylinderMesh_ynfdi")
+skeleton = NodePath("../..")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+radius = 0.1
+height = 0.5
+sides = 24
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0.2)
+radius = 0.1
+height = 0.5
+sides = 24
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, -0.2)
+radius = 0.1
+height = 0.5
+sides = 24
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.332237, 1.54709, 0)
+radius = 0.1
+height = 0.5
+sides = 24
+
+[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.332237, 1.54709, 0.2)
+radius = 0.1
+height = 0.5
+sides = 24
+
+[node name="CSGCylinder3D9" type="CSGCylinder3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.332237, 1.54709, -0.2)
+radius = 0.1
+height = 0.5
+sides = 24
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0.707896, -0.707896, 0, 0.707896, 0.707896, 0, 0, 0, 1.00112, -0.0537555, 1.48095, 0.2)
+radius = 0.1
+height = 0.241425
+sides = 24
+
+[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0.707896, -0.707896, 0, 0.707896, 0.707896, 0, 0, 0, 1.00112, -0.0537555, 1.48095, -0.000223249)
+radius = 0.1
+height = 0.241425
+sides = 24
+
+[node name="CSGCylinder3D7" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0.707896, -0.707896, 0, 0.707896, 0.707896, 0, 0, 0, 1.00112, -0.0537555, 1.48095, -0.200447)
+radius = 0.1
+height = 0.241425
+sides = 24

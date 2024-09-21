@@ -19,6 +19,7 @@ const JUMP_VELOCITY = 4.5
 @onready var footsteps_audio: AudioStreamPlayer3D = $CameraPivot/Camera3D/FootstepsAudio
 @onready var run_audio: AudioStreamPlayer3D = $CameraPivot/Camera3D/RunAudio
 @onready var breath_audio: AudioStreamPlayer3D = $CameraPivot/Camera3D/BreathAudio
+@onready var cough_audio: AudioStreamPlayer3D = $CameraPivot/Camera3D/CoughAudio
 
 
 var current_speed: float
@@ -105,8 +106,10 @@ func _handle_player_movement(delta: float) -> void:
 	if Input.is_key_pressed(KEY_SHIFT):
 		is_sprinting = true
 		current_speed *= 1.5
+		breath_depletion_rate = 0.050
 	else:
 		is_sprinting = false
+		breath_depletion_rate = 0.025
 		
 	var input_dir := Input.get_vector("Left", "Right", "Forward", "Back")
 	direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -156,3 +159,6 @@ func _handle_run_audio() -> void:
 
 func _handle_breath_audio() -> void:
 	breath_audio.play()
+	
+func _handle_cough_audio() -> void:
+	cough_audio.play()

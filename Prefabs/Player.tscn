@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dikcrsr171oyg"]
+[gd_scene load_steps=32 format=3 uid="uid://dikcrsr171oyg"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_uuae0"]
 [ext_resource type="Script" path="res://Scripts/camera_3d.gd" id="2_1ye7i"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dqjbpg6mxnpvj" path="res://Textures/O2Mask.png" id="4_appyk"]
 [ext_resource type="AudioStream" uid="uid://dspjlp2adw0p2" path="res://Audio/Breath.mp3" id="5_jatw8"]
 [ext_resource type="Texture2D" uid="uid://bgv1n7rcauoib" path="res://Textures/vignette.png" id="6_2swo8"]
+[ext_resource type="AudioStream" uid="uid://doo3yxw5ftheg" path="res://Audio/Coughing.mp3" id="6_lmp0k"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_esqpa"]
 
@@ -463,6 +464,12 @@ unit_size = 5.0
 stream = ExtResource("5_jatw8")
 volume_db = -10.0
 unit_size = 5.0
+max_db = 0.0
+
+[node name="CoughAudio" type="AudioStreamPlayer3D" parent="CameraPivot/Camera3D"]
+stream = ExtResource("6_lmp0k")
+volume_db = -10.0
+unit_size = 2.0
 max_db = 0.0
 
 [node name="HUD" type="CanvasLayer" parent="."]
