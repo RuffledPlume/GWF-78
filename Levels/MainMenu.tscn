@@ -1,0 +1,200 @@
+[gd_scene load_steps=11 format=3 uid="uid://dryx1i837lreu"]
+
+[ext_resource type="Texture2D" uid="uid://dt48n212okjo6" path="res://Materials/prototype-texture-with-size.png" id="3_5bmeo"]
+[ext_resource type="PackedScene" uid="uid://co51g5vsdgrm0" path="res://Prefabs/FogBarrier.tscn" id="24_ignn3"]
+[ext_resource type="PackedScene" uid="uid://ybeds6h2jy6x" path="res://Levels/background.tscn" id="27_w6sbu"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dl0db"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_txvol"]
+sky_material = SubResource("ProceduralSkyMaterial_dl0db")
+
+[sub_resource type="Environment" id="Environment_36owp"]
+background_mode = 2
+background_energy_multiplier = 0.1
+sky = SubResource("Sky_txvol")
+ambient_light_color = Color(0.396078, 0.513726, 0.470588, 1)
+ambient_light_sky_contribution = 0.6
+ambient_light_energy = 1.5
+tonemap_mode = 2
+ssao_power = 1.72305
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.517647, 0.682353, 0.607843, 1)
+fog_sun_scatter = 0.1
+fog_aerial_perspective = 0.65
+fog_sky_affect = 0.8
+fog_depth_curve = 0.5
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0.517647, 0.682353, 0.607843, 1)
+volumetric_fog_length = 16.0
+volumetric_fog_sky_affect = 0.3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2thsj"]
+albedo_texture = ExtResource("3_5bmeo")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lvleh"]
+disable_fog = true
+albedo_color = Color(0, 0.486275, 0, 1)
+emission_enabled = true
+emission = Color(0, 1, 0.427451, 1)
+emission_energy_multiplier = 3.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88i3p"]
+albedo_texture = ExtResource("3_5bmeo")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gpita"]
+albedo_texture = ExtResource("3_5bmeo")
+uv1_triplanar = true
+
+[node name="Sandbox" type="Node3D"]
+
+[node name="Background" parent="." instance=ExtResource("27_w6sbu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -393.278, 141.95, -49.9622)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_36owp")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, 0.433013, 0.25, -0.482963, 0.595035, 0.642402, 0.129409, -0.677077, 0.724445, 0, 0, 0)
+light_color = Color(0.909804, 1, 1, 1)
+light_energy = 2.0
+light_bake_mode = 1
+shadow_enabled = true
+directional_shadow_blend_splits = true
+
+[node name="MotherTower" type="Node3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 150, -380)
+
+[node name="TowerTopCylinder" type="CSGCylinder3D" parent="MotherTower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 55.5, 0)
+radius = 5.0
+height = 20.0
+sides = 24
+material = SubResource("StandardMaterial3D_2thsj")
+
+[node name="TowerTopRing" type="CSGCylinder3D" parent="MotherTower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 52, 0)
+radius = 6.0
+height = 1.0
+sides = 24
+material = SubResource("StandardMaterial3D_lvleh")
+
+[node name="TowerTopRing2" type="CSGCylinder3D" parent="MotherTower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 56, 0)
+radius = 6.0
+height = 1.0
+sides = 24
+material = SubResource("StandardMaterial3D_lvleh")
+
+[node name="TowerTopRing3" type="CSGCylinder3D" parent="MotherTower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 60, 0)
+radius = 6.0
+height = 1.0
+sides = 24
+material = SubResource("StandardMaterial3D_lvleh")
+
+[node name="TowerTopBox" type="CSGBox3D" parent="MotherTower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 35.5, 0)
+material_override = SubResource("StandardMaterial3D_88i3p")
+use_collision = true
+size = Vector3(20, 20, 20)
+
+[node name="TowerTop" type="CSGBox3D" parent="MotherTower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, 0)
+material_override = SubResource("StandardMaterial3D_gpita")
+use_collision = true
+size = Vector3(31, 1, 30)
+
+[node name="TowerTopEdgeN" type="CSGBox3D" parent="MotherTower"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 25.8, 14.5)
+material_override = SubResource("StandardMaterial3D_gpita")
+use_collision = true
+size = Vector3(1, 0.6, 29)
+
+[node name="TowerTopEdgeS" type="CSGBox3D" parent="MotherTower"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 25.8, -14.5)
+material_override = SubResource("StandardMaterial3D_gpita")
+use_collision = true
+size = Vector3(1, 0.6, 29)
+
+[node name="TowerTopEdgeE" type="CSGBox3D" parent="MotherTower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 25.8, 0)
+material_override = SubResource("StandardMaterial3D_gpita")
+use_collision = true
+size = Vector3(1, 0.6, 30)
+
+[node name="TowerTopEdgeW" type="CSGBox3D" parent="MotherTower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 25.8, 0)
+material_override = SubResource("StandardMaterial3D_gpita")
+use_collision = true
+size = Vector3(1, 0.6, 30)
+
+[node name="TowerFaceN" type="CSGBox3D" parent="MotherTower"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -25.5, 14.5)
+material_override = SubResource("StandardMaterial3D_gpita")
+use_collision = true
+size = Vector3(1, 100, 29)
+
+[node name="TowerFaceS" type="CSGBox3D" parent="MotherTower"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -25.5, -14.5)
+material_override = SubResource("StandardMaterial3D_gpita")
+use_collision = true
+size = Vector3(1, 100, 29)
+
+[node name="TowerFaceW" type="CSGBox3D" parent="MotherTower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, -25.5, 0)
+material_override = SubResource("StandardMaterial3D_gpita")
+use_collision = true
+size = Vector3(1, 100, 30)
+
+[node name="TowerFaceE" type="CSGBox3D" parent="MotherTower"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -15, -25.5, 0)
+material_override = SubResource("StandardMaterial3D_gpita")
+use_collision = true
+size = Vector3(1, 100, 30)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="MotherTower"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 68.5, 0)
+light_color = Color(0, 1, 0.72549, 1)
+light_energy = 200.0
+light_size = 100.0
+omni_range = 32.422
+omni_attenuation = -0.375
+
+[node name="FogBarrier" parent="." instance=ExtResource("24_ignn3")]
+transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 5, 0, 106.689, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.699526, 0.457398, -0.549045, -1.11759e-08, 0.768317, 0.64007, 0.714607, 0.447745, -0.537458, -113.888, 293.949, -369.872)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Title" type="Label" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -657.0
+offset_top = 106.0
+offset_right = -206.0
+offset_bottom = 197.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 66
+text = "Mother Tower"
+
+[node name="Play" type="Label" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -653.0
+offset_top = 574.0
+offset_right = -202.0
+offset_bottom = 665.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 40
+text = "Play"
+horizontal_alignment = 1
