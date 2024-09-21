@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dikcrsr171oyg"]
+[gd_scene load_steps=35 format=3 uid="uid://dikcrsr171oyg"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_uuae0"]
 [ext_resource type="Script" path="res://Scripts/camera_3d.gd" id="2_1ye7i"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://dspjlp2adw0p2" path="res://Audio/Breath.mp3" id="5_jatw8"]
 [ext_resource type="Texture2D" uid="uid://bgv1n7rcauoib" path="res://Textures/vignette.png" id="6_2swo8"]
 [ext_resource type="AudioStream" uid="uid://doo3yxw5ftheg" path="res://Audio/Coughing.mp3" id="6_lmp0k"]
+[ext_resource type="Texture2D" uid="uid://dwul2rj1w772l" path="res://Textures/LightBulb.png" id="10_gx2sp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_esqpa"]
 
@@ -554,3 +555,28 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(3, 3)
 texture = SubResource("CanvasTexture_bhwob")
+
+[node name="DidYouKnow" type="Panel" parent="HUD"]
+offset_left = -1.0
+offset_top = 94.0
+offset_right = 242.0
+offset_bottom = 174.0
+
+[node name="Label" type="Label" parent="HUD/DidYouKnow"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Did you know?
+Blah Blah blah blah blah"
+
+[node name="TextureRect" type="TextureRect" parent="HUD/DidYouKnow"]
+layout_mode = 0
+offset_left = 216.0
+offset_top = -19.0
+offset_right = 263.0
+offset_bottom = 22.0
+texture = ExtResource("10_gx2sp")
+expand_mode = 2
