@@ -14,6 +14,9 @@ vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("1_iudxp")
 albedo_texture_msdf = true
 billboard_mode = 2
+distance_fade_mode = 1
+distance_fade_min_distance = 50.0
+distance_fade_max_distance = 0.0
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mxqwt"]
 particle_flag_align_y = true
@@ -42,6 +45,9 @@ disable_ambient_light = true
 disable_fog = true
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("2_lob5o")
+distance_fade_mode = 1
+distance_fade_min_distance = 50.0
+distance_fade_max_distance = 0.0
 
 [sub_resource type="Curve" id="Curve_efpac"]
 max_value = 3.0
@@ -70,6 +76,9 @@ disable_ambient_light = true
 disable_fog = true
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("3_a0xew")
+distance_fade_mode = 1
+distance_fade_min_distance = 50.0
+distance_fade_max_distance = 0.0
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ypteb"]
 resource_local_to_scene = true
