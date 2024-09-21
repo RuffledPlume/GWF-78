@@ -484,6 +484,7 @@ max_db = 0.0
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("3_k1q5m")
+didyouknow_trivia = Array[String](["The current year is 3079!", "Global warming has made ground level inhabitable", "You are a porter!", "Humans now live in the sky of old apartment buildings to escape the smog below"])
 
 [node name="Interaction_Text" type="Label" parent="HUD"]
 offset_right = 40.0
@@ -581,7 +582,10 @@ anchor_bottom = 1.0
 offset_top = 28.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Blah Blah blah blah blah"
+theme_override_font_sizes/font_size = 12
+text = "Blah Blah blah blah blahBlah Blah blah blah blahBlah Blah blah blah blah"
+autowrap_mode = 1
+clip_text = true
 
 [node name="TextureRect" type="TextureRect" parent="HUD/DidYouKnow"]
 layout_mode = 0

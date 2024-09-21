@@ -9,14 +9,20 @@ static var instance : PlayerHUD
 @onready var didyouknow_root : Panel = $DidYouKnow
 @onready var didyouknow_label : Label = $DidYouKnow/Label
 
+@export var didyouknow_trivia : Array[String]
+@export var didyouknow_trivia_delay := 60
+
 var _show_didyouknow := false
 var _frac_didyouknow := 0.0
 var _delay_didyouknow := 0.0
+var _delay_random_trivia := -1.0
 
 func _ready() -> void:
 	instance = self
 	didyouknow_root.position.x = -didyouknow_root.size.x
 	didyouknow_root.visible = false
+	
+	_delay_random_trivia = didyouknow_trivia_delay
 	
 	show_didyouknow("That your stupid")
 
@@ -44,6 +50,10 @@ func _process(delta: float) -> void:
 		else:
 			didyouknow_root.visible = false
 			
+		_delay_random_trivia -= delta
+		if _delay_random_trivia <= 0.0:
+			show_didyouknow(didyouknow_trivia.pick_random())
+			
 
 func update_interactable_label(target : Interactable) -> void:
 	if target:
@@ -62,3 +72,4 @@ func show_didyouknow(text: String) -> void:
 	didyouknow_label.text = text
 	didyouknow_root.position.x = -didyouknow_root.size.x
 	didyouknow_root.visible = true
+	_delay_random_trivia = didyouknow_trivia_delay
