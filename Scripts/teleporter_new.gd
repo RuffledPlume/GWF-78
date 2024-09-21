@@ -33,6 +33,8 @@ func _ready() -> void:
 	body_exited.connect(_on_body_exited)
 	timer.timeout.connect(_on_timer_timeout)
 	
+	console.set_target(wave_frequency, wave_amplitude)
+	
 	is_working = false
 
 func _camera_finish_following_path() -> void:

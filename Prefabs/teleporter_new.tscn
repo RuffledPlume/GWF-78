@@ -21,7 +21,7 @@ subdivide_width = 3
 [node name="Teleporter" type="Area3D" node_paths=PackedStringArray("console", "exit_target", "portal_mesh", "teleport_audio", "generation_audio", "transit_audio", "timer")]
 gravity = 0.0
 script = ExtResource("1_4dur1")
-console = NodePath("")
+console = NodePath("TeleporterFrequency")
 exit_target = NodePath("Teleporter_Exit")
 portal_mesh = NodePath("Portal")
 teleport_audio = NodePath("TeleportAudio")

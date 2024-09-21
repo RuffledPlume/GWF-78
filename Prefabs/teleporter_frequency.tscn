@@ -25,11 +25,13 @@ point_count = 1
 
 [sub_resource type="BoxMesh" id="BoxMesh_2mpkw"]
 
-[node name="TeleporterFrequency" type="Node3D" node_paths=PackedStringArray("tuning_line_renderer", "frequency_crank", "amplitude_crank")]
+[node name="TeleporterFrequency" type="Node3D" node_paths=PackedStringArray("tuning_line_renderer", "target_line_renderer", "tuning_label", "frequency_crank", "amplitude_crank")]
 script = ExtResource("2_kox6y")
-tuning_line_renderer = NodePath("Screen/SubViewport/TeleporterMiniGame/Line2D")
-frequency_crank = NodePath("Amplitude Crank/StaticBody3D2")
-amplitude_crank = NodePath("Frequency Crank/StaticBody3D")
+tuning_line_renderer = NodePath("Screen/SubViewport/TeleporterMiniGame/Current")
+target_line_renderer = NodePath("Screen/SubViewport/TeleporterMiniGame/Target")
+tuning_label = NodePath("Screen/SubViewport/TeleporterMiniGame/Label")
+frequency_crank = NodePath("Frequency Crank/StaticBody3D")
+amplitude_crank = NodePath("Amplitude Crank/StaticBody3D2")
 
 [node name="Amplitude Crank" parent="." instance=ExtResource("1_fn2p3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.42324, 0.39982)
@@ -50,6 +52,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.188
 [node name="StaticBody3D" type="StaticBody3D" parent="Frequency Crank" node_paths=PackedStringArray("wheel_root")]
 script = ExtResource("2_1wno0")
 wheel_root = NodePath("../Base2")
+start_frac = 0.0
 interaction_name = "Frequency Crank"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Frequency Crank/StaticBody3D"]
@@ -81,8 +84,25 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(100, 50)
 
-[node name="Line2D" type="Line2D" parent="Screen/SubViewport/TeleporterMiniGame"]
+[node name="Current" type="Line2D" parent="Screen/SubViewport/TeleporterMiniGame"]
 width_curve = SubResource("Curve_pqyaq")
+default_color = Color(1, 0.509804, 1, 1)
+
+[node name="Target" type="Line2D" parent="Screen/SubViewport/TeleporterMiniGame"]
+width_curve = SubResource("Curve_pqyaq")
+default_color = Color(0.47796, 0.364076, 0, 0.505882)
+
+[node name="Label" type="Label" parent="Screen/SubViewport/TeleporterMiniGame"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Frequency: 0.5 | Amplitude: 0.5"
+horizontal_alignment = 1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.73065, 0, 0, 0, 0.737811, 0, 0, 0, 1, 0.0681748, 0.364413, 0)
