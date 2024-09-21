@@ -1,8 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://rf8st73cwaom"]
+[gd_scene load_steps=11 format=3 uid="uid://rf8st73cwaom"]
 
+[ext_resource type="PackedScene" uid="uid://co2duin4cqcnd" path="res://Prefabs/wheel.tscn" id="1_fn2p3"]
 [ext_resource type="Shader" path="res://Levels/UITex.gdshader" id="1_tkiou"]
+[ext_resource type="Script" path="res://Scripts/teleporter_wave_wheel.gd" id="2_1wno0"]
 [ext_resource type="Script" path="res://Scripts/teleporter_wave_game.gd" id="2_kox6y"]
-[ext_resource type="Script" path="res://Scripts/frequency_control.gd" id="3_jyvpi"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yl5l2"]
+size = Vector3(0.798462, 0.798218, 0.411865)
 
 [sub_resource type="QuadMesh" id="QuadMesh_osec2"]
 
@@ -21,16 +25,21 @@ point_count = 1
 
 [sub_resource type="BoxMesh" id="BoxMesh_2mpkw"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0bouj"]
-albedo_color = Color(0.201527, 0.201527, 0.201527, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ov4w5"]
-albedo_color = Color(0.355331, 0.110691, 4.81308e-08, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_7wdmf"]
-size = Vector3(0.194824, 1.44525, 0.413574)
-
 [node name="TeleporterFrequency" type="Node3D"]
+
+[node name="Wheel" parent="." instance=ExtResource("1_fn2p3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.463717, 0.534264)
+
+[node name="Wheel2" parent="." instance=ExtResource("1_fn2p3")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.318099, 0.463717, -0.00917566)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wheel2" node_paths=PackedStringArray("wheel_root")]
+script = ExtResource("2_1wno0")
+wheel_root = NodePath("../Base2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wheel2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00177002, 0.00994873, 0.115601)
+shape = SubResource("BoxShape3D_yl5l2")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(-2.18557e-08, 0.970258, -0.242074, 3.78552e-08, 0.242074, 0.970258, 1, 1.20419e-08, -4.202e-08, -0.0535222, 0.986072, 1.17989e-08)
@@ -65,59 +74,8 @@ width_curve = SubResource("Curve_pqyaq")
 transform = Transform3D(0.73065, 0, 0, 0, 0.737811, 0, 0, 0, 1, 0.0681748, 0.364413, 0)
 mesh = SubResource("BoxMesh_2mpkw")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.326586, 0, 0, 0, 2.76862, 0, 0, 0, 3.68262, 0.0681748, 1.32559, -2.35891)
-mesh = SubResource("BoxMesh_2mpkw")
-
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.277706, 0, 0, 0, 1.33297, 0, 0, 0, 0.33025, -0.0911537, 1.32559, -1.27228)
-mesh = SubResource("BoxMesh_2mpkw")
-surface_material_override/0 = SubResource("StandardMaterial3D_0bouj")
-
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.182836, 0, 0, 0, 0.205443, 0, 0, 0, 0.43785, -0.224415, 0.773499, -1.27228)
-mesh = SubResource("BoxMesh_2mpkw")
-surface_material_override/0 = SubResource("StandardMaterial3D_ov4w5")
-
-[node name="MeshInstance3D7" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.277706, 0, 0, 0, -5.82661e-08, -0.33025, 0, 1.33297, -1.44357e-08, -0.0911537, 1.32559, -2.71079)
-mesh = SubResource("BoxMesh_2mpkw")
-surface_material_override/0 = SubResource("StandardMaterial3D_0bouj")
-
-[node name="MeshInstance3D8" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.182836, 0, 0, 0, -8.98022e-09, -0.43785, 0, 0.205443, -1.9139e-08, -0.224415, 1.32559, -3.23081)
-mesh = SubResource("BoxMesh_2mpkw")
-surface_material_override/0 = SubResource("StandardMaterial3D_ov4w5")
-
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.096225, 0.595912, 0, -0.359116, 0.159674, 0, 0, 0, 1, -0.00549786, 0.78921, 0)
 mesh = SubResource("BoxMesh_2mpkw")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." node_paths=PackedStringArray("target", "slider_mesh", "max_target")]
-script = ExtResource("3_jyvpi")
-target = NodePath("../MeshInstance3D2/SubViewport/TeleporterMiniGame")
-slider_mesh = NodePath("../MeshInstance3D6")
-max_target = NodePath("../Node3D")
-is_freq = false
-value_scale = 0.5
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.169068, 1.30426, -1.28294)
-shape = SubResource("BoxShape3D_7wdmf")
-
-[node name="StaticBody3D2" type="StaticBody3D" parent="." node_paths=PackedStringArray("target", "slider_mesh", "max_target")]
-script = ExtResource("3_jyvpi")
-target = NodePath("../MeshInstance3D2/SubViewport/TeleporterMiniGame")
-slider_mesh = NodePath("../MeshInstance3D8")
-max_target = NodePath("../Node3D2")
-value_scale = 0.01
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
-transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, -0.169068, 1.30426, -2.71643)
-shape = SubResource("BoxShape3D_7wdmf")
-
-[node name="Node3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225128, 1.86373, -1.2733)
-
-[node name="Node3D2" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225128, 1.32785, -2.1446)
+[editable path="Wheel2"]
