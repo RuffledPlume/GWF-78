@@ -5,6 +5,12 @@ func get_interact_text() -> String:
 
 func can_interact_with() -> bool:
 	return false
+
+func on_interact_with_pressed() -> void:
+	pass
 	
-func on_interact_with() -> void:
+func on_interact_with_held() -> void:
+	pass
+	
+func on_interact_with_released() -> void:
 	pass

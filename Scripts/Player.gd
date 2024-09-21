@@ -24,7 +24,6 @@ const JUMP_VELOCITY = 4.5
 
 var current_speed: float
 var mouse_motion := Vector2.ZERO
-var hovering_interactable : Interactable
 var is_teleporting: bool
 var has_put_on_mask : bool
 var oxygen_reserve : float = 1.0
@@ -33,6 +32,9 @@ var last_input : Vector2
 var is_within_safe_zone : bool
 var is_walking: bool
 var is_sprinting: bool
+
+var hovering_interactable : Interactable
+var hovering_interactable_position : Vector3
 
 func _ready() -> void:
 	instance = self
@@ -87,8 +89,23 @@ func _handle_interactions() -> void:
 			var collider_interactable := collider as Interactable
 			if collider_interactable.can_interact_with():
 				new_hovering_interactable = collider_interactable
+				hovering_interactable_position = result["position"]
+	
+	if hovering_interactable != new_hovering_interactable:
+		if hovering_interactable != null && Input.is_action_pressed("Interact"):
+			hovering_interactable.on_interact_with_released()
 	
 	hovering_interactable = new_hovering_interactable
+	
+	if hovering_interactable != null:
+		if Input.is_action_just_pressed("Interact"):
+			hovering_interactable.on_interact_with_pressed()
+		elif Input.is_action_pressed("Interact"):
+			hovering_interactable.on_interact_with_held()
+		elif Input.is_action_just_released("Interact"):
+			hovering_interactable.on_interact_with_released()
+			
+	
 	PlayerHUD.instance.update_interactable_label(hovering_interactable)
 	
 			
@@ -136,10 +153,6 @@ func _input(event: InputEvent) -> void:
 			
 	if Input.is_action_just_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		
-	if Input.is_action_just_pressed("Interact") && hovering_interactable:
-		print("Player interacted with: %s" % hovering_interactable)
-		hovering_interactable.on_interact_with()
 			
 func _handle_camera_rotation() -> void:
 	rotate_y(mouse_motion.x)

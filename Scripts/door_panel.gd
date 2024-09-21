@@ -50,7 +50,7 @@ func get_interact_text() -> String:
 func can_interact_with() -> bool:
 	return is_closed
 	
-func on_interact_with() -> void:
+func on_interact_with_pressed() -> void:
 	if !is_closed:
 		return
 		
