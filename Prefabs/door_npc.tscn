@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://0bb5ol8bc23i"]
+
+[node name="Door" type="Node3D"]
+
+[node name="Frame" type="CSGCombiner3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Frame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2164, -0.00842211)
+size = Vector3(0.271484, 2.4328, 1.66235)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Frame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00646973, 1.13748, 0.0110894)
+operation = 2
+size = Vector3(0.375244, 2.27497, 1.47478)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Frame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0254517, 1.14928, -0.00241062)
+size = Vector3(0.050415, 2.29855, 1.56769)
+
+[node name="Frame2" type="CSGCombiner3D" parent="."]
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Frame2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0696698, 1.27975, -1.11984)
+size = Vector3(0.131531, 0.35928, 0.230011)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Frame2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.139722, 1.2866, -1.11939)
+operation = 2
+size = Vector3(0.0606537, 0.299842, 0.188301)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Frame2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.115756, 1.33072, -1.12081)
+size = Vector3(0.012722, 0.181279, 0.148516)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Frame2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.115756, 1.17953, -1.12081)
+size = Vector3(0.012722, 0.0421776, 0.148516)
