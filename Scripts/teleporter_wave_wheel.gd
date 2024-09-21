@@ -1,4 +1,4 @@
-extends Interactable
+class_name TeleporterCrank extends Interactable
 
 @export var wheel_root : Node3D
 @export var step_size := 0.01

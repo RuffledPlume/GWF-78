@@ -2,14 +2,17 @@ class_name TeleporterFrequency extends Panel
 
 @onready var line_renderer := $Line2D
 
-var current_freq := 0.01
-var current_amp := 0.5
+@export var frequency_crank : TeleporterCrank
+@export var amplitude_crank : TeleporterCrank
 
 var _last_freq := 0.0
 var _last_amp := 0.0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	var current_freq := frequency_crank._frac
+	var current_amp := amplitude_crank._frac
+	
 	_last_freq = lerpf(_last_freq, current_freq, delta)
 	_last_amp = lerpf(_last_amp, current_amp, delta)
 	

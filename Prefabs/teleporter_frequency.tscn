@@ -27,28 +27,28 @@ point_count = 1
 
 [node name="TeleporterFrequency" type="Node3D"]
 
-[node name="Wheel" parent="." instance=ExtResource("1_fn2p3")]
+[node name="Amplitude Crank" parent="." instance=ExtResource("1_fn2p3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.463717, 0.534264)
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="Wheel" node_paths=PackedStringArray("wheel_root")]
+[node name="StaticBody3D2" type="StaticBody3D" parent="Amplitude Crank" node_paths=PackedStringArray("wheel_root")]
 transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0.0479883, 1.19209e-07, 0.059347)
 script = ExtResource("2_1wno0")
 wheel_root = NodePath("../Base2")
 interaction_name = "Amplitude Crank"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Wheel/StaticBody3D2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Amplitude Crank/StaticBody3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00177002, 0.00994873, 0.115601)
 shape = SubResource("BoxShape3D_yl5l2")
 
-[node name="Wheel2" parent="." instance=ExtResource("1_fn2p3")]
+[node name="Frequency Crank" parent="." instance=ExtResource("1_fn2p3")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.318099, 0.463717, -0.00917566)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Wheel2" node_paths=PackedStringArray("wheel_root")]
+[node name="StaticBody3D" type="StaticBody3D" parent="Frequency Crank" node_paths=PackedStringArray("wheel_root")]
 script = ExtResource("2_1wno0")
 wheel_root = NodePath("../Base2")
 interaction_name = "Frequency Crank"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Wheel2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Frequency Crank/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00177002, 0.00994873, 0.115601)
 shape = SubResource("BoxShape3D_yl5l2")
 
@@ -63,7 +63,7 @@ transparent_bg = true
 handle_input_locally = false
 gui_disable_input = true
 
-[node name="TeleporterMiniGame" type="Panel" parent="MeshInstance3D2/SubViewport"]
+[node name="TeleporterMiniGame" type="Panel" parent="MeshInstance3D2/SubViewport" node_paths=PackedStringArray("frequency_crank", "amplitude_crank")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -77,6 +77,8 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(100, 50)
 script = ExtResource("2_kox6y")
+frequency_crank = NodePath("../../../Frequency Crank/StaticBody3D")
+amplitude_crank = NodePath("../../../Amplitude Crank/StaticBody3D2")
 
 [node name="Line2D" type="Line2D" parent="MeshInstance3D2/SubViewport/TeleporterMiniGame"]
 width_curve = SubResource("Curve_pqyaq")
@@ -89,5 +91,5 @@ mesh = SubResource("BoxMesh_2mpkw")
 transform = Transform3D(0.096225, 0.595912, 0, -0.359116, 0.159674, 0, 0, 0, 1, -0.00549786, 0.78921, 0)
 mesh = SubResource("BoxMesh_2mpkw")
 
-[editable path="Wheel"]
-[editable path="Wheel2"]
+[editable path="Amplitude Crank"]
+[editable path="Frequency Crank"]

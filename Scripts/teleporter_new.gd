@@ -5,6 +5,11 @@ static var instance : TeleporterNew
 @export var teleporter_target : TeleporterNew
 @export var teleporter_path : Path3D
 
+@export_category("Teleporter Frequency")
+@export var wave_frequency : float = 0.5
+@export var wave_amplitude : float = 0.5
+@export var console : TeleporterFrequency
+
 @export_category("Internal")
 @export var exit_target: Node3D
 @export var portal_mesh: MeshInstance3D
