@@ -2,10 +2,14 @@ class_name TeleporterCrank extends Interactable
 
 @export var wheel_root : Node3D
 @export var step_size := 0.01
+@export var start_frac := 0.5
 @export var interaction_name : String
 
 var _frac : float
 var _grab_position : Vector3
+
+func _ready() -> void:
+	_frac = start_frac
 
 func get_interact_text() -> String:
 	return interaction_name
