@@ -2,12 +2,13 @@ extends Interactable
 
 @export var wheel_root : Node3D
 @export var step_size := 0.01
+@export var interaction_name : String
 
 var _frac : float
 var _grab_position : Vector3
 
 func get_interact_text() -> String:
-	return "Turn Crank"
+	return interaction_name
 
 func can_interact_with() -> bool:
 	return true
@@ -23,10 +24,10 @@ func on_interact_with_held() -> void:
 		var grab_plane := Plane(grab_normal, _grab_position)
 		if grab_plane.is_point_over(new_grab_position):
 			if _frac > 0.0:
-				wheel_root.rotate_z(-0.25)
+				wheel_root.rotate_z(0.25)
 				_frac -= step_size
 		else:
 			if _frac < 1.0:
-				wheel_root.rotate_z(0.25)
+				wheel_root.rotate_z(-0.25)
 				_frac += step_size
 		_grab_position = new_grab_position
