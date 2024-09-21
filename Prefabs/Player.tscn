@@ -1,11 +1,14 @@
-[gd_scene load_steps=29 format=3 uid="uid://dikcrsr171oyg"]
+[gd_scene load_steps=32 format=3 uid="uid://dikcrsr171oyg"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_uuae0"]
 [ext_resource type="Script" path="res://Scripts/camera_3d.gd" id="2_1ye7i"]
 [ext_resource type="PackedScene" uid="uid://c57h31f2dn6c1" path="res://Prefabs/Oxygen_Mask.tscn" id="3_61m2a"]
 [ext_resource type="Script" path="res://Scripts/player_hud.gd" id="3_k1q5m"]
+[ext_resource type="AudioStream" uid="uid://cgbs6ws1m5ak2" path="res://Audio/Footstep.mp3" id="4_7v2wb"]
 [ext_resource type="Texture2D" uid="uid://dqjbpg6mxnpvj" path="res://Textures/O2Mask.png" id="4_appyk"]
+[ext_resource type="AudioStream" uid="uid://dspjlp2adw0p2" path="res://Audio/Breath.mp3" id="5_jatw8"]
 [ext_resource type="Texture2D" uid="uid://bgv1n7rcauoib" path="res://Textures/vignette.png" id="6_2swo8"]
+[ext_resource type="AudioStream" uid="uid://doo3yxw5ftheg" path="res://Audio/Coughing.mp3" id="6_lmp0k"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_esqpa"]
 
@@ -84,6 +87,20 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("%CameraPivot/..")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.933333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_handle_breath_audio"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_n3o8t"]
@@ -179,33 +196,6 @@ _data = {
 "RESET": SubResource("Animation_n3o8t")
 }
 
-[sub_resource type="Animation" id="Animation_56b6o"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(0.5),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(0.5),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_l46fl"]
 resource_name = "Idle"
 length = 20.0
@@ -235,6 +225,33 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0.0872665, 0.698132, 0), Vector3(0.261799, 0.785398, 0), Vector3(0.261799, 0.785398, 0), Vector3(0.0872665, -0.785398, 0), Vector3(0.139626, -0.872665, 0), Vector3(0.20944, -0.959931, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_56b6o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_beei6"]
 resource_name = "Head_Bob"
 loop_mode = 1
@@ -261,6 +278,23 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(-2, -2, -2, -2, -2),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 0, 0.0872665), Vector3(0, 0, 0), Vector3(0, 0, -0.0872665), Vector3(0, 0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%CameraPivot/..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_handle_run_audio"
+}, {
+"args": [],
+"method": &"_handle_run_audio"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_g2mpl"]
@@ -289,6 +323,23 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 0, 0.0174533), Vector3(0, 0, 0), Vector3(0, 0, -0.0174533), Vector3(0, 0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%CameraPivot/..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.766667),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_handle_footstep_audio"
+}, {
+"args": [],
+"method": &"_handle_footstep_audio"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uf5qs"]
@@ -363,6 +414,7 @@ script = ExtResource("1_uuae0")
 shape = SubResource("CapsuleShape3D_esqpa")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+cast_shadow = 0
 mesh = SubResource("CapsuleMesh_uh5sm")
 
 [node name="CameraPivot" type="Node3D" parent="."]
@@ -370,7 +422,6 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 fov = 90.0
 script = ExtResource("2_1ye7i")
 
@@ -394,6 +445,32 @@ anim_player = NodePath("../CameraAnimator")
 parameters/conditions/is_idle = false
 parameters/conditions/is_sprinting = false
 parameters/conditions/is_walking = false
+
+[node name="FootstepsAudio" type="AudioStreamPlayer3D" parent="CameraPivot/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4, 0)
+stream = ExtResource("4_7v2wb")
+volume_db = -20.0
+unit_size = 5.0
+max_db = -5.0
+pitch_scale = 0.5
+
+[node name="RunAudio" type="AudioStreamPlayer3D" parent="CameraPivot/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4, 0)
+stream = ExtResource("4_7v2wb")
+volume_db = -15.0
+unit_size = 5.0
+
+[node name="BreathAudio" type="AudioStreamPlayer3D" parent="CameraPivot/Camera3D"]
+stream = ExtResource("5_jatw8")
+volume_db = -10.0
+unit_size = 5.0
+max_db = 0.0
+
+[node name="CoughAudio" type="AudioStreamPlayer3D" parent="CameraPivot/Camera3D"]
+stream = ExtResource("6_lmp0k")
+volume_db = -10.0
+unit_size = 2.0
+max_db = 0.0
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("3_k1q5m")

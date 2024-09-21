@@ -16,6 +16,11 @@ const JUMP_VELOCITY = 4.5
 @onready var camera_pivot: Node3D = $CameraPivot
 @onready var mask_animator := $CameraPivot/Camera3D/AnimationPlayer
 @onready var mask_root := $CameraPivot/Camera3D/Mask
+@onready var footsteps_audio: AudioStreamPlayer3D = $CameraPivot/Camera3D/FootstepsAudio
+@onready var run_audio: AudioStreamPlayer3D = $CameraPivot/Camera3D/RunAudio
+@onready var breath_audio: AudioStreamPlayer3D = $CameraPivot/Camera3D/BreathAudio
+@onready var cough_audio: AudioStreamPlayer3D = $CameraPivot/Camera3D/CoughAudio
+
 
 var current_speed: float
 var mouse_motion := Vector2.ZERO
@@ -35,7 +40,6 @@ func _ready() -> void:
 	mask_root.visible = false
 	
 func _process(delta: float) -> void:
-	print(is_walking)
 	if is_within_safe_zone:
 		if breath < 1.0:
 			breath += breath_replenishment_rate * delta
@@ -50,6 +54,7 @@ func _process(delta: float) -> void:
 		else:
 			depltion_rate *= 1.5
 	breath -= depltion_rate * delta
+
 	
 	if Input.is_action_pressed("UseMask"):
 		if !has_put_on_mask:
@@ -91,6 +96,7 @@ func _handle_player_movement(delta: float) -> void:
 		# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+		
 
 	# Handle jump.
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
@@ -100,19 +106,23 @@ func _handle_player_movement(delta: float) -> void:
 	if Input.is_key_pressed(KEY_SHIFT):
 		is_sprinting = true
 		current_speed *= 1.5
+		breath_depletion_rate = 0.050
 	else:
 		is_sprinting = false
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
+		breath_depletion_rate = 0.025
+		
 	var input_dir := Input.get_vector("Left", "Right", "Forward", "Back")
 	direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	
 	if direction:
 		is_walking = true
+		
 		velocity.x = direction.x * current_speed
 		velocity.z = direction.z * current_speed
 
 	else:
 		is_walking = false
+		
 		velocity.x = move_toward(velocity.x, 0, current_speed)
 		velocity.z = move_toward(velocity.z, 0, current_speed)
 	
@@ -136,4 +146,19 @@ func _handle_camera_rotation() -> void:
 	camera_pivot.rotate_x(mouse_motion.y)
 	camera_pivot.rotation_degrees.x = clampf(camera_pivot.rotation_degrees.x, -90.0, 90.0)
 	mouse_motion = Vector2.ZERO
+
+func _handle_footstep_audio() -> void:
+	if is_on_floor() and !is_sprinting:
+		footsteps_audio.pitch_scale = randf_range(0.5, 0.8)
+		footsteps_audio.play()
+
+func _handle_run_audio() -> void:
+	if is_on_floor() and is_sprinting:
+		run_audio.pitch_scale = randf_range(0.6, 1.0)
+		run_audio.play()
+
+func _handle_breath_audio() -> void:
+	breath_audio.play()
 	
+func _handle_cough_audio() -> void:
+	cough_audio.play()

@@ -1,0 +1,232 @@
+[gd_scene load_steps=32 format=3 uid="uid://dd36pwyio2ira"]
+
+[ext_resource type="Texture2D" uid="uid://chsq8dhn5mn6c" path="res://Textures/ToxicSpore.png" id="1_yyy2b"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2cq8j"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 1
+disable_ambient_light = true
+disable_fog = true
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 0.615686, 0.352941, 1)
+albedo_texture = ExtResource("1_yyy2b")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_vm8o3"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, -3.95605), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xdheh"]
+curve = SubResource("Curve_vm8o3")
+
+[sub_resource type="Curve" id="Curve_aft2r"]
+_data = [Vector2(0, 0.505494), 0.0, 0.0, 0, 0, Vector2(0.489011, 0.923077), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_jwhbv"]
+curve = SubResource("Curve_aft2r")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5bb1h"]
+angle_min = -90.0
+angle_max = 15.0
+angle_curve = SubResource("CurveTexture_xdheh")
+direction = Vector3(0, 0, -1)
+spread = 25.0
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+angular_velocity_min = -20.0
+angular_velocity_max = 20.0
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = -2.23517e-05
+gravity = Vector3(0, 0, 0)
+damping_min = 1.0
+damping_max = 1.0
+scale_min = 0.1
+scale_curve = SubResource("CurveTexture_jwhbv")
+
+[sub_resource type="QuadMesh" id="QuadMesh_qvg8o"]
+size = Vector2(0.2, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q02fb"]
+render_priority = 1
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+diffuse_mode = 3
+disable_ambient_light = true
+disable_fog = true
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 0.281997, 0, 1)
+heightmap_scale = -16.0
+refraction_scale = 1.0
+refraction_texture_channel = 2
+proximity_fade_enabled = true
+
+[sub_resource type="Curve" id="Curve_yvr5m"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.45946, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_22b8i"]
+curve = SubResource("Curve_yvr5m")
+
+[sub_resource type="Curve" id="Curve_wj3te"]
+min_value = -10.0
+max_value = 15.0
+_data = [Vector2(0, -1.86813), 0.0, 0.0, 0, 0, Vector2(0.505495, 11.4286), 0.0, 0.0, 0, 0, Vector2(1, -1.48351), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_j12iw"]
+curve = SubResource("Curve_wj3te")
+
+[sub_resource type="Curve" id="Curve_cy5o0"]
+min_value = -10.0
+max_value = 360.0
+_data = [Vector2(0, 2.19781), 0.0, 0.0, 0, 0, Vector2(0.104396, 103.846), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_pb1wc"]
+curve = SubResource("Curve_cy5o0")
+
+[sub_resource type="Gradient" id="Gradient_hg51p"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.480519, 0.857143, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0.129412, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0.0509804)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qmw5t"]
+gradient = SubResource("Gradient_hg51p")
+
+[sub_resource type="Curve" id="Curve_xndde"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveTexture" id="CurveTexture_r1hvj"]
+curve = SubResource("Curve_xndde")
+
+[sub_resource type="Curve" id="Curve_2lesl"]
+min_value = -1.0
+_data = [Vector2(0, -0.538462), 0.0, 0.0, 0, 0, Vector2(0.450549, 0.384615), 0.0, 0.0, 0, 0, Vector2(0.934066, -0.186813), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_w10cf"]
+curve = SubResource("Curve_2lesl")
+
+[sub_resource type="Curve" id="Curve_jvvp6"]
+_data = [Vector2(0, 0.417582), 0.0, 0.55, 0, 0, Vector2(0.818681, 0.615385), -0.787879, -0.787879, 0, 0, Vector2(1, 0), -7.00001, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_akuuh"]
+curve = SubResource("Curve_jvvp6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gstl4"]
+particle_flag_rotate_y = true
+angle_min = -9.99999
+angle_max = 10.0
+angle_curve = SubResource("CurveTexture_j12iw")
+direction = Vector3(0, 0, -1)
+spread = 5.0
+initial_velocity_min = 4.0
+initial_velocity_max = 5.0
+angular_velocity_min = -10.0
+angular_velocity_max = 9.99998
+angular_velocity_curve = SubResource("CurveTexture_pb1wc")
+orbit_velocity_min = 1.0
+orbit_velocity_max = 1.0
+gravity = Vector3(0, 0, -1)
+linear_accel_min = -2.23517e-06
+linear_accel_max = 0.999998
+radial_accel_min = -2.23517e-06
+radial_accel_max = -2.23517e-06
+tangential_accel_min = -2.23517e-06
+tangential_accel_max = 2.0
+damping_min = 1.0
+damping_max = 3.0
+scale_curve = SubResource("CurveTexture_akuuh")
+color = Color(0.779291, 0.779291, 0.779291, 1)
+color_ramp = SubResource("GradientTexture1D_qmw5t")
+alpha_curve = SubResource("CurveTexture_22b8i")
+emission_curve = SubResource("CurveTexture_r1hvj")
+hue_variation_min = -0.45
+hue_variation_max = 0.55
+hue_variation_curve = SubResource("CurveTexture_w10cf")
+turbulence_noise_strength = 0.5
+turbulence_noise_scale = 0.5
+turbulence_noise_speed = Vector3(0, 0, 1)
+turbulence_noise_speed_random = 1.0
+turbulence_influence_min = 0.01
+
+[sub_resource type="SphereMesh" id="SphereMesh_tncwm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nue1q"]
+cull_mode = 2
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 1, 0.262745, 0.270588)
+proximity_fade_enabled = true
+
+[sub_resource type="Curve" id="Curve_ti88r"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.89011, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_25a4p"]
+curve = SubResource("Curve_ti88r")
+
+[sub_resource type="Curve" id="Curve_knwxb"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.686813, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3xmld"]
+curve = SubResource("Curve_knwxb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ceion"]
+direction = Vector3(0, 0, -1)
+spread = 8.0
+initial_velocity_min = 1.5
+initial_velocity_max = 4.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_3xmld")
+color = Color(0.873298, 0.873298, 0.873298, 1)
+alpha_curve = SubResource("CurveTexture_25a4p")
+
+[node name="ToxicSprayParticle" type="Node3D"]
+
+[node name="SporeParticle" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_2cq8j")
+amount = 5
+speed_scale = 0.2
+explosiveness = 0.67
+randomness = 0.67
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_5bb1h")
+draw_pass_1 = SubResource("QuadMesh_qvg8o")
+
+[node name="ToxicParticle" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_q02fb")
+amount = 500
+speed_scale = 0.3
+randomness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_gstl4")
+draw_pass_1 = SubResource("SphereMesh_tncwm")
+
+[node name="ToxicParticle2" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_nue1q")
+amount = 500
+lifetime = 1.1
+speed_scale = 0.4
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_ceion")
+draw_pass_1 = SubResource("SphereMesh_tncwm")

@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsflo3a84pne2"]
+
+[ext_resource type="Script" path="res://Scripts/toxic_spray.gd" id="1_53nd6"]
+[ext_resource type="PackedScene" uid="uid://dd36pwyio2ira" path="res://Particles/toxic_spray_particle.tscn" id="1_vbiem"]
+[ext_resource type="AudioStream" uid="uid://dwnmyg5i8wrww" path="res://Audio/GasLeak.mp3" id="3_msmts"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n7s56"]
+size = Vector3(1, 1, 4)
+
+[node name="ToxicSpray" type="Node3D"]
+script = ExtResource("1_53nd6")
+
+[node name="ToxicSprayParticle" parent="." instance=ExtResource("1_vbiem")]
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.8, 0, 0, 0, 0.75, 0, 0, 0, 1, 0, 0, -2.2)
+shape = SubResource("BoxShape3D_n7s56")
+
+[node name="GasAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_msmts")
+volume_db = -2.0
+max_db = -2.0
+autoplay = true
+max_distance = 5.0
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

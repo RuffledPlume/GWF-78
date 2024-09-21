@@ -44,12 +44,14 @@ func _physics_process(delta: float) -> void:
 		animation_tree["parameters/conditions/is_idle"] = true
 		animation_tree["parameters/conditions/is_walking"] = false
 		animation_tree["parameters/conditions/is_sprinting"] = false
-	elif Player.instance.velocity.length() <= 3.0:
+		
+	elif Player.instance.velocity.length() <= 3.0 and Player.instance.is_on_floor():
 		playback.travel("Walk")
 		animation_tree["parameters/conditions/is_walking"] = true
 		animation_tree["parameters/conditions/is_idle"] = false
 		animation_tree["parameters/conditions/is_sprinting"] = false
-	elif Player.instance.velocity.length() > 4.0:
+		
+	if Player.instance.velocity.length() > 3.5 and Player.instance.is_on_floor():
 		playback.travel("Run")
 		animation_tree["parameters/conditions/is_sprinting"] = true
 		animation_tree["parameters/conditions/is_walking"] = false
