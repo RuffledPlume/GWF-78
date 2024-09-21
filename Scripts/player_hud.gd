@@ -6,9 +6,19 @@ static var instance : PlayerHUD
 @onready var oxygen_bar := $Bars/O2_Bar
 @onready var breath_bar := $Bars/Breath_Bar
 @onready var Vinette := $Vignette
+@onready var didyouknow_root : Panel = $DidYouKnow
+@onready var didyouknow_label : Label = $DidYouKnow/Label
+
+var _show_didyouknow := false
+var _frac_didyouknow := 0.0
+var _delay_didyouknow := 0.0
 
 func _ready() -> void:
 	instance = self
+	didyouknow_root.position.x = -didyouknow_root.size.x
+	didyouknow_root.visible = false
+	
+	show_didyouknow("That your stupid")
 
 func _process(delta: float) -> void:
 	var breath := Player.instance.breath
@@ -18,6 +28,22 @@ func _process(delta: float) -> void:
 		Vinette.modulate = Color(1.0, 1.0, 1.0, (0.4 - breath) / 0.4)
 	else:
 		Vinette.modulate = Color.TRANSPARENT
+		
+	if _show_didyouknow:
+		if _frac_didyouknow < 1.0:
+			didyouknow_root.position.x = lerpf(-didyouknow_root.size.x, 0.0, _frac_didyouknow)
+			_frac_didyouknow += 2.0 * delta
+		else:
+			_delay_didyouknow -= delta
+			if _delay_didyouknow <= 0.0:
+				_show_didyouknow = false
+	else:
+		if _frac_didyouknow > 0.0:
+			_frac_didyouknow -= 2.0 * delta
+			didyouknow_root.position.x = lerpf(-didyouknow_root.size.x, 0.0, _frac_didyouknow)
+		else:
+			didyouknow_root.visible = false
+			
 
 func update_interactable_label(target : Interactable) -> void:
 	if target:
@@ -28,3 +54,11 @@ func update_interactable_label(target : Interactable) -> void:
 			interaction_text_label.position = current_camera.unproject_position(target.global_position)
 	else:
 		interaction_text_label.visible = false
+
+func show_didyouknow(text: String) -> void:
+	_show_didyouknow = true
+	_frac_didyouknow = 0.0
+	_delay_didyouknow = 6.0
+	didyouknow_label.text = text
+	didyouknow_root.position.x = -didyouknow_root.size.x
+	didyouknow_root.visible = true
