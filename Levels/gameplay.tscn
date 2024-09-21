@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://mom517lcbqxp"]
+[gd_scene load_steps=77 format=3 uid="uid://cmm2kedvwxe7w"]
 
 [ext_resource type="PackedScene" uid="uid://dikcrsr171oyg" path="res://Prefabs/Player.tscn" id="1_rl6in"]
 [ext_resource type="PackedScene" uid="uid://ukmadykyy3j3" path="res://Prefabs/teleporter_new.tscn" id="2_mqtyu"]
@@ -29,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://dgnvtxkb8dgi6" path="res://Prefabs/teleporter_generator.tscn" id="28_oj2nq"]
 [ext_resource type="PackedScene" uid="uid://co51g5vsdgrm0" path="res://Prefabs/FogBarrier.tscn" id="29_koirh"]
 [ext_resource type="PackedScene" uid="uid://cqldusysobkbt" path="res://Prefabs/cloud_barrier.tscn" id="30_aok6u"]
+[ext_resource type="PackedScene" uid="uid://ddku6pswkockt" path="res://Prefabs/toxic_spray_timed.tscn" id="30_vj7wo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dl0db"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -372,18 +373,29 @@ light_energy = 2.0
 spot_attenuation = 0.1
 spot_angle = 40.0
 
+[node name="Light2" parent="." instance=ExtResource("6_w1m4r")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 35.1, 74.2, -80.9)
+
+[node name="Light3" parent="." instance=ExtResource("6_w1m4r")]
+transform = Transform3D(1, 0, 9.68575e-08, 0, 1, 0, -9.68575e-08, 0, 1, 50.9945, 74.8, -78.1945)
+
+[node name="Light5" parent="." instance=ExtResource("6_w1m4r")]
+transform = Transform3D(1, 0, 9.68575e-08, 0, 1, 0, -9.68575e-08, 0, 1, 44.1945, 78.5, -76.3945)
+
+[node name="Light6" parent="." instance=ExtResource("6_w1m4r")]
+transform = Transform3D(1, 0, 9.68575e-08, 0, 1, 0, -9.68575e-08, 0, 1, 44.1945, 78.5, -85.9945)
+
+[node name="Light7" parent="." instance=ExtResource("6_w1m4r")]
+transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, 36.3, 78.5, -81.2)
+
+[node name="Light4" parent="." instance=ExtResource("6_w1m4r")]
+transform = Transform3D(1, 0, 9.68575e-08, 0, 1, 0, -9.68575e-08, 0, 1, 50.9945, 74.8, -83.7945)
+
 [node name="LightsT2" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 33.789, 73.3776, -80.9)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="LightsT2"]
-light_color = Color(0.901961, 1, 1, 1)
-light_energy = 1.5
-light_volumetric_fog_energy = 3.0
-shadow_enabled = true
-omni_attenuation = 0.75
-
 [node name="OmniLight3D2" type="OmniLight3D" parent="LightsT2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.199997, 1.1)
 light_color = Color(0.901961, 1, 1, 1)
 light_energy = 1.5
 light_volumetric_fog_energy = 3.0
@@ -637,27 +649,6 @@ size = Vector3(4, 3.2, 13.2)
 [node name="CSGBox3D" type="CSGBox3D" parent="Buildings/TowerTwo/TowerTwoInterior"]
 transform = Transform3D(5.71577, 0.5, -2.1668e-08, -3.3, 0.866025, -8.08661e-08, -3.8651e-08, 2.18557e-08, 3.7, -4.65789, 8.75, -16.2)
 size = Vector3(2, 1, 1)
-
-[node name="Light" parent="Buildings" instance=ExtResource("6_w1m4r")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 34, 74, -80.9)
-
-[node name="Light2" parent="Buildings" instance=ExtResource("6_w1m4r")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 40, 74, -80.9)
-
-[node name="Light3" parent="Buildings" instance=ExtResource("6_w1m4r")]
-transform = Transform3D(1, 0, 9.68575e-08, 0, 1, 0, -9.68575e-08, 0, 1, 50.9945, 74.8, -78.1945)
-
-[node name="Light5" parent="Buildings" instance=ExtResource("6_w1m4r")]
-transform = Transform3D(1, 0, 9.68575e-08, 0, 1, 0, -9.68575e-08, 0, 1, 44.1945, 78.5, -76.3945)
-
-[node name="Light6" parent="Buildings" instance=ExtResource("6_w1m4r")]
-transform = Transform3D(1, 0, 9.68575e-08, 0, 1, 0, -9.68575e-08, 0, 1, 44.1945, 78.5, -85.9945)
-
-[node name="Light7" parent="Buildings" instance=ExtResource("6_w1m4r")]
-transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, 36.3, 78.5, -81.2)
-
-[node name="Light4" parent="Buildings" instance=ExtResource("6_w1m4r")]
-transform = Transform3D(1, 0, 9.68575e-08, 0, 1, 0, -9.68575e-08, 0, 1, 50.9945, 74.8, -83.7945)
 
 [node name="TowerThree" type="Node3D" parent="Buildings"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.6, 72.8, -123.4)
@@ -2357,6 +2348,9 @@ target_teleporter = NodePath("../Teleporters/Teleporter")
 quality = 3
 bounces = 4
 directional = true
+
+[node name="ToxicSpray" parent="." instance=ExtResource("30_vj7wo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 51, 8)
 
 [connection signal="timeout" from="Audio/MusicHandler/Timer" to="Audio/MusicHandler" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Audio/MusicHandler/Area3D" to="Audio/MusicHandler" method="_on_area_3d_body_entered"]
