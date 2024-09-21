@@ -584,7 +584,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 12
 text = "Blah Blah blah blah blahBlah Blah blah blah blahBlah Blah blah blah blah"
-autowrap_mode = 1
+autowrap_mode = 3
 clip_text = true
 
 [node name="TextureRect" type="TextureRect" parent="HUD/DidYouKnow"]
