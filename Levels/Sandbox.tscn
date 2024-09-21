@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://datu3rc6g2iod"]
+[gd_scene load_steps=74 format=3 uid="uid://datu3rc6g2iod"]
 
 [ext_resource type="Texture2D" uid="uid://dt48n212okjo6" path="res://Materials/prototype-texture-with-size.png" id="1_chle4"]
 [ext_resource type="PackedScene" uid="uid://dikcrsr171oyg" path="res://Prefabs/Player.tscn" id="2_k8lnm"]
@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://dx1kd77hluql4" path="res://Prefabs/antenna.tscn" id="21_ym3od"]
 [ext_resource type="PackedScene" uid="uid://dsflo3a84pne2" path="res://Prefabs/toxic_spray.tscn" id="24_3q37y"]
 [ext_resource type="PackedScene" uid="uid://bsvbbmttxtcqd" path="res://Prefabs/toxic_spray_triggerable.tscn" id="28_5og6n"]
+[ext_resource type="PackedScene" uid="uid://ybeds6h2jy6x" path="res://Levels/background.tscn" id="29_ntmmt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dl0db"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -540,9 +541,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.310
 [node name="EntranceOuterLedge2" parent="Buildings/TowerTwo/TowerTwoInterior" index="2"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -15.3, 1.5, -17.25)
 size = Vector3(4.5, 1, 9.2)
-
-[node name="SecondFloorCutout" parent="Buildings/TowerTwo/TowerTwoInterior" index="14"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 8.35727, 0)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Buildings/TowerTwo/TowerTwoInterior"]
 transform = Transform3D(5.71577, 0.5, -2.1668e-08, -3.3, 0.866025, -8.08661e-08, -3.8651e-08, 2.18557e-08, 3.7, -4.65789, 8.75, -16.2)
@@ -2215,6 +2213,8 @@ transform = Transform3D(1, 0, 3.55271e-14, 0, 1, 0, 0, 0, 2.6, -7.8, 0.0999908, 
 
 [node name="MeshInstance3D" parent="ToxicSpray12" index="6"]
 transform = Transform3D(1, -2.79225e-09, -1.2595e-08, 1.2595e-08, 0.422618, 0.906308, 2.79225e-09, -0.906308, 0.422618, -5.39998, -1.76851, -0.0927124)
+
+[node name="Background" parent="." instance=ExtResource("29_ntmmt")]
 
 [connection signal="timeout" from="Audio/MusicHandler/Timer" to="Audio/MusicHandler" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Audio/MusicHandler/Area3D" to="Audio/MusicHandler" method="_on_area_3d_body_entered"]

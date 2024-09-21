@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://bw0y31n8iuib4"]
+
+[ext_resource type="PackedScene" uid="uid://cbwjsr7xat26o" path="res://Models/Modular_Building_1.glb" id="1_l5llj"]
+[ext_resource type="Material" uid="uid://bdyj6gayxxit" path="res://Materials/BackgroundTowerMaterial.tres" id="2_0xkxu"]
+[ext_resource type="PackedScene" uid="uid://cr37rpw3s2ay1" path="res://Models/Modular_Building_2.glb" id="3_ind5p"]
+[ext_resource type="PackedScene" uid="uid://b0whhqowgtwb0" path="res://Models/Modular_Building_3.glb" id="4_esxvr"]
+[ext_resource type="PackedScene" uid="uid://5r0lxr6j8lpe" path="res://Models/Modular_Building_Roof.glb" id="5_qeypg"]
+
+[node name="Building_Type_1" type="Node3D"]
+
+[node name="Modular_Building_5" parent="." instance=ExtResource("1_l5llj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.8501, 0)
+
+[node name="Storey01" parent="Modular_Building_5" index="0"]
+surface_material_override/0 = ExtResource("2_0xkxu")
+
+[node name="Modular_Building_4" parent="." instance=ExtResource("3_ind5p")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0, 26.1496, 0)
+
+[node name="Storey02" parent="Modular_Building_4" index="0"]
+surface_material_override/0 = ExtResource("2_0xkxu")
+
+[node name="Modular_Building_2" parent="." instance=ExtResource("3_ind5p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.98389, 0)
+
+[node name="Storey02" parent="Modular_Building_2" index="0"]
+surface_material_override/0 = ExtResource("2_0xkxu")
+
+[node name="Modular_Building_3" parent="." instance=ExtResource("4_esxvr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.98389, 0)
+
+[node name="Storey03" parent="Modular_Building_3" index="0"]
+surface_material_override/0 = ExtResource("2_0xkxu")
+
+[node name="Modular_Building_Roof" parent="." instance=ExtResource("5_qeypg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.9839, 0)
+
+[node name="Roof" parent="Modular_Building_Roof" index="0"]
+surface_material_override/0 = ExtResource("2_0xkxu")
+
+[node name="Modular_Building_Roof2" parent="." instance=ExtResource("5_qeypg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 31.5522, 0)
+
+[node name="Roof" parent="Modular_Building_Roof2" index="0"]
+surface_material_override/0 = ExtResource("2_0xkxu")
+
+[editable path="Modular_Building_5"]
+[editable path="Modular_Building_4"]
+[editable path="Modular_Building_2"]
+[editable path="Modular_Building_3"]
+[editable path="Modular_Building_Roof"]
+[editable path="Modular_Building_Roof2"]

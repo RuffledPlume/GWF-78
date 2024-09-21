@@ -14,5 +14,6 @@ subdivide_width = 512
 subdivide_depth = 512
 
 [node name="FogBarrier" type="MeshInstance3D"]
+transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 5, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_joynm")
 mesh = SubResource("PlaneMesh_mo8e6")

@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://bdyj6gayxxit"]
+
+[ext_resource type="Shader" path="res://Shader/BackgrounTower.gdshader" id="1_8oeos"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rvup4"]
+frequency = 0.013
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hw6o0"]
+noise = SubResource("FastNoiseLite_rvup4")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_8oeos")
+shader_parameter/baseColor = Color(0.215902, 0.215902, 0.215902, 1)
+shader_parameter/windowColor = Color(1.3236e-07, 0.301655, 0.162732, 1)
+shader_parameter/windowEmission = Color(0.472629, 0.579608, 0.106736, 1)
+shader_parameter/windowEmissionStrength = 15.0
+shader_parameter/windowNoise = SubResource("NoiseTexture2D_hw6o0")
