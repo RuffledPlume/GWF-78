@@ -10,6 +10,8 @@
 [ext_resource type="AudioStream" uid="uid://dspjlp2adw0p2" path="res://Audio/Breath.mp3" id="5_jatw8"]
 [ext_resource type="Texture2D" uid="uid://bgv1n7rcauoib" path="res://Textures/vignette.png" id="6_2swo8"]
 [ext_resource type="AudioStream" uid="uid://doo3yxw5ftheg" path="res://Audio/Coughing.mp3" id="6_lmp0k"]
+[ext_resource type="AudioStream" uid="uid://ce1mqopx4bmpr" path="res://Audio/Wheeze.mp3" id="7_7akmf"]
+[ext_resource type="AudioStream" uid="uid://bni40vfsdpesu" path="res://Audio/DeathWheeze.mp3" id="8_bnu75"]
 [ext_resource type="Texture2D" uid="uid://dwul2rj1w772l" path="res://Textures/LightBulb.png" id="10_gx2sp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_esqpa"]
@@ -206,7 +208,7 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_l46fl"]
 resource_name = "Idle"
-length = 20.0
+length = 0.1
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -215,10 +217,10 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 10, 11.5, 12, 12.1, 15.0333, 15.5, 16, 17.0667, 20),
-"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2, -2, -2, -2),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(-2),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -227,10 +229,10 @@ tracks/1/path = NodePath(".:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 10, 11.5, 12, 12.1, 15.0333, 15.5, 16, 17.0667, 20),
-"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2, -2, -2, -2),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(-2),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0.0872665, 0.698132, 0), Vector3(0.261799, 0.785398, 0), Vector3(0.261799, 0.785398, 0), Vector3(0.0872665, -0.785398, 0), Vector3(0.139626, -0.872665, 0), Vector3(0.20944, -0.959931, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_1hs5o"]
@@ -490,6 +492,16 @@ max_db = 0.0
 stream = ExtResource("6_lmp0k")
 volume_db = -10.0
 unit_size = 2.0
+max_db = 0.0
+
+[node name="WheezeAudio" type="AudioStreamPlayer3D" parent="CameraPivot/Camera3D"]
+stream = ExtResource("7_7akmf")
+volume_db = -10.0
+max_db = 0.0
+
+[node name="DeathWheeze" type="AudioStreamPlayer3D" parent="CameraPivot/Camera3D"]
+stream = ExtResource("8_bnu75")
+volume_db = -5.0
 max_db = 0.0
 
 [node name="HUD" type="CanvasLayer" parent="."]
