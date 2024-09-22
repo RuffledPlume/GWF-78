@@ -4,6 +4,7 @@ static var instance : TeleporterNew
 
 @export var teleporter_target : TeleporterNew
 @export var teleporter_path : Path3D
+@export var is_end_game_portal : bool
 
 @export_category("Internal")
 @export var console : TeleporterFrequency
@@ -42,6 +43,11 @@ func _camera_finish_following_path() -> void:
 	is_teleporting = false
 	interact_delay = 5.0
 	transit_audio.play(6)
+	
+	if is_end_game_portal:
+		get_tree().change_scene_to_file()
+		return
+	
 	Player.instance.global_position = teleporter_target.exit_target.global_position
 	PlayerCamera.instance.on_finish_following_path.disconnect(_camera_finish_following_path)
 
