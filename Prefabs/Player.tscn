@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://dspjlp2adw0p2" path="res://Audio/Breath.mp3" id="5_jatw8"]
 [ext_resource type="Texture2D" uid="uid://bgv1n7rcauoib" path="res://Textures/vignette.png" id="6_2swo8"]
 [ext_resource type="AudioStream" uid="uid://doo3yxw5ftheg" path="res://Audio/Coughing.mp3" id="6_lmp0k"]
+[ext_resource type="Texture2D" uid="uid://dwul2rj1w772l" path="res://Textures/LightBulb.png" id="10_gx2sp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_esqpa"]
 
@@ -487,6 +488,7 @@ max_db = 0.0
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("3_k1q5m")
+didyouknow_trivia = Array[String](["The current year is 3079!", "Global warming has made ground level inhabitable", "You are a porter!", "Humans now live in the sky of old apartment buildings to escape the smog below"])
 
 [node name="Interaction_Text" type="Label" parent="HUD"]
 offset_right = 40.0
@@ -558,3 +560,42 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(3, 3)
 texture = SubResource("CanvasTexture_bhwob")
+
+[node name="DidYouKnow" type="Panel" parent="HUD"]
+offset_left = -1.0
+offset_top = 94.0
+offset_right = 242.0
+offset_bottom = 174.0
+
+[node name="Title" type="Label" parent="HUD/DidYouKnow"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Did you know?"
+
+[node name="Label" type="Label" parent="HUD/DidYouKnow"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 12
+text = "Blah Blah blah blah blahBlah Blah blah blah blahBlah Blah blah blah blah"
+autowrap_mode = 3
+clip_text = true
+
+[node name="TextureRect" type="TextureRect" parent="HUD/DidYouKnow"]
+layout_mode = 0
+offset_left = 216.0
+offset_top = -19.0
+offset_right = 263.0
+offset_bottom = 22.0
+texture = ExtResource("10_gx2sp")
+expand_mode = 2
