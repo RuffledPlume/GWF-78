@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dikcrsr171oyg"]
+[gd_scene load_steps=36 format=3 uid="uid://dikcrsr171oyg"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_uuae0"]
 [ext_resource type="Script" path="res://Scripts/camera_3d.gd" id="2_1ye7i"]
@@ -232,6 +232,9 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0.0872665, 0.698132, 0), Vector3(0.261799, 0.785398, 0), Vector3(0.261799, 0.785398, 0), Vector3(0.0872665, -0.785398, 0), Vector3(0.139626, -0.872665, 0), Vector3(0.20944, -0.959931, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_1hs5o"]
+resource_name = "IdleLookAround"
+
 [sub_resource type="Animation" id="Animation_56b6o"]
 length = 0.001
 tracks/0/type = "value"
@@ -348,9 +351,6 @@ tracks/2/keys = {
 "method": &"_handle_footstep_audio"
 }]
 }
-
-[sub_resource type="Animation" id="Animation_1hs5o"]
-resource_name = "IdleLookAround"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uf5qs"]
 _data = {

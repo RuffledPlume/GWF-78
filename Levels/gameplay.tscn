@@ -547,7 +547,7 @@ shadow_enabled = true
 directional_shadow_blend_splits = true
 
 [node name="Player" parent="." instance=ExtResource("1_rl6in")]
-transform = Transform3D(0.766044, 0, -0.642788, 0, 1, 0, 0.642788, 0, 0.766044, -65.1482, 101.548, -119.936)
+transform = Transform3D(0.766044, 0, -0.642788, 0, 1, 0, 0.642788, 0, 0.766044, -3, 51.5477, 9)
 mouse_sensitivity = 0.002
 
 [node name="MeshInstance3D" parent="Player/CollisionShape3D" index="0"]
@@ -3411,11 +3411,13 @@ attenuation_filter_cutoff_hz = 6000.0
 script = ExtResource("16_o8wgc")
 
 [node name="Music" type="AudioStreamPlayer" parent="Audio/MusicHandler"]
+process_priority = 2
 stream = ExtResource("17_t37ab")
-volume_db = -22.0
+volume_db = -25.0
 parameters/looping = true
 
 [node name="MusicFast" type="AudioStreamPlayer" parent="Audio/MusicHandler"]
+process_priority = 2
 stream = ExtResource("17_t37ab")
 volume_db = -20.0
 pitch_scale = 2.0
