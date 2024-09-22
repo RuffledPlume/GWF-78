@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcorj1x516ku8"]
+
+[ext_resource type="PackedScene" uid="uid://c6nnvmy0i6u5b" path="res://Models/Interior_Fridge.glb" id="1_ir2ga"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t5hcx"]
+size = Vector3(1, 2.56451, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Interior_Fridge" parent="." instance=ExtResource("1_ir2ga")]
+
+[node name="Fridge" parent="Interior_Fridge" index="0"]
+transform = Transform3D(0.5, 0, 0, 0, 1.3, 0, 0, 0, 0.5, 0, 1.27439, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.26962, 0)
+shape = SubResource("BoxShape3D_t5hcx")
+
+[editable path="Interior_Fridge"]
