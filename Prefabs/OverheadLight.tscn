@@ -21,3 +21,11 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.
 radius = 0.0712046
 height = 3.93529
 material = SubResource("StandardMaterial3D_xs0ti")
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="CSGCombiner3D/CSGCylinder3D"]
+transform = Transform3D(3.8245e-08, 0, -1, 0, 1, 0, 1, 0, 3.8245e-08, 0, 1.74846e-08, 0.4)
+light_color = Color(0.901961, 1, 1, 1)
+light_energy = 1.5
+light_volumetric_fog_energy = 3.0
+shadow_enabled = true
+omni_attenuation = 0.75

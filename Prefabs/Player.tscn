@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dikcrsr171oyg"]
+[gd_scene load_steps=35 format=3 uid="uid://dikcrsr171oyg"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_uuae0"]
 [ext_resource type="Script" path="res://Scripts/camera_3d.gd" id="2_1ye7i"]
@@ -348,9 +348,13 @@ tracks/2/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_1hs5o"]
+resource_name = "IdleLookAround"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uf5qs"]
 _data = {
 "Idle": SubResource("Animation_l46fl"),
+"IdleLookAround": SubResource("Animation_1hs5o"),
 "RESET": SubResource("Animation_56b6o"),
 "Run": SubResource("Animation_beei6"),
 "Walk": SubResource("Animation_g2mpl")
@@ -446,7 +450,6 @@ libraries = {
 libraries = {
 "": SubResource("AnimationLibrary_uf5qs")
 }
-autoplay = "Idle"
 
 [node name="AnimationTree" type="AnimationTree" parent="CameraPivot/Camera3D"]
 tree_root = SubResource("AnimationNodeStateMachine_msst4")
@@ -458,7 +461,7 @@ parameters/conditions/is_walking = false
 [node name="FootstepsAudio" type="AudioStreamPlayer3D" parent="CameraPivot/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4, 0)
 stream = ExtResource("4_7v2wb")
-volume_db = -20.0
+volume_db = -14.0
 unit_size = 5.0
 max_db = -5.0
 pitch_scale = 0.5
@@ -466,8 +469,9 @@ pitch_scale = 0.5
 [node name="RunAudio" type="AudioStreamPlayer3D" parent="CameraPivot/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4, 0)
 stream = ExtResource("4_7v2wb")
-volume_db = -15.0
+volume_db = -8.0
 unit_size = 5.0
+max_db = 1.0
 
 [node name="BreathAudio" type="AudioStreamPlayer3D" parent="CameraPivot/Camera3D"]
 stream = ExtResource("5_jatw8")

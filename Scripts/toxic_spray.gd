@@ -14,15 +14,16 @@ var is_off: bool
 
 func _ready() -> void:
 	current_delay = delay_off
-	toxic_spray_particle.visible = false
-
+	
 func _process(delta: float) -> void:
 	current_delay -= delta
 	if current_delay <= 0:
+		
 		if is_off:
 			current_delay = delay_on
 		else:
 			current_delay = delay_off
+			
 		is_off = !is_off	
 		spore_particle.emitting = !is_off
 		toxic_particle.emitting = !is_off
