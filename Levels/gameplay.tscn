@@ -3196,9 +3196,9 @@ operation = 2
 size = Vector3(4.6, 3.9, 3)
 
 [node name="LadderCutout" type="CSGBox3D" parent="Buildings/TowerFour/BuildingThree"]
-transform = Transform3D(1, 0, 1.58933e-08, 0, 1, 0, -1.58933e-08, 0, 1, -7.471, 0.15, 8.307)
+transform = Transform3D(1, 0, 1.58933e-08, 0, 1, 0, -1.58933e-08, 0, 1, -7.47101, 0.170799, 8.30881)
 operation = 2
-size = Vector3(2, 5.3, 3)
+size = Vector3(2, 5.2584, 3.37946)
 
 [node name="Room2" type="CSGBox3D" parent="Buildings/TowerFour/BuildingThree"]
 transform = Transform3D(1, 0, 1.58933e-08, 0, 1, 0, -1.58933e-08, 0, 1, -11.721, -1, -7.243)
