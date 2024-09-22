@@ -5,7 +5,7 @@ static var instance : Player
 @export var mouse_sensitivity := 0.001
 @export var interaction_distance := 5.0
 @export var breath_replenishment_rate := 0.5
-@export var breath_depletion_rate := 0.025
+@export var breath_depletion_rate := 0.015
 @export var oxygen_depletion_rate := 0.05
 @export var health_depletion_rate := 0.1
 @export var direction: Vector3

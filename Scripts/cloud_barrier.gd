@@ -2,7 +2,7 @@ class_name CloudBarrier extends MeshInstance3D
 
 static var instance : CloudBarrier
 
-@export var speed : float = 0.75
+@export var speed : float = 0.55
 
 func _ready() -> void:
 	instance = self

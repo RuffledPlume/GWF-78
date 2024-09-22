@@ -656,9 +656,6 @@ transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0)
 [node name="Camera3D" parent="Player/CameraPivot" index="0"]
 fov = 75.0
 
-[node name="Mask" parent="Player/CameraPivot/Camera3D" index="1"]
-transform = Transform3D(0.769831, 0, 0, 0, -2.78678e-06, 0.769831, 0, -0.769831, -2.78678e-06, 0, -0.5, -0.7)
-
 [node name="Teleporters" type="Node3D" parent="."]
 
 [node name="Teleporter" parent="Teleporters" node_paths=PackedStringArray("teleporter_target", "teleporter_path") instance=ExtResource("2_mqtyu")]
@@ -2654,6 +2651,14 @@ size = Vector3(11, 0.1, 2)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.0323, -15.0202, -11.0555)
 size = Vector3(14, 0.1, 2)
 
+[node name="Bridge15" type="CSGBox3D" parent="Buildings/TowerFour/BuildingOne"]
+transform = Transform3D(0.950084, -0.309807, -0.036884, 0.311842, 0.939264, 0.143308, -0.00975382, -0.147656, 0.988991, 14.1575, -14.6529, -10.8015)
+size = Vector3(1.78137, 0.1, 1)
+
+[node name="Bridge14" type="CSGBox3D" parent="Buildings/TowerFour/BuildingOne"]
+transform = Transform3D(-4.2222e-08, 1.13133e-08, -1, 0.258819, 0.965926, 2.66454e-15, 0.965926, -0.258819, -4.37114e-08, 15.4632, -13.3053, -6.86593)
+size = Vector3(8.30322, 0.1, 1)
+
 [node name="Bridge6" type="CSGBox3D" parent="Buildings/TowerFour/BuildingOne"]
 transform = Transform3D(0.0575641, 0, 0.998342, 0, 1, 0, -0.998342, 0, 0.0575641, 2.42255, -16.5, 20.6008)
 size = Vector3(6, 0.1, 2)
@@ -2770,6 +2775,9 @@ transform = Transform3D(-1, -7.5904e-09, 8.67587e-08, 7.5904e-09, 0.984808, 0.17
 
 [node name="StreetLight2" parent="Buildings/TowerFour/BuildingOne" instance=ExtResource("36_fca0k")]
 transform = Transform3D(-1, -7.5904e-09, 8.67587e-08, 7.5904e-09, 0.984808, 0.173648, -8.67587e-08, 0.173648, -0.984808, 4.9, -10.3695, -9.90608)
+
+[node name="StreetLight3" parent="Buildings/TowerFour/BuildingOne" instance=ExtResource("36_fca0k")]
+transform = Transform3D(-1, -7.5904e-09, 8.67587e-08, 7.5904e-09, 0.984808, 0.173648, -8.67587e-08, 0.173648, -0.984808, 14.3788, -10.3695, -9.90608)
 
 [node name="BuildingTwo" type="CSGCombiner3D" parent="Buildings/TowerFour"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 5, 32)
@@ -3845,11 +3853,13 @@ mesh = SubResource("CylinderMesh_gakwx")
 [node name="CSGBox3D4" type="CSGBox3D" parent="RainParticles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2426, 38.783, -185.228)
 material_override = SubResource("StandardMaterial3D_ai153")
+use_collision = true
 size = Vector3(4, 0.25, 3)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="RainParticles"]
 transform = Transform3D(4.158, 0, 0, 0, 1, 0, 0, 0, 1, 17.1926, 32.633, -174.028)
 material_override = SubResource("StandardMaterial3D_wc3jl")
+use_collision = true
 size = Vector3(1, 0.5, 24)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="RainParticles"]
@@ -4279,6 +4289,12 @@ teleporter_target = NodePath("../Teleporters/Teleporter7")
 
 [node name="Generator4" parent="." instance=ExtResource("7_tq5ms")]
 transform = Transform3D(-4.54598e-08, 0, 1, 0, 1, 0, -1.04, 0, -4.37114e-08, 59.3508, 104.854, -243.5)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Generator4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.300003, 0.0499992)
+transparency = 1.0
+use_collision = true
+size = Vector3(1.4, 1.6, 1.5)
 
 [node name="Generator5" parent="." instance=ExtResource("7_tq5ms")]
 transform = Transform3D(-4.54598e-08, 0, -1, 0, 1, 0, 1.04, 0, -4.37114e-08, 59.2839, 109.836, -265.894)
