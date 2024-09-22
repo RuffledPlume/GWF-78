@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1qu3tkk35ua5"]
+
+[ext_resource type="PackedScene" uid="uid://dqxaivb8ax228" path="res://Models/Interior_Bed.glb" id="1_ts5xa"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x4lkn"]
+size = Vector3(0.167969, 0.671387, 1.479)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qxscc"]
+size = Vector3(0.167969, 1.1062, 1.479)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6wn7t"]
+size = Vector3(2.69507, 0.616577, 1.479)
+
+[node name="bed" type="Node3D"]
+
+[node name="Interior_Bed" parent="." instance=ExtResource("1_ts5xa")]
+
+[node name="Bed" parent="Interior_Bed" index="0"]
+transform = Transform3D(1.5, 0, 0, 0, 0.156622, 0, 0, 0, 0.7, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.42285, -0.0466309, -0.00561523)
+shape = SubResource("BoxShape3D_x4lkn")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.41579, 0.170776, -0.00561523)
+shape = SubResource("BoxShape3D_qxscc")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00522399, -0.0740356, -0.00561523)
+shape = SubResource("BoxShape3D_6wn7t")
+
+[editable path="Interior_Bed"]
