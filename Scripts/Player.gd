@@ -7,6 +7,7 @@ static var instance : Player
 @export var breath_replenishment_rate := 0.5
 @export var breath_depletion_rate := 0.025
 @export var oxygen_depletion_rate := 0.05
+@export var health_depletion_rate := 0.1
 @export var direction: Vector3
 
 @export var speed = 3.0
@@ -28,6 +29,7 @@ var is_teleporting: bool
 var has_put_on_mask : bool
 var oxygen_reserve : float = 1.0
 var breath : float = 1.0
+var health : float = 1.0
 var last_input : Vector2
 var is_within_safe_zone : bool
 var is_walking: bool
@@ -61,6 +63,13 @@ func _process(delta: float) -> void:
 	if breath < 0.4 && !shown_breath_dyk:
 		PlayerHUD.instance.show_didyouknow("You can hold right click to take a breath of oxygen!")
 		shown_breath_dyk = true
+		
+	if breath <= 0.0:
+		health -= health_depletion_rate * delta
+		if health <= 0.0:
+			get_tree().change_scene_to_file("res://Levels/MainMenu.tscn")
+	elif health < 1.0:
+		health += health_depletion_rate * delta
 	
 	var is_above_cloud := camera_pivot.global_position.y > CloudBarrier.instance.global_position.y
 	if Input.is_action_pressed("UseMask") && is_above_cloud:

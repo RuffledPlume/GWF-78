@@ -9,6 +9,7 @@ static var instance : PlayerHUD
 @onready var didyouknow_root : Panel = $DidYouKnow
 @onready var didyouknow_label : Label = $DidYouKnow/Label
 @onready var fog_overlay := $FogBarrier
+@onready var fade_overlay := $FogBarrier
 
 @export var didyouknow_trivia : Array[String]
 @export var didyouknow_trivia_delay := 60
@@ -62,6 +63,7 @@ func _process(delta: float) -> void:
 		fog_overlay_modulate.a = 0.0
 		
 	fog_overlay.modulate = fog_overlay_modulate
+	fade_overlay.modulate = Color(0.0, 0.0, 0.0, 1.0 - Player.instance.health)
 			
 
 func update_interactable_label(target : Interactable) -> void:
