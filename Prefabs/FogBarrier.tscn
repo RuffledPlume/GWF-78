@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://co51g5vsdgrm0"]
+[gd_scene load_steps=5 format=3 uid="uid://co51g5vsdgrm0"]
 
 [ext_resource type="Shader" uid="uid://bscdm5532cvew" path="res://Shader/FogBarrier.tres" id="1_mlnvh"]
+[ext_resource type="Script" path="res://Scripts/cloud_barrier.gd" id="2_i4aqd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_joynm"]
 render_priority = 0
@@ -17,3 +18,4 @@ subdivide_depth = 512
 transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 5, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_joynm")
 mesh = SubResource("PlaneMesh_mo8e6")
+script = ExtResource("2_i4aqd")

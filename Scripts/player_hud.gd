@@ -8,6 +8,7 @@ static var instance : PlayerHUD
 @onready var Vinette := $Vignette
 @onready var didyouknow_root : Panel = $DidYouKnow
 @onready var didyouknow_label : Label = $DidYouKnow/Label
+@onready var fog_overlay := $FogBarrier
 
 @export var didyouknow_trivia : Array[String]
 @export var didyouknow_trivia_delay := 60
@@ -51,6 +52,16 @@ func _process(delta: float) -> void:
 		_delay_random_trivia -= delta
 		if _delay_random_trivia <= 0.0:
 			show_didyouknow(didyouknow_trivia.pick_random())
+			
+			
+	var fog_overlay_modulate = fog_overlay.modulate
+	var cloud_distance := Player.instance.global_position.y - CloudBarrier.instance.global_position.y
+	if cloud_distance < 5.0:
+		fog_overlay_modulate.a = 0.5 * (1.0 - clamp(cloud_distance / 5.0, 0.0, 1.0))
+	else:
+		fog_overlay_modulate.a = 0.0
+		
+	fog_overlay.modulate = fog_overlay_modulate
 			
 
 func update_interactable_label(target : Interactable) -> void:

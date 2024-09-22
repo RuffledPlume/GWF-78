@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dikcrsr171oyg"]
+[gd_scene load_steps=38 format=3 uid="uid://dikcrsr171oyg"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_uuae0"]
 [ext_resource type="Script" path="res://Scripts/camera_3d.gd" id="2_1ye7i"]
@@ -415,6 +415,8 @@ states/Walk/position = Vector2(435, 57)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_h108l"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_4fxa3"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_uon3e"), "Walk", "Run", SubResource("AnimationNodeStateMachineTransition_g0rvy"), "Run", "Walk", SubResource("AnimationNodeStateMachineTransition_almk3"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_416n0"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_q03ka")]
 graph_offset = Vector2(-90, 1)
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_6fh5j"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_6hp2n"]
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
@@ -493,6 +495,16 @@ max_db = 0.0
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("3_k1q5m")
 didyouknow_trivia = Array[String](["The current year is 3079!", "Global warming has made ground level inhabitable", "You are a porter!", "Humans now live in the sky of old apartment buildings to escape the smog below"])
+
+[node name="FogBarrier" type="TextureRect" parent="HUD"]
+modulate = Color(0.360784, 0.541176, 0, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_6fh5j")
+expand_mode = 3
 
 [node name="Interaction_Text" type="Label" parent="HUD"]
 offset_right = 40.0

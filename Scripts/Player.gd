@@ -62,7 +62,8 @@ func _process(delta: float) -> void:
 		PlayerHUD.instance.show_didyouknow("You can hold right click to take a breath of oxygen!")
 		shown_breath_dyk = true
 	
-	if Input.is_action_pressed("UseMask"):
+	var is_above_cloud := camera_pivot.global_position.y > CloudBarrier.instance.global_position.y
+	if Input.is_action_pressed("UseMask") && is_above_cloud:
 		if !has_put_on_mask:
 			mask_animator.play("Mask_Place")
 			has_put_on_mask = true
