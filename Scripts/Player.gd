@@ -30,11 +30,14 @@ var has_put_on_mask : bool
 var oxygen_reserve : float = 1.0
 var breath : float = 1.0
 var health : float = 1.0
+var is_dead : bool
+var is_dead_delay : float
 var last_input : Vector2
 var is_within_safe_zone : bool
 var is_walking: bool
 var is_sprinting: bool
 var shown_breath_dyk: bool
+var fall_time: float
 
 var hovering_interactable : Interactable
 var hovering_interactable_position : Vector3
@@ -45,6 +48,14 @@ func _ready() -> void:
 	mask_root.visible = false
 	
 func _process(delta: float) -> void:
+	if is_dead:
+		health = 0.0
+		breath = 0.0
+		is_dead_delay -= delta
+		if is_dead_delay < 0.0:
+			get_tree().change_scene_to_file("res://Levels/MainMenu.tscn")
+		return
+	
 	if is_within_safe_zone:
 		if breath < 1.0:
 			breath += breath_replenishment_rate * delta
@@ -64,14 +75,17 @@ func _process(delta: float) -> void:
 		PlayerHUD.instance.show_didyouknow("You can hold right click to take a breath of oxygen!")
 		shown_breath_dyk = true
 		
+	if health <= 0.0:
+		is_dead = true
+		is_dead_delay = 1.0
+		
 	if breath <= 0.0:
 		health -= health_depletion_rate * delta
-		if health <= 0.0:
-			get_tree().change_scene_to_file("res://Levels/MainMenu.tscn")
 	elif health < 1.0:
 		health += health_depletion_rate * delta
+		
 	
-	var is_above_cloud := camera_pivot.global_position.y > CloudBarrier.instance.global_position.y
+	var is_above_cloud := camera_pivot.global_position.y > (CloudBarrier.instance.global_position.y + 5.0)
 	if Input.is_action_pressed("UseMask") && is_above_cloud:
 		if !has_put_on_mask:
 			mask_animator.play("Mask_Place")
@@ -85,6 +99,9 @@ func _process(delta: float) -> void:
 		has_put_on_mask = false
 	
 func _physics_process(delta: float) -> void:
+	if is_dead:
+		return
+	
 	_handle_player_movement(delta)
 	_handle_camera_rotation()
 	_handle_interactions()
@@ -127,7 +144,12 @@ func _handle_player_movement(delta: float) -> void:
 		# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-		
+		if velocity.y < 0.0:
+			fall_time += delta
+	elif fall_time > 0.0:
+		if fall_time > 1.0:
+			health -= (fall_time - 1.0) * 5.0
+		fall_time = 0.0
 
 	# Handle jump.
 	if Input.is_action_just_pressed("Jump") and is_on_floor():

@@ -56,7 +56,7 @@ func _process(delta: float) -> void:
 			
 			
 	var fog_overlay_modulate = fog_overlay.modulate
-	var cloud_distance := Player.instance.global_position.y - CloudBarrier.instance.global_position.y
+	var cloud_distance := Player.instance.global_position.y - (CloudBarrier.instance.global_position.y + 5.0)
 	if cloud_distance < 5.0:
 		fog_overlay_modulate.a = 0.5 * (1.0 - clamp(cloud_distance / 5.0, 0.0, 1.0))
 	else:
