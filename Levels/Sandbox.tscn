@@ -1,10 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://datu3rc6g2iod"]
+[gd_scene load_steps=5 format=3 uid="uid://datu3rc6g2iod"]
 
 [ext_resource type="PackedScene" uid="uid://cmm2kedvwxe7w" path="res://Levels/gameplay.tscn" id="1_us5id"]
+[ext_resource type="Script" path="res://Scripts/KillZone.gd" id="3_auaso"]
 [ext_resource type="PackedScene" uid="uid://ybeds6h2jy6x" path="res://Levels/background.tscn" id="29_ntmmt"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_pbwyr"]
 
 [node name="Sandbox" type="Node3D"]
 
 [node name="Gameplay" parent="." instance=ExtResource("1_us5id")]
 
 [node name="Background" parent="." instance=ExtResource("29_ntmmt")]
+
+[node name="KillZone" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.1312, 0)
+script = ExtResource("3_auaso")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KillZone"]
+shape = SubResource("WorldBoundaryShape3D_pbwyr")
