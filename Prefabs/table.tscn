@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctt5puneq3kek"]
+
+[ext_resource type="PackedScene" uid="uid://b3pbc5ovom1c" path="res://Models/Interior_Table.glb" id="1_8j8wk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_joexi"]
+size = Vector3(1.61133, 1.26782, 3.05127)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Interior_Table" parent="." instance=ExtResource("1_8j8wk")]
+
+[node name="Table" parent="Interior_Table" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.05, 0, 0, 0, 1, 0, 1.12632, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.305664, 0.560913, -0.386475)
+shape = SubResource("BoxShape3D_joexi")
+
+[editable path="Interior_Table"]

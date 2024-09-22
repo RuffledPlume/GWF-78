@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://84a6b055eev2"]
+
+[ext_resource type="PackedScene" uid="uid://ygxhpep5vnyr" path="res://Models/Interior_Wardrobe.glb" id="1_2oaax"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ifjqr"]
+size = Vector3(1.0907, 3.04877, 1.83191)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Interior_Wardrobe" parent="." instance=ExtResource("1_2oaax")]
+
+[node name="Wardrobe" parent="Interior_Wardrobe" index="0"]
+transform = Transform3D(0.5, 0, 0, 0, 1.5, 0, 0, 0, 0.9, 0, 1.4895, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0453491, 1.50381, 0.0175171)
+shape = SubResource("BoxShape3D_ifjqr")
+
+[editable path="Interior_Wardrobe"]
