@@ -4159,9 +4159,8 @@ transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.3
 lights = NodePath("../LightsT2")
 red_light = NodePath("../RedLight")
 
-[node name="GeneratorT1" parent="." node_paths=PackedStringArray("teleporter_target") instance=ExtResource("28_oj2nq")]
+[node name="GeneratorT1" parent="." instance=ExtResource("28_oj2nq")]
 transform = Transform3D(-4.37114e-08, 3.82137e-15, 1, -1, 4.37114e-08, -4.37114e-08, -4.37114e-08, -1, 3.55271e-15, 11, 52.5, 6.89999)
-teleporter_target = NodePath("../Teleporters/Teleporter")
 
 [node name="FogBarrier" parent="." instance=ExtResource("29_koirh")]
 
@@ -4175,9 +4174,8 @@ directional = true
 [node name="Generator" parent="." instance=ExtResource("7_tq5ms")]
 transform = Transform3D(-4.54598e-08, 0, -1, 0, 1, 0, 1.04, 0, -4.37114e-08, -31.8, 100.6, -150.3)
 
-[node name="Generator2" parent="." node_paths=PackedStringArray("teleporter_target") instance=ExtResource("28_oj2nq")]
+[node name="Generator2" parent="." instance=ExtResource("28_oj2nq")]
 transform = Transform3D(-4.37114e-08, -1, 0, -1, 4.37114e-08, -8.74228e-08, 8.74228e-08, -3.82137e-15, -1, -58.4, 87.6, -134)
-teleporter_target = NodePath("../Teleporters/Teleporter5")
 
 [node name="Path3D3" parent="." instance=ExtResource("8_vxx37")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 51.5, 81, -74.3)
@@ -4187,9 +4185,8 @@ curve = SubResource("Curve3D_13i8n")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.0935, 100.322, -150.256)
 curve = SubResource("Curve3D_sexf2")
 
-[node name="Generator3" parent="." node_paths=PackedStringArray("teleporter_target") instance=ExtResource("28_oj2nq")]
+[node name="Generator3" parent="." instance=ExtResource("28_oj2nq")]
 transform = Transform3D(-4.37114e-08, -4.37114e-08, -1, -1, 1.91069e-15, 4.37114e-08, 0, 1, -4.37114e-08, 58.2369, 104.871, -238.9)
-teleporter_target = NodePath("../Teleporters/Teleporter7")
 
 [node name="Generator4" parent="." instance=ExtResource("7_tq5ms")]
 transform = Transform3D(-4.54598e-08, 0, 1, 0, 1, 0, -1.04, 0, -4.37114e-08, 59.3508, 104.854, -243.5)
@@ -4384,14 +4381,14 @@ spot_attenuation = 0.8
 spot_angle = 30.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 117.644, -271.614)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 117.2, -272.4)
 light_color = Color(0.655174, 0.0839735, 0.999997, 1)
 light_energy = 0.5
 omni_attenuation = 0.5
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.8, 117.3, -238.4)
-light_color = Color(0.54, 0.48852, 0.3024, 1)
+light_color = Color(0.303884, 0.539347, 0.426335, 1)
 omni_attenuation = 0.4
 
 [node name="Area3D2" type="Area3D" parent="."]
@@ -4593,19 +4590,13 @@ transform = Transform3D(0.769231, -1.82973e-10, 0, 3.04705e-09, 1, -1.55736e-08,
 transform = Transform3D(1, -1.82973e-10, 0, 3.77491e-09, 1, -1.55736e-08, -1.49012e-08, 1.43233e-08, 1, 0, 0, 0)
 
 [node name="CloudSpawner" parent="." instance=ExtResource("40_yavar")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -192, 104.5, 38.5)
-
-[node name="CloudSpawner4" parent="." instance=ExtResource("40_yavar")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -274, 148.5, -90.5)
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -192, 104.5, -40.5)
 
 [node name="CloudSpawner2" parent="." instance=ExtResource("40_yavar")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -304.303, 174, -371)
 
 [node name="CloudSpawner3" parent="." instance=ExtResource("40_yavar")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -353, 148, -236)
-
-[node name="CloudSpawner5" parent="." instance=ExtResource("40_yavar")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -185, 201, -309)
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -287, 173, -236)
 
 [node name="Clouds" parent="." instance=ExtResource("41_h2x6k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 97, 86)
@@ -5107,6 +5098,14 @@ script = ExtResource("56_5hgvu")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35449, 2.16704, -0.2373)
 shape = SubResource("BoxShape3D_c8ynu")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35449, 2.16704, -0.2373)
+shape = SubResource("BoxShape3D_c8ynu")
+
+[node name="Area3D3" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.79634, 51.4142, -1.25003)
+script = ExtResource("56_5hgvu")
 
 [connection signal="timeout" from="Audio/MusicHandler/Timer" to="Audio/MusicHandler" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Audio/MusicHandler/Area3D" to="Audio/MusicHandler" method="_on_area_3d_body_entered"]

@@ -1,6 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://cwoq5ogighdtr"]
+[gd_scene load_steps=5 format=3 uid="uid://cwoq5ogighdtr"]
 
 [ext_resource type="PackedScene" uid="uid://dnqfk684sxdhx" path="res://Models/Interior_Light_Holder.glb" id="1_vjkrb"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_37vcj"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_adbll"]
+seamless = true
+seamless_blend_skirt = 0.717
+noise = SubResource("FastNoiseLite_37vcj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jv518"]
+albedo_color = Color(0.629, 0.74, 0.7215, 1)
+roughness = 0.75
+roughness_texture = SubResource("NoiseTexture2D_adbll")
 
 [node name="LightCasing" type="Node3D"]
 
@@ -9,5 +21,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.24748, 0, 0, 0)
 
 [node name="Lamp" parent="Interior_Light_Holder" index="0"]
 transform = Transform3D(0.3, 0, 0, 0, 0.04, 0, 0, 0, 0.8, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_jv518")
 
 [editable path="Interior_Light_Holder"]

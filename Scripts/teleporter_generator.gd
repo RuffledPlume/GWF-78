@@ -17,6 +17,9 @@ func _ready() -> void:
 		var material := mesh.get_active_material(0) as StandardMaterial3D
 		material.emission_enabled = false
 		
+	if teleporter_target != null:
+		teleporter_target.is_working = false
+		
 func get_interact_text() -> String:
 	if !Player.instance.has_fuel_cell:
 		return "Requires Fuel Cell"

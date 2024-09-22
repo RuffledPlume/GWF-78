@@ -1,6 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://3jupuyd4t1v6"]
+[gd_scene load_steps=6 format=3 uid="uid://3jupuyd4t1v6"]
 
 [ext_resource type="PackedScene" uid="uid://btb2p28a44lqo" path="res://Models/Interior_CRT.glb" id="1_4q3er"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1cxjs"]
+frequency = 0.0292
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fvj7y"]
+in_3d_space = true
+noise = SubResource("FastNoiseLite_1cxjs")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ug4ti"]
+albedo_color = Color(0.1376, 0.16, 0.152907, 1)
+metallic = 1.0
+metallic_texture = SubResource("NoiseTexture2D_fvj7y")
+roughness = 0.5
+roughness_texture = SubResource("NoiseTexture2D_fvj7y")
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 16.0
+emission_operator = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yjx5e"]
 size = Vector3(0.797241, 0.811523, 0.808533)
@@ -11,6 +29,7 @@ size = Vector3(0.797241, 0.811523, 0.808533)
 
 [node name="TV" parent="Interior_CRT" index="0"]
 transform = Transform3D(-0.4, 0, 6.03983e-08, 0, 0.4, 0, -6.03983e-08, 0, -0.4, 0, 0.390141, 0)
+material_override = SubResource("StandardMaterial3D_ug4ti")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 

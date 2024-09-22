@@ -36,7 +36,7 @@ func _ready() -> void:
 	
 	console.set_target(wave_frequency, wave_amplitude)
 	
-	is_working = false
+	is_working = true
 
 func _camera_finish_following_path() -> void:
 	is_teleporting = false

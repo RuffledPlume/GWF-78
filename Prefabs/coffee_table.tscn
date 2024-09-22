@@ -1,6 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://6x3tucy2po6d"]
+[gd_scene load_steps=4 format=3 uid="uid://6x3tucy2po6d"]
 
 [ext_resource type="PackedScene" uid="uid://dwen5iap6wiwj" path="res://Models/Interior_Coffer_Table.glb" id="1_h0ie5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0gb72"]
+albedo_color = Color(0.67, 0.4623, 0.465762, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_875he"]
 size = Vector3(1, 0.640381, 2.00287)
@@ -12,6 +15,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.291543, 0)
 
 [node name="CoffeeTable" parent="Interior_Coffer_Table" index="0"]
 transform = Transform3D(0.5, 0, 0, 0, 0.3, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_0gb72")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.291543, 0)
