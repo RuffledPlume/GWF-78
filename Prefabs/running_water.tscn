@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqh48snwpx3ij"]
+
+[ext_resource type="Shader" uid="uid://d2ubpxi2ft5op" path="res://running_water.tres" id="1_h7uts"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nev11"]
+render_priority = 0
+shader = ExtResource("1_h7uts")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vd34f"]
+lightmap_size_hint = Vector2i(7, 12)
+size = Vector2(1, 3)
+
+[node name="RunningWater" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.76701e-05, 0.0101433, -0.0147021)
+material_override = SubResource("ShaderMaterial_nev11")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_vd34f")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=129 format=3 uid="uid://cmm2kedvwxe7w"]
+[gd_scene load_steps=132 format=3 uid="uid://cmm2kedvwxe7w"]
 
 [ext_resource type="PackedScene" uid="uid://dikcrsr171oyg" path="res://Prefabs/Player.tscn" id="1_rl6in"]
 [ext_resource type="PackedScene" uid="uid://ukmadykyy3j3" path="res://Prefabs/teleporter_new.tscn" id="2_mqtyu"]
@@ -38,6 +38,9 @@
 [ext_resource type="AudioStream" uid="uid://ou5kps0cpqys" path="res://Audio/AirExplosion.mp3" id="35_h0pfe"]
 [ext_resource type="PackedScene" uid="uid://cnvj4ku3jr12u" path="res://Prefabs/StreetLight.tscn" id="36_fca0k"]
 [ext_resource type="PackedScene" uid="uid://nvfc78d5vchx" path="res://Prefabs/WallLight.tscn" id="37_we3mg"]
+[ext_resource type="PackedScene" uid="uid://dqh48snwpx3ij" path="res://Prefabs/running_water.tscn" id="39_2ys5j"]
+[ext_resource type="PackedScene" uid="uid://c7oe0op2cmyd4" path="res://Prefabs/cloud_spawner.tscn" id="40_yavar"]
+[ext_resource type="PackedScene" uid="uid://coprkvbvabhn8" path="res://Particles/cloudsStatic.tscn" id="41_h2x6k"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dl0db"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -554,7 +557,6 @@ mouse_sensitivity = 0.002
 transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0)
 
 [node name="Camera3D" parent="Player/CameraPivot" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 fov = 75.0
 
 [node name="Teleporters" type="Node3D" parent="."]
@@ -2030,6 +2032,9 @@ size = Vector3(3.2, 3.2, 16)
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 8.35727, -8.1)
 size = Vector3(4, 3.2, 13.2)
 
+[node name="MainHallStairs4" parent="Buildings/TowerTwo/TowerTwoInterior/Elevator" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.69999, -0.308723, 2.65)
+
 [node name="EntranceOuterLedge4" type="CSGBox3D" parent="Buildings/TowerTwo/TowerTwoInterior"]
 transform = Transform3D(-4.37114e-08, 0.5, -0.866025, 0, 0.866025, 0.5, 1, 2.18557e-08, -3.78552e-08, -6.64068, 9.775, -16.4)
 material_override = SubResource("StandardMaterial3D_prs6i")
@@ -3180,9 +3185,11 @@ transform = Transform3D(1, 0, 0, 0, -5.96046e-08, 1, 0, -1, -5.96046e-08, -13.29
 
 [node name="RainIndoorAudio" type="AudioStreamPlayer3D" parent="Audio/RainAudio"]
 stream = ExtResource("12_3twcj")
+unit_size = 15.0
 max_db = 1.0
 autoplay = true
 max_distance = 10.0
+max_polyphony = 4
 
 [node name="RainOutdoorAudio" type="AudioStreamPlayer3D" parent="Audio/RainAudio"]
 transform = Transform3D(1, 0, 0, 0, -5.96046e-08, -1, 0, 1, -5.96046e-08, -43.1074, -19.767, 83.9722)
@@ -3191,7 +3198,8 @@ volume_db = -10.0
 unit_size = 8.0
 max_db = -10.0
 autoplay = true
-max_distance = 75.0
+max_distance = 70.0
+max_polyphony = 2
 panning_strength = 0.0
 emission_angle_enabled = true
 emission_angle_degrees = 90.0
@@ -4404,6 +4412,102 @@ mesh = SubResource("CylinderMesh_gakwx")
 
 [node name="Light" parent="ToxicSpray2" instance=ExtResource("6_w1m4r")]
 transform = Transform3D(-0.126125, -0.0266458, -0.594994, 0.066049, 0.997195, -0.0211171, 0.989813, -0.0699369, -0.0744065, 93.6379, -20.3836, -68.4801)
+
+[node name="RunningWaterShaders" type="Node3D" parent="."]
+transform = Transform3D(0.145055, -0.173648, -0.98106, 0.0255772, 0.984808, -0.172987, 1.68357, -6.6302e-09, 0.0871557, -38.1678, 99.0184, -137.086)
+
+[node name="RunningWater" parent="RunningWaterShaders" instance=ExtResource("39_2ys5j")]
+transform = Transform3D(0.37936, -0.0170646, -0.0486663, -1.45866e-08, 0.943668, -0.330893, 0.0560906, 0.329634, 0.940077, 3.48055, -11.6218, -30.2179)
+
+[node name="RunningWater13" parent="RunningWaterShaders" instance=ExtResource("39_2ys5j")]
+transform = Transform3D(0.636718, -0.0170646, 0.105557, 0.0936974, 0.943668, -0.319618, -0.174092, 0.329634, 0.930602, 3.70528, -11.5887, -30.2793)
+
+[node name="RunningWater2" parent="RunningWaterShaders" instance=ExtResource("39_2ys5j")]
+transform = Transform3D(0.711197, -0.0170646, 0.00337925, 0.0350026, 0.943668, -0.32961, 0.00494985, 0.329634, 0.9441, 3.61314, -12.4561, -27.8098)
+
+[node name="RunningWater16" parent="RunningWaterShaders" instance=ExtResource("39_2ys5j")]
+transform = Transform3D(0.666917, -0.0170646, 0.205467, 0.168447, 0.943668, -0.299776, -0.383619, 0.329634, 0.888572, 3.90788, -12.4561, -27.7662)
+
+[node name="RunningWater17" parent="RunningWaterShaders" instance=ExtResource("39_2ys5j")]
+transform = Transform3D(0.419812, -0.0170646, 0.106034, 0.0619765, 0.943668, -0.319548, -0.115353, 0.329634, 0.930472, 4.33935, -13.0856, -25.9002)
+
+[node name="RunningWater3" parent="RunningWaterShaders" instance=ExtResource("39_2ys5j")]
+transform = Transform3D(0.94562, -0.0170646, 0.0340098, 0.0738939, 0.943668, -0.32766, -0.0717261, 0.329634, 0.943046, 3.6325, -13.2433, -25.5533)
+
+[node name="RunningWater4" parent="RunningWaterShaders" instance=ExtResource("39_2ys5j")]
+transform = Transform3D(1.11998, -0.0170646, -0.0486663, -4.3064e-08, 0.943668, -0.330893, 0.165596, 0.329634, 0.940077, 3.57455, -13.9116, -23.6371)
+
+[node name="RunningWater5" parent="RunningWaterShaders" instance=ExtResource("39_2ys5j")]
+transform = Transform3D(0.589464, -0.0509002, -0.00829329, -2.26653e-08, 0.160811, -0.986985, 0.0871557, 0.983229, 0.1602, 3.51692, -15.9453, -22.0077)
+
+[node name="RunningWater14" parent="RunningWaterShaders" instance=ExtResource("39_2ys5j")]
+transform = Transform3D(0.581949, -0.0509002, 0.0941921, 0.171388, 0.160811, -0.971991, 0.0580133, 0.983229, 0.1729, 3.62689, -15.8824, -22.0017)
+
+[node name="RunningWater15" parent="RunningWaterShaders" instance=ExtResource("39_2ys5j")]
+transform = Transform3D(0.579177, -0.0495658, -0.110565, -0.171755, 0.161006, -0.971894, 0.111497, 0.983392, 0.143207, 3.33037, -16.0794, -22.0107)
+
+[node name="RunningWater6" parent="RunningWaterShaders" instance=ExtResource("39_2ys5j")]
+transform = Transform3D(-0.530518, 0.021795, 0.0467395, 1.37749e-08, 0.906308, -0.422618, -0.0784401, -0.42101, -0.902859, -49.3513, -15.7988, -117.664)
+
+[node name="RunningWater7" parent="RunningWaterShaders" instance=ExtResource("39_2ys5j")]
+transform = Transform3D(-0.530518, 0.021795, 0.0467395, 1.37749e-08, 0.906308, -0.422618, -0.0784401, -0.42101, -0.902859, -49.2111, -17.0667, -120.373)
+
+[node name="RunningWater8" parent="RunningWaterShaders" instance=ExtResource("39_2ys5j")]
+transform = Transform3D(-0.218294, 0.00895528, 0.169358, -0.0390708, 0.984808, -0.0751918, -0.254704, -0.172987, -0.403023, -48.8309, -17.8154, -122.267)
+
+[node name="RunningWater9" parent="RunningWaterShaders" instance=ExtResource("39_2ys5j")]
+transform = Transform3D(-0.290695, 0.00895528, 0.242101, -0.113734, 0.984808, -0.0558094, -0.690462, -0.172987, -0.281924, -48.6562, -17.7841, -122.063)
+
+[node name="RunningWater10" parent="RunningWaterShaders" instance=ExtResource("39_2ys5j")]
+transform = Transform3D(-0.0507879, -0.286977, -0.33473, 0.173648, 0.852868, -0.320062, 0.98106, -0.193389, 0.00715957, -54.3271, -18.4143, -147.443)
+
+[node name="RunningWater12" parent="RunningWaterShaders" instance=ExtResource("39_2ys5j")]
+transform = Transform3D(-0.0507879, -0.286977, -0.33473, 0.173648, 0.852868, -0.320062, 0.98106, -0.193389, 0.00715957, -55.3313, -19.3745, -147.422)
+
+[node name="RunningWater11" parent="RunningWaterShaders" instance=ExtResource("39_2ys5j")]
+transform = Transform3D(-0.0507879, -0.286977, -0.360478, 0.173648, 0.852868, -0.344683, 0.98106, -0.193389, 0.0077103, -56.2972, -20.9744, -147.281)
+
+[node name="RunningWater18" parent="RunningWaterShaders" instance=ExtResource("39_2ys5j")]
+transform = Transform3D(1.07692, -1.82973e-10, 0, 9.13113e-10, 1, -1.55736e-08, -2.98023e-08, 1.43233e-08, 1, 0.100227, 7.62939e-06, 2.0301)
+
+[node name="RunningWater19" parent="RunningWaterShaders" instance=ExtResource("39_2ys5j")]
+transform = Transform3D(0.769231, -1.82973e-10, 0, 3.04705e-09, 1, -1.55736e-08, -7.45058e-09, 1.43233e-08, 1, -7.62939e-06, 0, -2)
+
+[node name="RunningWater20" parent="RunningWaterShaders" instance=ExtResource("39_2ys5j")]
+transform = Transform3D(1, -1.82973e-10, 0, 3.77491e-09, 1, -1.55736e-08, -1.49012e-08, 1.43233e-08, 1, 0, 0, 0)
+
+[node name="CloudSpawner" parent="." instance=ExtResource("40_yavar")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -192, 104.5, -40.5)
+
+[node name="CloudSpawner2" parent="." instance=ExtResource("40_yavar")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -304.303, 174, -371)
+
+[node name="CloudSpawner3" parent="." instance=ExtResource("40_yavar")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -287, 173, -236)
+
+[node name="Clouds" parent="." instance=ExtResource("41_h2x6k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 97, 86)
+
+[node name="Clouds8" parent="." instance=ExtResource("41_h2x6k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -92, 97, 86)
+
+[node name="Clouds6" parent="." instance=ExtResource("41_h2x6k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9076, 118.313, 86)
+
+[node name="Clouds2" parent="." instance=ExtResource("41_h2x6k")]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 137.7, 110.1, -75)
+
+[node name="Clouds3" parent="." instance=ExtResource("41_h2x6k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 136, 116, -129)
+
+[node name="Clouds7" parent="." instance=ExtResource("41_h2x6k")]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 110, 132, -141)
+
+[node name="Clouds4" parent="." instance=ExtResource("41_h2x6k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 130, -410)
+
+[node name="Clouds5" parent="." instance=ExtResource("41_h2x6k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 69, -410)
 
 [connection signal="timeout" from="Audio/MusicHandler/Timer" to="Audio/MusicHandler" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Audio/MusicHandler/Area3D" to="Audio/MusicHandler" method="_on_area_3d_body_entered"]
