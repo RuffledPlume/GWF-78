@@ -5,7 +5,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_875he"]
 size = Vector3(1, 0.640381, 2.00287)
 
-[node name="Node3D" type="Node3D"]
+[node name="CoffeeTable" type="Node3D"]
 
 [node name="Interior_Coffer_Table" parent="." instance=ExtResource("1_h0ie5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.291543, 0)

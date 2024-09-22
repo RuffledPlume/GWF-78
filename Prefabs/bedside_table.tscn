@@ -5,7 +5,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_m1nxu"]
 size = Vector3(0.643555, 0.643616, 0.674255)
 
-[node name="Node3D" type="Node3D"]
+[node name="BedsideTable" type="Node3D"]
 
 [node name="Interior_Bedside_Table" parent="." instance=ExtResource("1_6gmpr")]
 
