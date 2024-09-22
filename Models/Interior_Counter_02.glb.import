@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://q5eo70nb8pbg"
-valid=false
+path="res://.godot/imported/Interior_Counter_02.glb-b2d7e5913d8c4b4babeecb5c5b28e270.scn"
 
 [deps]
 
 source_file="res://Models/Interior_Counter_02.glb"
+dest_files=["res://.godot/imported/Interior_Counter_02.glb-b2d7e5913d8c4b4babeecb5c5b28e270.scn"]
 
 [params]
 
