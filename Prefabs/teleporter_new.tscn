@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://ukmadykyy3j3"]
+[gd_scene load_steps=12 format=3 uid="uid://ukmadykyy3j3"]
 
 [ext_resource type="Script" path="res://Scripts/teleporter_new.gd" id="1_4dur1"]
+[ext_resource type="PackedScene" uid="uid://de8s42dmdtnx3" path="res://Models/Portal_Arch.glb" id="2_ij1vt"]
 [ext_resource type="Shader" uid="uid://dogm0sjk631j0" path="res://Shader/Portal.tres" id="2_kdta8"]
 [ext_resource type="AudioStream" uid="uid://c7ryh3k8771w5" path="res://Audio/461022__alanmcki__whoosh_into_hit_and_debris_001.wav" id="3_knwcf"]
+[ext_resource type="PackedScene" uid="uid://gbv5uy7futkq" path="res://Models/Portal_Base.glb" id="3_wo1ff"]
 [ext_resource type="AudioStream" uid="uid://ckqsuaisa1803" path="res://Audio/112836__dymewiz__whoosh_20.wav" id="4_ep5na"]
 [ext_resource type="AudioStream" uid="uid://cgfy4dyy1hfo8" path="res://Audio/162842__beman87__whoosh-data-x2.wav" id="5_yebo4"]
 [ext_resource type="PackedScene" uid="uid://rf8st73cwaom" path="res://Prefabs/teleporter_frequency.tscn" id="6_h8gmu"]
@@ -28,6 +30,12 @@ teleport_audio = NodePath("TeleportAudio")
 generation_audio = NodePath("GenerationAudio")
 transit_audio = NodePath("TransitAudio")
 timer = NodePath("Timer")
+
+[node name="Portal_Arch" parent="." instance=ExtResource("2_ij1vt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.283696, -0.330192, 0)
+
+[node name="Portal_Base" parent="." instance=ExtResource("3_wo1ff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.239456, -0.182354, 0)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
@@ -63,104 +71,10 @@ light_energy = 2.0
 omni_attenuation = 0.8
 
 [node name="Portal" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 2.03695e-06, -1, 0, -46.6, -4.37115e-08, 0, -0.3, 0)
+transform = Transform3D(1, 0, 0, 0, 2.03695e-06, -1, 0, -46.6, -4.37115e-08, -0.213701, -0.559318, 0)
 material_override = SubResource("ShaderMaterial_511ui")
 mesh = SubResource("PlaneMesh_2dgm6")
-skeleton = NodePath("../TeleporterMesh")
+skeleton = NodePath("")
 
 [node name="TeleporterFrequency" parent="." instance=ExtResource("6_h8gmu")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.06543, -1.23335, 1.11989)
-
-[node name="TeleporterMesh" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
-
-[node name="Mesh" type="Node3D" parent="TeleporterMesh"]
-
-[node name="CSGBox3D" type="CSGBox3D" parent="TeleporterMesh/Mesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6, 1.7, 0)
-use_collision = true
-size = Vector3(0.25, 3, 0.25)
-
-[node name="CSGBox3D8" type="CSGBox3D" parent="TeleporterMesh/Mesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, 1.7, 0)
-use_collision = true
-size = Vector3(0.25, 3, 0.25)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="TeleporterMesh/Mesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 3.4, 0)
-use_collision = true
-size = Vector3(3.5, 0.5, 0.5)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="TeleporterMesh/Mesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0, 0)
-use_collision = true
-size = Vector3(4.2, 0.5, 2)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="TeleporterMesh/Mesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 0.275745, 1)
-use_collision = true
-size = Vector3(0.5, 1.15149, 0.5)
-
-[node name="CSGBox3D9" type="CSGBox3D" parent="TeleporterMesh/Mesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 0.9, 0)
-use_collision = true
-size = Vector3(0.2, 1.3, 0.2)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="TeleporterMesh/Mesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, -0.2, 1)
-use_collision = true
-size = Vector3(1.5, 0.2, 1.5)
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="TeleporterMesh/Mesh"]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 1.8, 0.9, 0)
-use_collision = true
-radius = 0.1
-height = 0.6
-
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="TeleporterMesh/Mesh"]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 1.8, 1.2, 0)
-use_collision = true
-radius = 0.1
-height = 0.6
-
-[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="TeleporterMesh/Mesh"]
-transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 2.1, 0.9, 0.4)
-use_collision = true
-radius = 0.1
-height = 0.6
-
-[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="TeleporterMesh/Mesh"]
-transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 2.1, 1.2, 0.4)
-use_collision = true
-radius = 0.1
-height = 0.6
-
-[node name="CSGPolygon3D" type="CSGPolygon3D" parent="TeleporterMesh/Mesh"]
-transform = Transform3D(-4.37114e-08, 0, 1.6, 0, 0.438615, 0, -1, 0, -6.99382e-08, 0.8, -0.2, 2)
-use_collision = true
-polygon = PackedVector2Array(0, -0.1, 0, -0.1, 1, 1, 1, 0)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="TeleporterMesh/Mesh"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.7, 3.9, 0.2)
-use_collision = true
-size = Vector3(0.2, 1, 0.2)
-
-[node name="CSGBox3D10" type="CSGBox3D" parent="TeleporterMesh/Mesh"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.7, 3.9, 0.2)
-use_collision = true
-size = Vector3(0.2, 1, 0.2)
-
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="TeleporterMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1)
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="TeleporterMesh/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 3.9, 0.3)
-height = 0.25
-sides = 36
-
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="TeleporterMesh/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 3.9, 0.3)
-operation = 2
-radius = 0.3
-height = 0.5
-sides = 36
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.17723, -1.49721, 1.00458)
