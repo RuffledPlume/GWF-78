@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://b311jrca7i286"]
+[gd_scene load_steps=3 format=3 uid="uid://b311jrca7i286"]
+
+[ext_resource type="PackedScene" uid="uid://cwoq5ogighdtr" path="res://Prefabs/Light_holder.tscn" id="1_17vgx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xs0ti"]
 transparency = 1
@@ -6,26 +8,27 @@ albedo_color = Color(0.886275, 1, 1, 1)
 
 [node name="Light" type="Node3D"]
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+[node name="Node3D" parent="." instance=ExtResource("1_17vgx")]
+transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
-size = Vector3(0.4, 0.2, 4)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0684338, 0)
-operation = 2
-size = Vector3(0.3, 0.1, 3.9)
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.0375209, 0)
-radius = 0.0712046
-height = 3.93529
-material = SubResource("StandardMaterial3D_xs0ti")
-
-[node name="OmniLight3D5" type="OmniLight3D" parent="CSGCombiner3D/CSGCylinder3D"]
-transform = Transform3D(3.8245e-08, 0, -1, 0, 1, 0, 1, 0, 3.8245e-08, 0, 1.74846e-08, 0.4)
+[node name="OmniLight3D5" type="OmniLight3D" parent="."]
+transform = Transform3D(3.8245e-08, 0, -1, -1, -4.37114e-08, -3.8245e-08, -4.37114e-08, 1, -1.67174e-15, 0.052687, -0.782994, 4.08562e-14)
 light_color = Color(0.901961, 1, 1, 1)
 light_energy = 1.5
 light_volumetric_fog_energy = 3.0
 shadow_enabled = true
 omni_attenuation = 0.75
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.159417, -0.0375209, 0)
+radius = 0.0712046
+height = 3.74845
+material = SubResource("StandardMaterial3D_xs0ti")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.141703, -0.0375209, 0)
+radius = 0.0712046
+height = 3.77115
+material = SubResource("StandardMaterial3D_xs0ti")
