@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://xbtxpvabvuy8"]
+
+[ext_resource type="PackedScene" uid="uid://cmhcon5enw6b7" path="res://Models/Interior_Chair.glb" id="1_sp5fe"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oyjcw"]
+size = Vector3(0.713318, 0.665771, 0.722412)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i1e6l"]
+size = Vector3(0.184906, 0.614685, 0.722412)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Interior_Chair" parent="." instance=ExtResource("1_sp5fe")]
+
+[node name="Chair" parent="Interior_Chair" index="0"]
+transform = Transform3D(0.4, 0, 0, 0, 0.04, 0, 0, 0, 0.4, 0, 0.589424, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0738831, 0.320923, 0.0531006)
+shape = SubResource("BoxShape3D_oyjcw")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.338089, 0.904205, 0.0531006)
+shape = SubResource("BoxShape3D_i1e6l")
+
+[editable path="Interior_Chair"]

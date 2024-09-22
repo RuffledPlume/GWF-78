@@ -1,0 +1,72 @@
+[gd_scene load_steps=3 format=3 uid="uid://df2h75uyqjcfu"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xbvs8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wrgoi"]
+emission_enabled = true
+emission = Color(0.774799, 0.578711, 0, 1)
+emission_energy_multiplier = 7.16
+
+[node name="fuel_cell" type="Node3D"]
+
+[node name="Shell" type="CSGCombiner3D" parent="."]
+transform = Transform3D(0.368335, 0, 0, 0, 0.368335, 0, 0, 0, 0.368335, 0, 0, 0)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Shell"]
+radius = 0.701177
+sides = 16
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Shell"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.23487, 0)
+radius = 0.701177
+height = 0.471618
+sides = 16
+cone = true
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="Shell"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, -1.2363, 0)
+radius = 0.701177
+height = 0.471618
+sides = 16
+cone = true
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Shell"]
+operation = 2
+radius = 0.585425
+height = 1.95256
+sides = 16
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Shell"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0182495, 0.00439453, 0.0045166)
+operation = 2
+size = Vector3(0.285767, 1.72168, 1.72876)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Shell"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.0182495, 0.00439453, 0.0045166)
+operation = 2
+size = Vector3(0.285767, 1.72168, 1.72876)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Shell"]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -0.0182495, 0.00439453, 0.0045166)
+operation = 2
+size = Vector3(0.285767, 1.72168, 1.72876)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Shell"]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -0.0182495, 0.00439453, 0.0045166)
+operation = 2
+size = Vector3(0.285767, 1.72168, 1.72876)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Shell"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.102051, 1.36864, -0.0183716)
+operation = 2
+size = Vector3(1.40527, 0.503174, 1.38611)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Shell"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.102051, -1.41466, -0.0183716)
+operation = 2
+size = Vector3(1.40527, 0.503174, 1.38611)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.343954, 0, 0, 0, 0.367103, 0, 0, 0, 0.343954, 0, 0, 0)
+mesh = SubResource("CylinderMesh_xbvs8")
+surface_material_override/0 = SubResource("StandardMaterial3D_wrgoi")

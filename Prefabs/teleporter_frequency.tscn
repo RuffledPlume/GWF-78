@@ -1,40 +1,85 @@
-[gd_scene load_steps=11 format=3 uid="uid://rf8st73cwaom"]
+[gd_scene load_steps=12 format=3 uid="uid://rf8st73cwaom"]
 
 [ext_resource type="PackedScene" uid="uid://co2duin4cqcnd" path="res://Prefabs/wheel.tscn" id="1_fn2p3"]
 [ext_resource type="Shader" path="res://Levels/UITex.gdshader" id="1_tkiou"]
 [ext_resource type="Script" path="res://Scripts/teleporter_wave_wheel.gd" id="2_1wno0"]
 [ext_resource type="Script" path="res://Scripts/teleporter_wave_game.gd" id="2_kox6y"]
+[ext_resource type="PackedScene" uid="uid://cy0n6wjq0mluf" path="res://Models/Portal_Console_Screen.glb" id="2_r0ecr"]
+[ext_resource type="PackedScene" uid="uid://bp38y55gll75s" path="res://Models/Portal_Console.glb" id="4_yvbuv"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_yl5l2"]
-size = Vector3(0.798462, 0.798218, 0.411865)
-
-[sub_resource type="QuadMesh" id="QuadMesh_osec2"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_rsenh"]
-viewport_path = NodePath("Screen/SubViewport")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_uy0b6"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource("1_tkiou")
-shader_parameter/ui_viewport = SubResource("ViewportTexture_rsenh")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qn2om"]
+bg_color = Color(0.112195, 0.257781, 9.62615e-08, 1)
 
 [sub_resource type="Curve" id="Curve_pqyaq"]
 _data = [Vector2(0.0231023, 0.552318), 0.0, 0.0, 0, 0]
 point_count = 1
 
-[sub_resource type="BoxMesh" id="BoxMesh_2mpkw"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_f72hc"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jwoie"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_tkiou")
+shader_parameter/ui_viewport = SubResource("ViewportTexture_f72hc")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yl5l2"]
+size = Vector3(0.798462, 0.798218, 0.411865)
 
 [node name="TeleporterFrequency" type="Node3D" node_paths=PackedStringArray("tuning_line_renderer", "target_line_renderer", "tuning_label", "frequency_crank", "amplitude_crank")]
 script = ExtResource("2_kox6y")
-tuning_line_renderer = NodePath("Screen/SubViewport/TeleporterMiniGame/Current")
-target_line_renderer = NodePath("Screen/SubViewport/TeleporterMiniGame/Target")
-tuning_label = NodePath("Screen/SubViewport/TeleporterMiniGame/Label")
+tuning_line_renderer = NodePath("SubViewport/TeleporterMiniGame/Current")
+target_line_renderer = NodePath("SubViewport/TeleporterMiniGame/Target")
+tuning_label = NodePath("SubViewport/TeleporterMiniGame/Label")
 frequency_crank = NodePath("Frequency Crank/StaticBody3D")
 amplitude_crank = NodePath("Amplitude Crank/StaticBody3D2")
 
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+gui_disable_input = true
+
+[node name="TeleporterMiniGame" type="Panel" parent="SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(100, 50)
+theme_override_styles/panel = SubResource("StyleBoxFlat_qn2om")
+
+[node name="Current" type="Line2D" parent="SubViewport/TeleporterMiniGame"]
+width_curve = SubResource("Curve_pqyaq")
+default_color = Color(1, 0.509804, 1, 1)
+
+[node name="Target" type="Line2D" parent="SubViewport/TeleporterMiniGame"]
+width_curve = SubResource("Curve_pqyaq")
+default_color = Color(0.47796, 0.364076, 0, 0.505882)
+
+[node name="Label" type="Label" parent="SubViewport/TeleporterMiniGame"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Frequency: 0.5 | Amplitude: 0.5"
+horizontal_alignment = 1
+
+[node name="Portal_Console_Screen" parent="." instance=ExtResource("2_r0ecr")]
+transform = Transform3D(-4.74877e-08, 0, -1, 0, 1, 0, 1.08639, 0, -4.37114e-08, 1.03227, 1.16653, -2.68176)
+
+[node name="Cube_003" parent="Portal_Console_Screen" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_jwoie")
+
+[node name="Portal_Console" parent="." instance=ExtResource("4_yvbuv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.04509, 1.18785, -2.47695)
+
 [node name="Amplitude Crank" parent="." instance=ExtResource("1_fn2p3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.42324, 0.39982)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.423957, 0.612201)
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="Amplitude Crank" node_paths=PackedStringArray("wheel_root")]
 transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0.0479883, 1.19209e-07, 0.059347)
@@ -47,7 +92,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00177002, 0.00994873, 0.115
 shape = SubResource("BoxShape3D_yl5l2")
 
 [node name="Frequency Crank" parent="." instance=ExtResource("1_fn2p3")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.188782, -0.451367, -0.00917566)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.30492, -0.252552, -0.00917566)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Frequency Crank" node_paths=PackedStringArray("wheel_root")]
 script = ExtResource("2_1wno0")
@@ -59,54 +104,6 @@ interaction_name = "Frequency Crank"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00177002, 0.00994873, 0.115601)
 shape = SubResource("BoxShape3D_yl5l2")
 
-[node name="Screen" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.2222e-08, 0.0172958, -0.999851, -1.13133e-08, 0.999851, 0.0172958, 1, 1.20419e-08, -4.202e-08, -0.304561, 0.410602, 1.17989e-08)
-mesh = SubResource("QuadMesh_osec2")
-surface_material_override/0 = SubResource("ShaderMaterial_uy0b6")
-
-[node name="SubViewport" type="SubViewport" parent="Screen"]
-disable_3d = true
-transparent_bg = true
-handle_input_locally = false
-gui_disable_input = true
-
-[node name="TeleporterMiniGame" type="Panel" parent="Screen/SubViewport"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = -150.0
-offset_right = 300.0
-offset_bottom = 150.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(100, 50)
-
-[node name="Current" type="Line2D" parent="Screen/SubViewport/TeleporterMiniGame"]
-width_curve = SubResource("Curve_pqyaq")
-default_color = Color(1, 0.509804, 1, 1)
-
-[node name="Target" type="Line2D" parent="Screen/SubViewport/TeleporterMiniGame"]
-width_curve = SubResource("Curve_pqyaq")
-default_color = Color(0.47796, 0.364076, 0, 0.505882)
-
-[node name="Label" type="Label" parent="Screen/SubViewport/TeleporterMiniGame"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -23.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Frequency: 0.5 | Amplitude: 0.5"
-horizontal_alignment = 1
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.73065, 0, 0, 0, 0.737811, 0, 0, 0, 1, 0.0681748, 0.364413, 0)
-mesh = SubResource("BoxMesh_2mpkw")
-
+[editable path="Portal_Console_Screen"]
 [editable path="Amplitude Crank"]
 [editable path="Frequency Crank"]

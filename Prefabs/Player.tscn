@@ -1,9 +1,10 @@
-[gd_scene load_steps=36 format=3 uid="uid://dikcrsr171oyg"]
+[gd_scene load_steps=38 format=3 uid="uid://dikcrsr171oyg"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_uuae0"]
 [ext_resource type="Script" path="res://Scripts/camera_3d.gd" id="2_1ye7i"]
 [ext_resource type="PackedScene" uid="uid://c57h31f2dn6c1" path="res://Prefabs/Oxygen_Mask.tscn" id="3_61m2a"]
 [ext_resource type="Script" path="res://Scripts/player_hud.gd" id="3_k1q5m"]
+[ext_resource type="PackedScene" uid="uid://df2h75uyqjcfu" path="res://Prefabs/fuel_cell.tscn" id="3_w701h"]
 [ext_resource type="AudioStream" uid="uid://cgbs6ws1m5ak2" path="res://Audio/Footstep.mp3" id="4_7v2wb"]
 [ext_resource type="Texture2D" uid="uid://dqjbpg6mxnpvj" path="res://Textures/O2Mask.png" id="4_appyk"]
 [ext_resource type="AudioStream" uid="uid://dspjlp2adw0p2" path="res://Audio/Breath.mp3" id="5_jatw8"]
@@ -414,6 +415,8 @@ states/Walk/position = Vector2(435, 57)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_h108l"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_4fxa3"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_uon3e"), "Walk", "Run", SubResource("AnimationNodeStateMachineTransition_g0rvy"), "Run", "Walk", SubResource("AnimationNodeStateMachineTransition_almk3"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_416n0"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_q03ka")]
 graph_offset = Vector2(-90, 1)
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_6fh5j"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_6hp2n"]
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
@@ -438,6 +441,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 attributes = SubResource("CameraAttributesPractical_b6up7")
 fov = 37.8493
 script = ExtResource("2_1ye7i")
+
+[node name="fuel_cell" parent="CameraPivot/Camera3D" instance=ExtResource("3_w701h")]
+transform = Transform3D(0.448516, 0.199401, -0.384207, 0, 0.553258, 0.287137, 0.432869, -0.206608, 0.398095, 0.835, -0.585, -1.06)
 
 [node name="Mask" parent="CameraPivot/Camera3D" instance=ExtResource("3_61m2a")]
 transform = Transform3D(0.769831, 0, 0, 0, -2.78678e-06, 0.769831, 0, -0.769831, -2.78678e-06, 0, -0.5, -0.7)
@@ -489,6 +495,26 @@ max_db = 0.0
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("3_k1q5m")
 didyouknow_trivia = Array[String](["The current year is 3079!", "Global warming has made ground level inhabitable", "You are a porter!", "Humans now live in the sky of old apartment buildings to escape the smog below"])
+
+[node name="Fade" type="TextureRect" parent="HUD"]
+modulate = Color(0, 0, 0, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_6fh5j")
+expand_mode = 3
+
+[node name="FogBarrier" type="TextureRect" parent="HUD"]
+modulate = Color(0.360784, 0.541176, 0, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_6fh5j")
+expand_mode = 3
 
 [node name="Interaction_Text" type="Label" parent="HUD"]
 offset_right = 40.0

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://3jupuyd4t1v6"]
+
+[ext_resource type="PackedScene" uid="uid://btb2p28a44lqo" path="res://Models/Interior_CRT.glb" id="1_4q3er"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yjx5e"]
+size = Vector3(0.797241, 0.811523, 0.808533)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Interior_CRT" parent="." instance=ExtResource("1_4q3er")]
+
+[node name="TV" parent="Interior_CRT" index="0"]
+transform = Transform3D(-0.4, 0, 6.03983e-08, 0, 0.4, 0, -6.03983e-08, 0, -0.4, 0, 0.390141, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0256958, 0.37826, -9.15527e-05)
+shape = SubResource("BoxShape3D_yjx5e")
+
+[editable path="Interior_CRT"]

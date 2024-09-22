@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://dgnvtxkb8dgi6"]
+[gd_scene load_steps=14 format=3 uid="uid://dgnvtxkb8dgi6"]
 
 [ext_resource type="Script" path="res://Scripts/teleporter_generator.gd" id="1_x1uft"]
+[ext_resource type="PackedScene" uid="uid://df2h75uyqjcfu" path="res://Prefabs/fuel_cell.tscn" id="2_qugbq"]
 [ext_resource type="AudioStream" uid="uid://ue3bcueu45xw" path="res://Audio/GeneratorAudio.mp3" id="3_n1odl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xu6ij"]
@@ -22,21 +23,21 @@ height = 0.5
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sib2v"]
 albedo_color = Color(0.34, 0.34, 0.34, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_phv01"]
-albedo_color = Color(0.132, 0.2, 0.132, 1)
-metallic = 0.5
-
-[sub_resource type="BoxMesh" id="BoxMesh_1fyna"]
-size = Vector3(1.5, 1, 1.5)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bycnd"]
 albedo_color = Color(0.768627, 1, 0.388235, 1)
 emission_enabled = true
 emission = Color(0.792, 1, 0.22, 1)
 emission_energy_multiplier = 1.5
 
+[sub_resource type="BoxMesh" id="BoxMesh_1fyna"]
+size = Vector3(1.5, 1, 1.5)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iksub"]
 albedo_color = Color(0.37056, 0.48, 0.3648, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_phv01"]
+albedo_color = Color(0.132, 0.2, 0.132, 1)
+metallic = 0.5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xb32o"]
 size = Vector3(1, 0.6, 1)
@@ -44,17 +45,70 @@ size = Vector3(1, 0.6, 1)
 [node name="Generator" type="Node3D"]
 script = ExtResource("1_x1uft")
 
-[node name="Mesh" type="Node3D" parent="."]
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Mesh"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.5, 6.39488e-14, 0, -6.39488e-14, 0.5, 0, 0, 0, 0.5, 0.5, 0.520482, -0.4)
 material_override = SubResource("StandardMaterial3D_xu6ij")
 mesh = SubResource("CylinderMesh_ynfdi")
+skeleton = NodePath("../Mesh")
 
-[node name="Button" type="MeshInstance3D" parent="Mesh"]
+[node name="Button" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.5, 7.54979e-08, 0, -7.54979e-08, -0.5, 0, 0, 0, 0.5, 0.5, 0.450975, -0.4)
 material_override = SubResource("StandardMaterial3D_fpeu1")
 mesh = SubResource("CylinderMesh_hdsig")
+skeleton = NodePath("../Mesh")
+
+[node name="fuel_cell" parent="." instance=ExtResource("2_qugbq")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.490908, 0.451823, 0.411868)
+
+[node name="Mesh" type="CSGCombiner3D" parent="."]
+
+[node name="CSGCylinder3D10" type="CSGCylinder3D" parent="Mesh"]
+transform = Transform3D(-4.54598e-08, 0, 1, 0, 1, 0, -1.04, 0, -4.37114e-08, 0.199999, -0.3, -1)
+radius = 0.1
+height = 0.5
+sides = 24
+
+[node name="CSGCylinder3D11" type="CSGCylinder3D" parent="Mesh"]
+transform = Transform3D(-4.54598e-08, 0, 1, 0, 1, 0, -1.04, 0, -4.37114e-08, -0.200001, -0.3, -1)
+radius = 0.1
+height = 0.5
+sides = 24
+
+[node name="CSGCylinder3D12" type="CSGCylinder3D" parent="Mesh"]
+transform = Transform3D(1.98711e-15, 4.54598e-08, 1, 1, -4.37114e-08, 0, 4.54599e-08, 1.04, -4.37114e-08, -5.58592e-07, 0.04709, -0.654474)
+radius = 0.1
+height = 0.5
+sides = 24
+
+[node name="CSGCylinder3D13" type="CSGCylinder3D" parent="Mesh"]
+transform = Transform3D(1.98711e-15, 4.54598e-08, 1, 1, -4.37114e-08, 0, 4.54599e-08, 1.04, -4.37114e-08, 0.199999, 0.04709, -0.654474)
+radius = 0.1
+height = 0.5
+sides = 24
+
+[node name="CSGCylinder3D14" type="CSGCylinder3D" parent="Mesh"]
+transform = Transform3D(1.98711e-15, 4.54598e-08, 1, 1, -4.37114e-08, 0, 4.54599e-08, 1.04, -4.37114e-08, -0.200001, 0.04709, -0.654474)
+radius = 0.1
+height = 0.5
+sides = 24
+
+[node name="CSGCylinder3D15" type="CSGCylinder3D" parent="Mesh"]
+transform = Transform3D(-3.21808e-08, 3.21808e-08, 1.00112, 0.707896, 0.707896, 0, -0.736212, 0.736212, -4.37604e-08, 0.199999, -0.01905, -0.944094)
+radius = 0.1
+height = 0.241425
+sides = 24
+
+[node name="CSGCylinder3D16" type="CSGCylinder3D" parent="Mesh"]
+transform = Transform3D(-3.21808e-08, 3.21808e-08, 1.00112, 0.707896, 0.707896, 0, -0.736212, 0.736212, -4.37604e-08, -0.000223731, -0.01905, -0.944094)
+radius = 0.1
+height = 0.241425
+sides = 24
+
+[node name="CSGCylinder3D17" type="CSGCylinder3D" parent="Mesh"]
+transform = Transform3D(-3.21808e-08, 3.21808e-08, 1.00112, 0.707896, 0.707896, 0, -0.736212, 0.736212, -4.37604e-08, -0.200448, -0.01905, -0.944094)
+radius = 0.1
+height = 0.241425
+sides = 24
 
 [node name="Pipes" type="CSGCylinder3D" parent="Mesh"]
 transform = Transform3D(-4.54598e-08, 0, 1, 0, 1, 0, -1.04, 0, -4.37114e-08, -5.73695e-07, -0.3, -1)
@@ -63,50 +117,50 @@ radius = 0.1
 height = 0.5
 sides = 24
 
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Mesh/Pipes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2)
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Mesh"]
+transform = Transform3D(-4.54598e-08, 0, -1, 0, 1, 0, 1.04, 0, -4.37114e-08, -0.200001, -0.3, 1)
 radius = 0.1
 height = 0.5
 sides = 24
 
-[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Mesh/Pipes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.2)
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Mesh"]
+transform = Transform3D(-4.54598e-08, 0, -1, 0, 1, 0, 1.04, 0, -4.37114e-08, 0.199999, -0.3, 1)
 radius = 0.1
 height = 0.5
 sides = 24
 
-[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="Mesh/Pipes"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.332237, 0.34709, 0)
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="Mesh"]
+transform = Transform3D(1.98711e-15, 4.54598e-08, -1, 1, -4.37114e-08, 0, -4.54599e-08, -1.04, -4.37114e-08, -5.58592e-07, 0.04709, 0.654474)
 radius = 0.1
 height = 0.5
 sides = 24
 
-[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="Mesh/Pipes"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.332237, 0.34709, 0.2)
+[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="Mesh"]
+transform = Transform3D(1.98711e-15, 4.54598e-08, -1, 1, -4.37114e-08, 0, -4.54599e-08, -1.04, -4.37114e-08, -0.200001, 0.04709, 0.654474)
 radius = 0.1
 height = 0.5
 sides = 24
 
-[node name="CSGCylinder3D9" type="CSGCylinder3D" parent="Mesh/Pipes"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.332237, 0.34709, -0.2)
+[node name="CSGCylinder3D9" type="CSGCylinder3D" parent="Mesh"]
+transform = Transform3D(1.98711e-15, 4.54598e-08, -1, 1, -4.37114e-08, 0, -4.54599e-08, -1.04, -4.37114e-08, 0.199999, 0.04709, 0.654474)
 radius = 0.1
 height = 0.5
 sides = 24
 
-[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="Mesh/Pipes"]
-transform = Transform3D(0.707896, -0.707896, 0, 0.707896, 0.707896, 0, 0, 0, 1.00112, -0.0537555, 0.28095, 0.2)
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="Mesh"]
+transform = Transform3D(-3.21808e-08, 3.21808e-08, -1.00112, 0.707896, 0.707896, 0, 0.736212, -0.736212, -4.37604e-08, -0.200001, -0.01905, 0.944094)
 radius = 0.1
 height = 0.241425
 sides = 24
 
-[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="Mesh/Pipes"]
-transform = Transform3D(0.707896, -0.707896, 0, 0.707896, 0.707896, 0, 0, 0, 1.00112, -0.0537555, 0.28095, -0.00022316)
+[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="Mesh"]
+transform = Transform3D(-3.21808e-08, 3.21808e-08, -1.00112, 0.707896, 0.707896, 0, 0.736212, -0.736212, -4.37604e-08, 0.000222589, -0.01905, 0.944094)
 radius = 0.1
 height = 0.241425
 sides = 24
 
-[node name="CSGCylinder3D7" type="CSGCylinder3D" parent="Mesh/Pipes"]
-transform = Transform3D(0.707896, -0.707896, 0, 0.707896, 0.707896, 0, 0, 0, 1.00112, -0.0537555, 0.28095, -0.200447)
+[node name="CSGCylinder3D7" type="CSGCylinder3D" parent="Mesh"]
+transform = Transform3D(-3.21808e-08, 3.21808e-08, -1.00112, 0.707896, 0.707896, 0, 0.736212, -0.736212, -4.37604e-08, 0.200446, -0.01905, 0.944094)
 radius = 0.1
 height = 0.241425
 sides = 24
@@ -117,60 +171,6 @@ material_override = SubResource("StandardMaterial3D_sib2v")
 radius = 0.1
 height = 0.5
 sides = 24
-
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Mesh/Pipes2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2)
-radius = 0.1
-height = 0.5
-sides = 24
-
-[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Mesh/Pipes2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.2)
-radius = 0.1
-height = 0.5
-sides = 24
-
-[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="Mesh/Pipes2"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.332237, 0.34709, 0)
-radius = 0.1
-height = 0.5
-sides = 24
-
-[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="Mesh/Pipes2"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.332237, 0.34709, 0.2)
-radius = 0.1
-height = 0.5
-sides = 24
-
-[node name="CSGCylinder3D9" type="CSGCylinder3D" parent="Mesh/Pipes2"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.332237, 0.34709, -0.2)
-radius = 0.1
-height = 0.5
-sides = 24
-
-[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="Mesh/Pipes2"]
-transform = Transform3D(0.707896, -0.707896, 0, 0.707896, 0.707896, 0, 0, 0, 1.00112, -0.0537555, 0.28095, 0.2)
-radius = 0.1
-height = 0.241425
-sides = 24
-
-[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="Mesh/Pipes2"]
-transform = Transform3D(0.707896, -0.707896, 0, 0.707896, 0.707896, 0, 0, 0, 1.00112, -0.0537555, 0.28095, -0.00022316)
-radius = 0.1
-height = 0.241425
-sides = 24
-
-[node name="CSGCylinder3D7" type="CSGCylinder3D" parent="Mesh/Pipes2"]
-transform = Transform3D(0.707896, -0.707896, 0, 0.707896, 0.707896, 0, 0, 0, 1.00112, -0.0537555, 0.28095, -0.200447)
-radius = 0.1
-height = 0.241425
-sides = 24
-
-[node name="Generator" type="MeshInstance3D" parent="Mesh"]
-process_mode = 3
-transform = Transform3D(1.04, 0, 0, 0, 1, 0, 0, 0, 1, -5.73695e-07, 0, 0)
-material_override = SubResource("StandardMaterial3D_phv01")
-mesh = SubResource("BoxMesh_1fyna")
 
 [node name="Panel" type="MeshInstance3D" parent="Mesh"]
 process_mode = 3
@@ -202,17 +202,18 @@ transform = Transform3D(0.5, 0, 0, 0, 0.2, 0, 0, 0, 0.148426, -0.200001, 0.45107
 material_override = SubResource("StandardMaterial3D_iksub")
 mesh = SubResource("BoxMesh_1fyna")
 
-[node name="Panel5" type="MeshInstance3D" parent="Mesh"]
-process_mode = 3
-transform = Transform3D(-1.74846e-08, 0, -0.3, 0, 0.2, 0, 0.4, 0, -1.31134e-08, 0.499999, 0.451079, 0.252782)
-material_override = SubResource("StandardMaterial3D_iksub")
-mesh = SubResource("BoxMesh_1fyna")
-
 [node name="Collision" type="CSGBox3D" parent="Mesh"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5.96046e-08, 0.0501221, 0)
 transparency = 1.0
 use_collision = true
 size = Vector3(0.8, 0.450122, 1)
+material = SubResource("StandardMaterial3D_phv01")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Mesh"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.498364, 0.498606, 0.383357)
+operation = 2
+radius = 0.253172
+height = 0.902886
 
 [node name="Area3D" type="Area3D" parent="."]
 

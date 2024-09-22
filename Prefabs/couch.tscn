@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://cexofm1dsu7b2"]
+
+[ext_resource type="PackedScene" uid="uid://bwlwgw0xctes8" path="res://Models/Interior_Couch.glb" id="1_7i11o"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4scr3"]
+size = Vector3(1, 0.449768, 2.55444)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ybqiw"]
+size = Vector3(0.302368, 1.26541, 3.06158)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i0h6u"]
+size = Vector3(1.03235, 0.773224, 0.241028)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Interior_Couch" parent="." instance=ExtResource("1_7i11o")]
+
+[node name="Couch" parent="Interior_Couch" index="0"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 1.5, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.130035, -0.0032959)
+shape = SubResource("BoxShape3D_4scr3")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.620178, 0.277786, -0.0218201)
+shape = SubResource("BoxShape3D_ybqiw")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0161743, 0.0316925, 1.38791)
+shape = SubResource("BoxShape3D_i0h6u")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0161743, 0.0316925, -1.38233)
+shape = SubResource("BoxShape3D_i0h6u")
+
+[editable path="Interior_Couch"]
