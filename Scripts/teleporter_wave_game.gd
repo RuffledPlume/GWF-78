@@ -7,22 +7,23 @@ class_name TeleporterFrequency extends Node3D
 @export var frequency_crank : TeleporterCrank
 @export var amplitude_crank : TeleporterCrank
 
-
 var _target_freq_frac: float
 var _target_amp_frac: float
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(delta: float) -> void:	
 	var current_freq := lerpf(0.25, 0.3, frequency_crank._frac)
 	var current_amp := amplitude_crank._frac * 0.5
-		
-	tuning_label.text = "Frequency: %f | Amplitude: %f" % [current_freq, current_amp]
+	
 	_update_curve(tuning_line_renderer, current_freq, current_amp)
 
 func set_target(freq_frac: float, amp_frac: float) -> void:
 	_target_freq_frac = freq_frac
 	_target_amp_frac = amp_frac
 	_update_curve(target_line_renderer, lerpf(0.25, 0.3, _target_freq_frac), _target_amp_frac * 0.5)
+
+func is_in_sync() -> bool:
+	return abs(frequency_crank._frac - _target_freq_frac) < 0.05 && abs(amplitude_crank._frac - _target_amp_frac) < 0.05
 
 func _update_curve(target: Line2D, freq: float, amp : float) -> void:
 	target.clear_points()

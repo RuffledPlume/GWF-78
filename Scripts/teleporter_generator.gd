@@ -1,7 +1,7 @@
-extends Interactable
+class_name Generator extends Interactable
 
-@export var target_teleporter: Node3D
 @export var generator_working = false
+@export var teleporter_target: TeleporterNew
 @export var generator_audio: AudioStreamPlayer3D
 @export var generator_light: OmniLight3D
 @export var generator_fuelcell: Node3D
@@ -39,6 +39,6 @@ func on_interact_with_pressed() -> void:
 	for mesh in generator_mesh_emission:
 		var material := mesh.get_active_material(0) as StandardMaterial3D
 		material.emission_enabled = true
-	
-	if target_teleporter != null:
-		target_teleporter.power_teleporter()
+		
+	if teleporter_target != null:
+		teleporter_target.power_teleporter()
