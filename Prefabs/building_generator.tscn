@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://05xwpov0iads"]
+[gd_scene load_steps=19 format=3 uid="uid://05xwpov0iads"]
 
 [ext_resource type="Script" path="res://Scripts/building_generator.gd" id="1_nsh4t"]
 [ext_resource type="AudioStream" uid="uid://dbu1864cvi5k3" path="res://Audio/GeneratorSwitch.mp3" id="2_2pcyq"]
@@ -11,8 +11,18 @@ top_radius = 0.4
 bottom_radius = 0.4
 height = 0.5
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ps60a"]
+noise_type = 3
+frequency = 0.005
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_uf0xe"]
+seamless = true
+noise = SubResource("FastNoiseLite_ps60a")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xu6ij"]
 albedo_color = Color(0.65, 0.5967, 0.117, 1)
+roughness = 0.8
+roughness_texture = SubResource("NoiseTexture2D_uf0xe")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_ynfdi"]
 top_radius = 0.3
@@ -22,9 +32,18 @@ height = 0.5
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sib2v"]
 albedo_color = Color(0.34, 0.34, 0.34, 1)
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dkn12"]
+noise_type = 3
+fractal_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_worp5"]
+noise = SubResource("FastNoiseLite_dkn12")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_phv01"]
 albedo_color = Color(0.132, 0.2, 0.132, 1)
 metallic = 0.5
+roughness = 0.75
+roughness_texture = SubResource("NoiseTexture2D_worp5")
 
 [sub_resource type="BoxMesh" id="BoxMesh_1fyna"]
 size = Vector3(1.5, 1, 1.5)
@@ -35,8 +54,18 @@ emission_enabled = true
 emission = Color(0.792, 1, 0.22, 1)
 emission_energy_multiplier = 1.5
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_r3aer"]
+noise_type = 3
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_crlii"]
+seamless = true
+noise = SubResource("FastNoiseLite_r3aer")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iksub"]
 albedo_color = Color(0.37056, 0.48, 0.3648, 1)
+roughness = 0.8
+roughness_texture = SubResource("NoiseTexture2D_crlii")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xb32o"]
 size = Vector3(0.6, 0.3, 0.8)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dgnvtxkb8dgi6"]
+[gd_scene load_steps=20 format=3 uid="uid://dgnvtxkb8dgi6"]
 
 [ext_resource type="Script" path="res://Scripts/teleporter_generator.gd" id="1_x1uft"]
 [ext_resource type="PackedScene" uid="uid://df2h75uyqjcfu" path="res://Prefabs/fuel_cell.tscn" id="2_qugbq"]
@@ -7,8 +7,18 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_xb32o"]
 size = Vector3(0.561584, 0.40166, 0.731262)
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_h7xnu"]
+noise_type = 3
+fractal_type = 3
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_le4q5"]
+noise = SubResource("FastNoiseLite_h7xnu")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xu6ij"]
 albedo_color = Color(0.65, 0.5967, 0.117, 1)
+roughness = 0.8
+roughness_texture = SubResource("NoiseTexture2D_le4q5")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_ynfdi"]
 top_radius = 0.3
@@ -35,12 +45,35 @@ emission_energy_multiplier = 1.5
 [sub_resource type="BoxMesh" id="BoxMesh_1fyna"]
 size = Vector3(1.5, 1, 1.5)
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ukwe4"]
+noise_type = 3
+frequency = 0.007
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_k252g"]
+seamless = true
+seamless_blend_skirt = 0.14
+noise = SubResource("FastNoiseLite_ukwe4")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iksub"]
 albedo_color = Color(0.37056, 0.48, 0.3648, 1)
+metallic = 0.5
+roughness_texture = SubResource("NoiseTexture2D_k252g")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jnifb"]
+noise_type = 3
+frequency = 0.0205
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rfcdv"]
+seamless = true
+seamless_blend_skirt = 0.05
+noise = SubResource("FastNoiseLite_jnifb")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_phv01"]
 albedo_color = Color(0.132, 0.2, 0.132, 1)
 metallic = 0.5
+metallic_specular = 0.3
+roughness = 0.5
+roughness_texture = SubResource("NoiseTexture2D_rfcdv")
 
 [node name="Generator" type="StaticBody3D" node_paths=PackedStringArray("generator_audio", "generator_light", "generator_fuelcell", "generator_mesh_emission")]
 script = ExtResource("1_x1uft")
