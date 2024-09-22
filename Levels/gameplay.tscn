@@ -1,4 +1,4 @@
-[gd_scene load_steps=158 format=3 uid="uid://cmm2kedvwxe7w"]
+[gd_scene load_steps=166 format=3 uid="uid://cmm2kedvwxe7w"]
 
 [ext_resource type="PackedScene" uid="uid://dikcrsr171oyg" path="res://Prefabs/Player.tscn" id="1_rl6in"]
 [ext_resource type="PackedScene" uid="uid://ukmadykyy3j3" path="res://Prefabs/teleporter_new.tscn" id="2_mqtyu"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://Scripts/safe_zone.gd" id="10_vmso1"]
 [ext_resource type="PackedScene" uid="uid://dx1kd77hluql4" path="res://Prefabs/antenna.tscn" id="11_o2ben"]
 [ext_resource type="AudioStream" uid="uid://3ahoml080nq5" path="res://Audio/Rain_IndoorAudio.wav" id="12_3twcj"]
+[ext_resource type="PackedScene" uid="uid://bw0y31n8iuib4" path="res://Prefabs/building_type_a.tscn" id="12_w8kbs"]
 [ext_resource type="AudioStream" uid="uid://cpj61qcft0ng2" path="res://Audio/Rain_OutdoorAudio.mp3" id="13_snd6a"]
 [ext_resource type="AudioStream" uid="uid://datastlugkyfv" path="res://Audio/Wind.mp3" id="14_yvpn5"]
 [ext_resource type="AudioStream" uid="uid://d2xlw8vkfxup7" path="res://Audio/MetalCreaking.mp3" id="15_b645a"]
@@ -57,6 +58,7 @@
 [ext_resource type="PackedScene" uid="uid://b3dlaled8sw0h" path="res://Prefabs/cup.tscn" id="55_nfso8"]
 [ext_resource type="Script" path="res://Scripts/ladder.gd" id="56_5hgvu"]
 [ext_resource type="PackedScene" uid="uid://d0w4sdqvndter" path="res://Prefabs/ladder.tscn" id="57_q6ac0"]
+[ext_resource type="PackedScene" uid="uid://gmo7hkcn7wdw" path="res://Prefabs/fuell_cell_pickup.tscn" id="58_o45k3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dl0db"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -134,23 +136,33 @@ point_count = 3
 transparency = 1
 albedo_color = Color(0.886275, 1, 1, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3wi8h"]
-albedo_texture = ExtResource("3_7v6aa")
-uv1_triplanar = true
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ilusu"]
+noise_type = 3
+frequency = 0.0174
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ijecv"]
-albedo_texture = ExtResource("3_7v6aa")
-uv1_triplanar = true
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cabg5"]
+seamless = true
+seamless_blend_skirt = 0.203
+noise = SubResource("FastNoiseLite_ilusu")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tw8xe"]
-albedo_texture = ExtResource("3_7v6aa")
-uv1_triplanar = true
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dhmn0"]
+albedo_color = Color(0.48, 0.48, 0.48, 1)
+roughness = 0.4
+roughness_texture = SubResource("NoiseTexture2D_cabg5")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e7abh"]
 albedo_texture = ExtResource("3_7v6aa")
 uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g4xnj"]
+albedo_texture = ExtResource("3_7v6aa")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3wi8h"]
+albedo_texture = ExtResource("3_7v6aa")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ijecv"]
 albedo_texture = ExtResource("3_7v6aa")
 uv1_triplanar = true
 
@@ -263,8 +275,17 @@ _data = {
 }
 point_count = 4
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_iha80"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_72ggi"]
 size = Vector3(12.4154, 3.72427, 8.07196)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vopj3"]
+size = Vector3(10.3, 3.72427, 12.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kye6x"]
+size = Vector3(11.2, 3.8, 10.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6ng2v"]
+size = Vector3(11.2, 3.1, 9.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tiqff"]
 size = Vector3(3, 2, 17)
@@ -485,6 +506,10 @@ size = Vector3(1, 1, 4)
 top_radius = 0.2
 bottom_radius = 0.2
 height = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wc3jl"]
+albedo_texture = ExtResource("3_7v6aa")
+uv1_triplanar = true
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_0h6wk"]
 top_radius = 0.2
@@ -899,6 +924,35 @@ spot_range = 7.0
 
 [node name="Buildings" type="Node3D" parent="."]
 
+[node name="WaterTank" type="CSGCylinder3D" parent="Buildings"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.1099, 57.9319, 9.46114)
+material_override = SubResource("StandardMaterial3D_dhmn0")
+use_collision = true
+radius = 1.5
+sides = 16
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Buildings/WaterTank"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, -2.13194, 1.6)
+size = Vector3(0.1, 3, 0.1)
+material = SubResource("StandardMaterial3D_e7abh")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Buildings/WaterTank"]
+transform = Transform3D(-0.5, -0.224144, 0.836516, 0, 0.965926, 0.258819, -0.866025, 0.12941, -0.482963, 1.4, -2.13194, -0.799999)
+size = Vector3(0.1, 3, 0.1)
+material = SubResource("StandardMaterial3D_e7abh")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Buildings/WaterTank"]
+transform = Transform3D(-0.5, 0.224144, -0.836516, 0, 0.965926, 0.258819, 0.866025, 0.129409, -0.482963, -1.4, -2.13194, -0.799999)
+size = Vector3(0.1, 3, 0.1)
+material = SubResource("StandardMaterial3D_e7abh")
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="Buildings/WaterTank"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.7, 0)
+inner_radius = 1.45
+outer_radius = 1.55
+sides = 24
+material = SubResource("StandardMaterial3D_g4xnj")
+
 [node name="StartingTower" type="Node3D" parent="Buildings"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, 0)
 
@@ -956,35 +1010,6 @@ material_override = SubResource("StandardMaterial3D_ijecv")
 use_collision = true
 size = Vector3(5, 4, 6)
 
-[node name="WaterTank" type="CSGCylinder3D" parent="Buildings/StartingTower"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.1099, 32.9319, 9.46114)
-material_override = SubResource("StandardMaterial3D_tw8xe")
-use_collision = true
-radius = 1.5
-sides = 16
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Buildings/StartingTower/WaterTank"]
-transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, -2.13194, 1.6)
-size = Vector3(0.1, 3, 0.1)
-material = SubResource("StandardMaterial3D_e7abh")
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="Buildings/StartingTower/WaterTank"]
-transform = Transform3D(-0.5, -0.224144, 0.836516, 0, 0.965926, 0.258819, -0.866025, 0.12941, -0.482963, 1.4, -2.13194, -0.799999)
-size = Vector3(0.1, 3, 0.1)
-material = SubResource("StandardMaterial3D_e7abh")
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="Buildings/StartingTower/WaterTank"]
-transform = Transform3D(-0.5, 0.224144, -0.836516, 0, 0.965926, 0.258819, 0.866025, 0.129409, -0.482963, -1.4, -2.13194, -0.799999)
-size = Vector3(0.1, 3, 0.1)
-material = SubResource("StandardMaterial3D_e7abh")
-
-[node name="CSGTorus3D" type="CSGTorus3D" parent="Buildings/StartingTower/WaterTank"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.7, 0)
-inner_radius = 1.45
-outer_radius = 1.55
-sides = 24
-material = SubResource("StandardMaterial3D_g4xnj")
-
 [node name="Box3" type="CSGBox3D" parent="Buildings/StartingTower"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 33.0389, 57.5, -69.4901)
 material_override = SubResource("StandardMaterial3D_ijecv")
@@ -993,7 +1018,7 @@ size = Vector3(5, 4, 6)
 
 [node name="WaterTank3" type="CSGCylinder3D" parent="Buildings/StartingTower"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 32.8099, 62.9319, -69.3389)
-material_override = SubResource("StandardMaterial3D_tw8xe")
+material_override = SubResource("StandardMaterial3D_dhmn0")
 use_collision = true
 radius = 1.5
 sides = 16
@@ -1028,7 +1053,7 @@ size = Vector3(5, 4, 6)
 
 [node name="WaterTank4" type="CSGCylinder3D" parent="Buildings/StartingTower"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -72.4901, 82.0938, -112.139)
-material_override = SubResource("StandardMaterial3D_tw8xe")
+material_override = SubResource("StandardMaterial3D_dhmn0")
 use_collision = true
 radius = 1.5
 sides = 16
@@ -1063,7 +1088,7 @@ size = Vector3(5, 4, 6)
 
 [node name="WaterTank5" type="CSGCylinder3D" parent="Buildings/StartingTower"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 54.8099, 102.194, -270.139)
-material_override = SubResource("StandardMaterial3D_tw8xe")
+material_override = SubResource("StandardMaterial3D_dhmn0")
 use_collision = true
 radius = 1.5
 sides = 16
@@ -3181,7 +3206,31 @@ script = ExtResource("10_vmso1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SafeZone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.516663, 0.391098, -0.264801)
-shape = SubResource("BoxShape3D_iha80")
+shape = SubResource("BoxShape3D_72ggi")
+
+[node name="SafeZone2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.9129, 72.1265, -92.2354)
+script = ExtResource("10_vmso1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SafeZone2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.474361, 0.391098, 2.59922)
+shape = SubResource("BoxShape3D_vopj3")
+
+[node name="SafeZone3" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.9129, 117.126, -241.235)
+script = ExtResource("10_vmso1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SafeZone3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.52436, 0.353233, 3.59921)
+shape = SubResource("BoxShape3D_kye6x")
+
+[node name="SafeZone4" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.9129, 117.126, -273.035)
+script = ExtResource("10_vmso1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SafeZone4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.62436, 0.00322723, 1.74924)
+shape = SubResource("BoxShape3D_6ng2v")
 
 [node name="Antenna" parent="." instance=ExtResource("11_o2ben")]
 transform = Transform3D(0.12941, 0, 0.482963, 0, 0.5, 0, -0.482963, 0, 0.12941, 31.7633, 80.8977, -95.0188)
@@ -3198,6 +3247,81 @@ transform = Transform3D(0.482963, 0, 0.12941, 0, 0.5, 0, -0.12941, 0, 0.482963, 
 
 [node name="Antenna4" parent="." instance=ExtResource("11_o2ben")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 13.3, 50.8977, -8.5)
+
+[node name="Building_Type_1" parent="." instance=ExtResource("12_w8kbs")]
+transform = Transform3D(0.768, 0, 0, 0, 0.8, 0, 0, 0, 1.152, 61.0106, 53.6668, -228.858)
+
+[node name="Building_Type_2" parent="." instance=ExtResource("12_w8kbs")]
+transform = Transform3D(0.768, 0, 0, 0, 0.8, 0, 0, 0, 1.152, 61.0106, 25.6668, -228.858)
+
+[node name="Building_Type_25" parent="." instance=ExtResource("12_w8kbs")]
+transform = Transform3D(0.768, 0, 0, 0, 0.8, 0, 0, 0, 1.152, 61.0106, -2.33319, -228.858)
+
+[node name="Building_Type_11" parent="." instance=ExtResource("12_w8kbs")]
+transform = Transform3D(1.09824, 0, 0, 0, 0.8, 0, 0, 0, 1.152, 43.3106, 32.6668, -81.3578)
+
+[node name="Building_Type_12" parent="." instance=ExtResource("12_w8kbs")]
+transform = Transform3D(1.09824, 0, 0, 0, 0.8, 0, 0, 0, 1.152, 43.3106, 4.66681, -81.3578)
+
+[node name="Building_Type_21" parent="." instance=ExtResource("12_w8kbs")]
+transform = Transform3D(1.09824, 0, 0, 0, 0.8, 0, 0, 0, 1.152, 43.3106, -15.3332, -81.3578)
+
+[node name="Building_Type_22" parent="." instance=ExtResource("12_w8kbs")]
+transform = Transform3D(1.09824, 0, 0, 0, 0.8, 0, 0, 0, 1.152, 0.310631, -10.3332, -0.357773)
+
+[node name="Building_Type_24" parent="." instance=ExtResource("12_w8kbs")]
+transform = Transform3D(1.09824, 0, 0, 0, 0.8, 0, 0, 0, 1.152, 0.310631, -38.3332, -0.357773)
+
+[node name="Building_Type_23" parent="." instance=ExtResource("12_w8kbs")]
+transform = Transform3D(1.04333, 0, 0, 0, 0.8, 0, 0, 0, 1.0368, 0.310631, 17.6668, -0.0577728)
+
+[node name="Building_Type_13" parent="." instance=ExtResource("12_w8kbs")]
+transform = Transform3D(1.04333, 0, 0, 0, 0.8, 0, 0, 0, 0.72576, -19.3894, 32.6668, -144.658)
+
+[node name="Building_Type_14" parent="." instance=ExtResource("12_w8kbs")]
+transform = Transform3D(1.04333, 0, 0, 0, 0.8, 0, 0, 0, 0.72576, -19.3894, 4.66681, -144.658)
+
+[node name="Building_Type_15" parent="." instance=ExtResource("12_w8kbs")]
+transform = Transform3D(1.04333, 0, 0, 0, 0.8, 0, 0, 0, 0.72576, -19.3894, -23.3332, -144.658)
+
+[node name="Building_Type_16" parent="." instance=ExtResource("12_w8kbs")]
+transform = Transform3D(1.04333, 0, 0, 0, 0.8, 0, 0, 0, 0.72576, -19.3894, -51.3332, -144.658)
+
+[node name="Building_Type_17" parent="." instance=ExtResource("12_w8kbs")]
+transform = Transform3D(-4.56053e-08, 0, 0.72576, 0, 0.8, 0, -1.04333, 0, -3.1724e-08, -66.3894, 37.8668, -123.358)
+
+[node name="Building_Type_18" parent="." instance=ExtResource("12_w8kbs")]
+transform = Transform3D(-4.56053e-08, 0, 0.72576, 0, 0.8, 0, -1.04333, 0, -3.1724e-08, -66.3894, 9.86681, -123.358)
+
+[node name="Building_Type_19" parent="." instance=ExtResource("12_w8kbs")]
+transform = Transform3D(-4.56053e-08, 0, 0.72576, 0, 0.8, 0, -1.04333, 0, -3.1724e-08, -66.3894, -18.1332, -123.358)
+
+[node name="Building_Type_20" parent="." instance=ExtResource("12_w8kbs")]
+transform = Transform3D(-4.56053e-08, 0, 0.72576, 0, 0.8, 0, -1.04333, 0, -3.1724e-08, -66.3894, -46.1332, -123.358)
+
+[node name="Building_Type_3" parent="." instance=ExtResource("12_w8kbs")]
+transform = Transform3D(1.0368, 0, 0, 0, 0.8, 0, 0, 0, 1.01606, 88.3106, 57.3668, -237.258)
+
+[node name="Building_Type_4" parent="." instance=ExtResource("12_w8kbs")]
+transform = Transform3D(1.0368, 0, 0, 0, 0.8, 0, 0, 0, 1.01606, 88.3106, 29.3668, -237.258)
+
+[node name="Building_Type_5" parent="." instance=ExtResource("12_w8kbs")]
+transform = Transform3D(1.0368, 0, 0, 0, 0.8, 0, 0, 0, 1.01606, 88.3106, 1.36681, -237.258)
+
+[node name="Building_Type_6" parent="." instance=ExtResource("12_w8kbs")]
+transform = Transform3D(1.0368, 0, 0, 0, 0.8, 0, 0, 0, 1.01606, 88.3106, -26.6332, -237.258)
+
+[node name="Building_Type_7" parent="." instance=ExtResource("12_w8kbs")]
+transform = Transform3D(0.718502, 0, 0, 0, 0.8, 0, 0, 0, 1.01606, 61.3106, 57.3668, -281.358)
+
+[node name="Building_Type_8" parent="." instance=ExtResource("12_w8kbs")]
+transform = Transform3D(0.718502, 0, 0, 0, 0.8, 0, 0, 0, 1.01606, 61.3106, 29.3668, -281.358)
+
+[node name="Building_Type_9" parent="." instance=ExtResource("12_w8kbs")]
+transform = Transform3D(0.718502, 0, 0, 0, 0.8, 0, 0, 0, 1.01606, 61.3106, 1.36681, -281.358)
+
+[node name="Building_Type_10" parent="." instance=ExtResource("12_w8kbs")]
+transform = Transform3D(0.718502, 0, 0, 0, 0.8, 0, 0, 0, 1.01606, 61.3106, -26.6332, -281.358)
 
 [node name="Audio" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -5.96046e-08, -1, 0, 1, -5.96046e-08, 61.4, 120, -283)
@@ -3702,6 +3826,21 @@ pitch_scale = 0.7
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -4.37114e-09, -0.1)
 mesh = SubResource("CylinderMesh_gakwx")
 
+[node name="CSGBox3D" type="CSGBox3D" parent="RainParticles"]
+transform = Transform3D(4.158, 0, 0, 0, 1, 0, 0, 0, 1, 17.1926, 32.633, -174.028)
+material_override = SubResource("StandardMaterial3D_wc3jl")
+size = Vector3(1, 0.5, 24)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="RainParticles"]
+transform = Transform3D(0.556287, 0, 0, 0, 1, 0, 0, 0, 1, 19.0926, 33.033, -174.028)
+material_override = SubResource("StandardMaterial3D_wc3jl")
+size = Vector3(1, 0.5, 24)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="RainParticles"]
+transform = Transform3D(0.556287, 0, 0, 0, 1, 0, 0, 0, 1, 15.2926, 33.033, -174.028)
+material_override = SubResource("StandardMaterial3D_wc3jl")
+size = Vector3(1, 0.5, 24)
+
 [node name="Rain9" parent="RainParticles" instance=ExtResource("23_jnk0k")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 28.8926, 31.433, -158.028)
 
@@ -3715,8 +3854,8 @@ transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.8926, 31.433, -169.028)
 
 [node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="RainParticles/Rain12"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.29999, 0.699997, -4.49998)
-size = Vector3(3.8, 2, 23)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.29999, 1.35576, -4.49998)
+size = Vector3(3.8, 0.688477, 23)
 
 [node name="Rain13" parent="RainParticles" instance=ExtResource("23_jnk0k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.8926, 35.433, -180.028)
@@ -4433,7 +4572,19 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -4.
 mesh = SubResource("CylinderMesh_gakwx")
 
 [node name="Light" parent="ToxicSpray2" instance=ExtResource("6_w1m4r")]
-transform = Transform3D(-0.126125, -0.0266458, -0.594994, 0.066049, 0.997195, -0.0211171, 0.989813, -0.0699369, -0.0744065, 93.6379, -20.3836, -68.4801)
+transform = Transform3D(-0.126125, -0.0266458, -0.594994, 0.0660491, 0.997195, -0.0211171, 0.989813, -0.0699369, -0.0744064, 93.3303, -19.5721, -66.2507)
+
+[node name="Light2" parent="ToxicSpray2" instance=ExtResource("6_w1m4r")]
+transform = Transform3D(-0.126125, -0.0266458, -0.594994, 0.0660492, 0.997196, -0.0211171, 0.989814, -0.0699369, -0.0744064, 131.243, -18.3542, -77.1858)
+
+[node name="CRT" parent="ToxicSpray2" instance=ExtResource("47_8sshr")]
+transform = Transform3D(-0.459861, -0.0266458, 0.887591, -0.0743472, 0.997196, -0.00858319, -0.884874, -0.0699369, -0.460553, 92.553, -22.7623, -69.4933)
+
+[node name="CRT2" parent="ToxicSpray2" instance=ExtResource("47_8sshr")]
+transform = Transform3D(0.288066, -0.0266459, 0.95724, -0.0593344, 0.997197, 0.0456137, -0.955771, -0.0699369, 0.285677, 93.8241, -22.7172, -69.3343)
+
+[node name="CRT3" parent="ToxicSpray2" instance=ExtResource("47_8sshr")]
+transform = Transform3D(0.288066, -0.0266459, 0.95724, -0.0593344, 0.997197, 0.0456137, -0.955771, -0.069937, 0.285677, 93.1392, -21.9374, -69.4736)
 
 [node name="RunningWaterShaders" type="Node3D" parent="."]
 transform = Transform3D(0.145055, -0.173648, -0.98106, 0.0255772, 0.984808, -0.172987, 1.68357, -6.6302e-09, 0.0871557, -38.1678, 99.0184, -137.086)
@@ -5024,6 +5175,36 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -0.999999, 0, -4.37114e-08,
 
 [node name="LadderArea3" parent="." instance=ExtResource("57_q6ac0")]
 transform = Transform3D(0.999999, 0, 6.3573e-08, 0, 1, 0, -6.3573e-08, 0, 1, 69.5955, 115.163, -274.037)
+
+[node name="fuell_cell_pickup" parent="." instance=ExtResource("58_o45k3")]
+transform = Transform3D(-0.00733041, -0.432951, -0.25, 0.499928, -0.00846443, 0, -0.00423222, -0.249964, 0.433013, 10.2928, 47.9682, -13.5533)
+
+[node name="fuell_cell_pickup2" parent="." instance=ExtResource("58_o45k3")]
+transform = Transform3D(0.241748, -0.270409, -0.344147, 0, 0.393155, -0.308916, 0.437673, 0.14936, 0.190089, 33.778, 70.8595, -86.9568)
+
+[node name="fuell_cell_pickup3" parent="." instance=ExtResource("58_o45k3")]
+transform = Transform3D(0.446972, 0.22409, 0, -0.22409, 0.446972, 0, 0, 0, 0.5, -26.7086, 86.3046, -140.218)
+
+[node name="CRT22" parent="." instance=ExtResource("47_8sshr")]
+transform = Transform3D(0.249332, 0, 0.968418, 0, 1, 0, -0.968418, 0, 0.249332, -64.5145, 86.137, -127.833)
+
+[node name="CRT24" parent="." instance=ExtResource("47_8sshr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.4895, 86.137, -126.711)
+
+[node name="CRT27" parent="." instance=ExtResource("47_8sshr")]
+transform = Transform3D(0.754217, 0, -0.656625, 0, 1, 0, 0.656625, 0, 0.754217, -64.4895, 86.9322, -127.167)
+
+[node name="CoffeeTable4" parent="." instance=ExtResource("46_ntfea")]
+transform = Transform3D(0.999814, 0.0108662, 0.0159121, 0.0172402, -0.135686, -0.990602, -0.00860503, 0.990692, -0.135849, -64.2638, 87.1911, -120.119)
+
+[node name="CRT25" parent="." instance=ExtResource("47_8sshr")]
+transform = Transform3D(-0.668014, 0, -0.744148, 0, 1, 0, 0.744148, 0, -0.668014, -64.654, 86.137, -120.805)
+
+[node name="CRT26" parent="." instance=ExtResource("47_8sshr")]
+transform = Transform3D(-0.403707, 0, -0.294993, 0, 0.5, 0, 0.294993, 0, -0.403707, -64.654, 86.9405, -120.805)
+
+[node name="Lamp9" parent="." instance=ExtResource("44_t3kh7")]
+transform = Transform3D(0.713312, -0.700847, 0, 0.700847, 0.713312, 0, 0, 0, 1, -64.0608, 86.137, -120.464)
 
 [connection signal="timeout" from="Audio/MusicHandler/Timer" to="Audio/MusicHandler" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Audio/MusicHandler/Area3D" to="Audio/MusicHandler" method="_on_area_3d_body_entered"]

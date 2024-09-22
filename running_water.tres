@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=17 format=3 uid="uid://d2ubpxi2ft5op"]
+[gd_resource type="VisualShader" load_steps=18 format=3 uid="uid://d2ubpxi2ft5op"]
 
 [ext_resource type="Texture2D" uid="uid://cs7iulq724tlj" path="res://Textures/RunningWater.png" id="1_15bb6"]
 
@@ -22,6 +22,9 @@ function = 1
 
 [sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_wo636"]
 default_input_values = [1, Vector2(0, -0.25), 2, Vector2(0, 0)]
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_ht6ot"]
+default_input_values = [0, 0.0, 1, 0.5]
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_n0gkk"]
 texture = ExtResource("1_15bb6")
@@ -114,9 +117,15 @@ void fragment() {
 	float n_out12p0 = n_out8p0 + n_out10p0.x;
 
 
+// FloatOp:14
+	float n_in14p1 = 0.50000;
+	float n_out14p0 = n_out2p0.x + n_in14p1;
+
+
 // Output:0
 	ALBEDO = vec3(n_out12p0);
 	ALPHA = n_out7p0;
+	SPECULAR = n_out14p0;
 
 
 }
@@ -148,4 +157,6 @@ nodes/fragment/12/node = SubResource("VisualShaderNodeFloatOp_xmc6m")
 nodes/fragment/12/position = Vector2(100, 100)
 nodes/fragment/13/node = SubResource("VisualShaderNodeUVFunc_wo636")
 nodes/fragment/13/position = Vector2(-1180, 720)
-nodes/fragment/connections = PackedInt32Array(5, 0, 2, 0, 4, 0, 5, 0, 3, 0, 5, 2, 2, 0, 7, 0, 6, 0, 7, 1, 7, 0, 8, 2, 4, 0, 11, 0, 3, 0, 11, 2, 8, 0, 12, 0, 10, 0, 12, 1, 11, 0, 13, 0, 3, 0, 13, 2, 13, 0, 10, 0, 12, 0, 0, 0, 7, 0, 0, 1)
+nodes/fragment/14/node = SubResource("VisualShaderNodeFloatOp_ht6ot")
+nodes/fragment/14/position = Vector2(390.051, 408.322)
+nodes/fragment/connections = PackedInt32Array(5, 0, 2, 0, 4, 0, 5, 0, 3, 0, 5, 2, 2, 0, 7, 0, 6, 0, 7, 1, 7, 0, 8, 2, 4, 0, 11, 0, 3, 0, 11, 2, 8, 0, 12, 0, 10, 0, 12, 1, 11, 0, 13, 0, 3, 0, 13, 2, 13, 0, 10, 0, 12, 0, 0, 0, 7, 0, 0, 1, 14, 0, 0, 4, 2, 0, 14, 0)

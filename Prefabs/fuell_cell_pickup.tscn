@@ -7,6 +7,7 @@
 size = Vector3(0.647888, 0.994141, 0.580444)
 
 [node name="fuell_cell_pickup" type="StaticBody3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 script = ExtResource("1_8w16b")
 
 [node name="fuel_cell" parent="." instance=ExtResource("2_ohn7g")]
