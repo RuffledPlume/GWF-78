@@ -70,3 +70,7 @@ size = Vector3(1.40527, 0.503174, 1.38611)
 transform = Transform3D(0.343954, 0, 0, 0, 0.367103, 0, 0, 0, 0.343954, 0, 0, 0)
 mesh = SubResource("CylinderMesh_xbvs8")
 surface_material_override/0 = SubResource("StandardMaterial3D_wrgoi")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(1, 1, 0.678431, 1)
+light_energy = 2.768

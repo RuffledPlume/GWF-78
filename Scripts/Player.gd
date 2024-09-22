@@ -40,7 +40,7 @@ var is_sprinting: bool
 var shown_breath_dyk: bool
 var fall_time: float
 var wheeze_cooldown: float
-var has_fuel_cell: bool = true
+var has_fuel_cell: bool
 
 var hovering_interactable : Interactable
 var hovering_interactable_position : Vector3
@@ -72,9 +72,12 @@ func _process(delta: float) -> void:
 		health = 0.0
 		breath = 0.0
 		is_dead_delay -= delta
+		fuel_cell.visible = false
 		if is_dead_delay < 0.0:
 			get_tree().change_scene_to_file("res://Levels/MainMenu.tscn")
 		return
+	
+	fuel_cell.visible = has_fuel_cell
 	
 	if is_within_safe_zone:
 		if breath < 1.0:
@@ -83,7 +86,6 @@ func _process(delta: float) -> void:
 			oxygen_reserve += breath_replenishment_rate * delta
 		return
 	
-	fuel_cell.visible = has_fuel_cell
 		
 	var depltion_rate := breath_depletion_rate
 	if last_input.length() > 0.1:
