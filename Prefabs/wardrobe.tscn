@@ -1,6 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://84a6b055eev2"]
+[gd_scene load_steps=6 format=3 uid="uid://84a6b055eev2"]
 
 [ext_resource type="PackedScene" uid="uid://ygxhpep5vnyr" path="res://Models/Interior_Wardrobe.glb" id="1_2oaax"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_t5xva"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6vd3g"]
+seamless = true
+noise = SubResource("FastNoiseLite_t5xva")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_prmw4"]
+albedo_color = Color(0.3534, 0.46892, 0.57, 1)
+metallic = 1.0
+metallic_texture = SubResource("NoiseTexture2D_6vd3g")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ifjqr"]
 size = Vector3(1.0907, 3.04877, 1.83191)
@@ -11,6 +22,7 @@ size = Vector3(1.0907, 3.04877, 1.83191)
 
 [node name="Wardrobe" parent="Interior_Wardrobe" index="0"]
 transform = Transform3D(0.5, 0, 0, 0, 1.5, 0, 0, 0, 0.9, 0, 1.4895, 0)
+material_override = SubResource("StandardMaterial3D_prmw4")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwyda3pxp0ds6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ashlp"]
+albedo_color = Color(1, 0.956, 0.67, 1)
+
+[node name="Plate" type="Node3D"]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00030601, 0.00110154, 3.94583e-05)
+material_override = SubResource("StandardMaterial3D_ashlp")
+radius = 0.2
+height = 0.025
+sides = 24

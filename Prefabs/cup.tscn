@@ -1,8 +1,13 @@
-[gd_scene format=3 uid="uid://b3dlaled8sw0h"]
+[gd_scene load_steps=2 format=3 uid="uid://b3dlaled8sw0h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jro5t"]
+albedo_color = Color(0.8, 1, 0.99, 1)
 
 [node name="Cup" type="Node3D"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+material_override = SubResource("StandardMaterial3D_jro5t")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D"]
 radius = 0.1

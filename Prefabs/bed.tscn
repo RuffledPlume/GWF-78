@@ -1,6 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1qu3tkk35ua5"]
+[gd_scene load_steps=6 format=3 uid="uid://c1qu3tkk35ua5"]
 
 [ext_resource type="PackedScene" uid="uid://dqxaivb8ax228" path="res://Models/Interior_Bed.glb" id="1_ts5xa"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_as4nr"]
+albedo_color = Color(0.55, 0.5335, 0.352, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x4lkn"]
 size = Vector3(0.167969, 0.671387, 1.479)
@@ -16,7 +19,8 @@ size = Vector3(2.69507, 0.616577, 1.479)
 [node name="Interior_Bed" parent="." instance=ExtResource("1_ts5xa")]
 
 [node name="Bed" parent="Interior_Bed" index="0"]
-transform = Transform3D(1.5, 0, 0, 0, 0.156622, 0, 0, 0, 0.7, 0, 0, 0)
+transform = Transform3D(1.5, 6.10564e-05, -0.000169834, -0.000584677, 0.156622, 0.000149098, 0.000364047, -3.33463e-05, 0.7, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_as4nr")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 

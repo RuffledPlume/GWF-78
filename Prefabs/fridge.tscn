@@ -1,6 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://bcorj1x516ku8"]
+[gd_scene load_steps=6 format=3 uid="uid://bcorj1x516ku8"]
 
 [ext_resource type="PackedScene" uid="uid://c6nnvmy0i6u5b" path="res://Models/Interior_Fridge.glb" id="1_ir2ga"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_otsrr"]
+noise_type = 3
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lrhr6"]
+in_3d_space = true
+seamless = true
+seamless_blend_skirt = 0.521
+noise = SubResource("FastNoiseLite_otsrr")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qp4u3"]
+albedo_color = Color(0.89, 1, 0.937667, 1)
+roughness = 0.25
+roughness_texture = SubResource("NoiseTexture2D_lrhr6")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t5hcx"]
 size = Vector3(1, 2.56451, 1)
@@ -11,6 +26,7 @@ size = Vector3(1, 2.56451, 1)
 
 [node name="Fridge" parent="Interior_Fridge" index="0"]
 transform = Transform3D(0.5, 0, 0, 0, 1.3, 0, 0, 0, 0.5, 0, 1.27439, 0)
+material_override = SubResource("StandardMaterial3D_qp4u3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 

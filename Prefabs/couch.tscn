@@ -1,6 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://cexofm1dsu7b2"]
+[gd_scene load_steps=8 format=3 uid="uid://cexofm1dsu7b2"]
 
 [ext_resource type="PackedScene" uid="uid://bwlwgw0xctes8" path="res://Models/Interior_Couch.glb" id="1_7i11o"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8e7ro"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0ie81"]
+seamless = true
+seamless_blend_skirt = 1.0
+noise = SubResource("FastNoiseLite_8e7ro")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tx4f7"]
+albedo_color = Color(0.1826, 0.22, 0.192573, 1)
+albedo_texture = SubResource("NoiseTexture2D_0ie81")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4scr3"]
 size = Vector3(1, 0.449768, 2.55444)
@@ -17,6 +28,7 @@ size = Vector3(1.03235, 0.773224, 0.241028)
 
 [node name="Couch" parent="Interior_Couch" index="0"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 1.5, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_tx4f7")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
