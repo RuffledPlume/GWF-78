@@ -1,6 +1,5 @@
-[gd_scene load_steps=5 format=3 uid="uid://dsflo3a84pne2"]
+[gd_scene load_steps=4 format=3 uid="uid://dsflo3a84pne2"]
 
-[ext_resource type="Script" path="res://Scripts/toxic_spray.gd" id="1_53nd6"]
 [ext_resource type="PackedScene" uid="uid://dd36pwyio2ira" path="res://Particles/toxic_spray_particle.tscn" id="1_vbiem"]
 [ext_resource type="AudioStream" uid="uid://dwnmyg5i8wrww" path="res://Audio/GasLeak.mp3" id="3_msmts"]
 
@@ -8,7 +7,6 @@
 size = Vector3(1, 1, 4)
 
 [node name="ToxicSpray" type="Node3D"]
-script = ExtResource("1_53nd6")
 
 [node name="ToxicSprayParticle" parent="." instance=ExtResource("1_vbiem")]
 

@@ -7,14 +7,15 @@ var is_within = false
 var has_fuel = false
 
 @onready var generator_audio: AudioStreamPlayer3D = $GeneratorAudio
-@onready var generator_light: OmniLight3D = $Mesh/GeneratorLight
+@onready var generator_light: OmniLight3D = $GeneratorLight
+
 
 func _ready() -> void:
 	generator_light.visible = false
 
 func _process(delta: float) -> void:
 	if is_within:
-		if Input.is_action_just_pressed("Interact") and has_fuel:
+		if Input.is_action_just_pressed("Interact"):
 			generator_working = true
 			generator_light.visible = true
 			generator_audio.play()
