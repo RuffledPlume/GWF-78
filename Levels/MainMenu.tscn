@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dryx1i837lreu"]
+[gd_scene load_steps=18 format=3 uid="uid://dryx1i837lreu"]
 
 [ext_resource type="Script" path="res://Scripts/mainmenu.gd" id="1_c0w8j"]
 [ext_resource type="Texture2D" uid="uid://dt48n212okjo6" path="res://Materials/prototype-texture-with-size.png" id="3_5bmeo"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dir5ml54bkv3i" path="res://Textures/Wildcard_DidYouKnow.png" id="5_occph"]
 [ext_resource type="Texture2D" uid="uid://cn0y01s4aehda" path="res://Textures/GWJ-Full-Logo-tag-Orange2.svg" id="6_knhhh"]
 [ext_resource type="FontFile" uid="uid://dijx82y21g6wb" path="res://Font/BNBrickHouse-HeavyAlt.otf" id="8_iyd80"]
+[ext_resource type="AudioStream" uid="uid://wnplfcvhq2wu" path="res://Audio/678388__zhr__emotional-guitar-music.mp3" id="9_rx7us"]
 [ext_resource type="PackedScene" uid="uid://co51g5vsdgrm0" path="res://Prefabs/FogBarrier.tscn" id="24_ignn3"]
 [ext_resource type="PackedScene" uid="uid://ybeds6h2jy6x" path="res://Levels/background.tscn" id="27_w6sbu"]
 
@@ -288,3 +289,10 @@ offset_bottom = 810.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_tdp5o")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+process_priority = 2
+stream = ExtResource("9_rx7us")
+volume_db = -25.0
+autoplay = true
+parameters/looping = true
