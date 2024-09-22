@@ -1,4 +1,4 @@
-[gd_scene load_steps=168 format=3 uid="uid://cmm2kedvwxe7w"]
+[gd_scene load_steps=170 format=3 uid="uid://cmm2kedvwxe7w"]
 
 [ext_resource type="PackedScene" uid="uid://dikcrsr171oyg" path="res://Prefabs/Player.tscn" id="1_rl6in"]
 [ext_resource type="PackedScene" uid="uid://ukmadykyy3j3" path="res://Prefabs/teleporter_new.tscn" id="2_mqtyu"]
@@ -138,6 +138,11 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0)
 }
 point_count = 5
+
+[sub_resource type="BoxMesh" id="BoxMesh_pyoth"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bvs3x"]
+size = Vector3(1.72504, 2.52365, 0.44751)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xs0ti"]
 transparency = 1
@@ -656,6 +661,9 @@ transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0)
 [node name="Camera3D" parent="Player/CameraPivot" index="0"]
 fov = 75.0
 
+[node name="Mask" parent="Player/CameraPivot/Camera3D" index="1"]
+transform = Transform3D(0.769831, 0, 0, 0, -2.78678e-06, 0.769831, 0, -0.769831, -2.78678e-06, 0, -0.5, -0.7)
+
 [node name="Teleporters" type="Node3D" parent="."]
 
 [node name="Teleporter" parent="Teleporters" node_paths=PackedStringArray("teleporter_target", "teleporter_path") instance=ExtResource("2_mqtyu")]
@@ -734,6 +742,19 @@ transform = Transform3D(1, 0, 0, 0, -0.34202, 0.939693, 0, -0.939693, -0.34202, 
 light_energy = 2.0
 spot_attenuation = 0.1
 spot_angle = 40.0
+
+[node name="2T Door" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.9974, 70.6924, -83.2879)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="2T Door"]
+transform = Transform3D(2.03615, 0, 0, 0, 2.60099, 0, 0, 0, 0.208522, -0.113224, 1.03044, 0)
+mesh = SubResource("BoxMesh_pyoth")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="2T Door"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="2T Door/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0481873, 1.01263, -0.0445557)
+shape = SubResource("BoxShape3D_bvs3x")
 
 [node name="Light2" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 35.1, 74.2, -80.9)
@@ -4250,9 +4271,10 @@ shadow_enabled = true
 spot_range = 6.582
 spot_attenuation = 0.1
 
-[node name="GeneratorB2" parent="." node_paths=PackedStringArray("lights", "red_light") instance=ExtResource("27_l6lwc")]
+[node name="GeneratorB2" parent="." node_paths=PackedStringArray("lights", "door", "red_light") instance=ExtResource("27_l6lwc")]
 transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 49.0389, 76.6569, -71.1543)
 lights = NodePath("../LightsT2")
+door = NodePath("../2T Door")
 red_light = NodePath("../RedLight")
 
 [node name="GeneratorT1" parent="." node_paths=PackedStringArray("teleporter_target") instance=ExtResource("28_oj2nq")]
