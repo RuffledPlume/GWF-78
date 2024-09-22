@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ukmadykyy3j3"]
+[gd_scene load_steps=17 format=3 uid="uid://ukmadykyy3j3"]
 
 [ext_resource type="Script" path="res://Scripts/teleporter_new.gd" id="1_4dur1"]
 [ext_resource type="PackedScene" uid="uid://de8s42dmdtnx3" path="res://Models/Portal_Arch.glb" id="2_ij1vt"]
@@ -19,6 +19,21 @@ shader_parameter/Mix = 1.0
 [sub_resource type="PlaneMesh" id="PlaneMesh_2dgm6"]
 size = Vector2(3, 3)
 subdivide_width = 3
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tfv2b"]
+size = Vector3(0.407166, 3.06091, 0.394409)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qqikq"]
+size = Vector3(3.98631, 0.816032, 0.554901)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rxenr"]
+size = Vector3(3.14122, 0.204758, 1.99028)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q61ej"]
+size = Vector3(3.14122, 0.10836, 2.57191)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f2sxm"]
+size = Vector3(3.58603, 0.156597, 0.547044)
 
 [node name="Teleporter" type="Area3D" node_paths=PackedStringArray("console", "exit_target", "portal_mesh", "teleport_audio", "generation_audio", "transit_audio", "timer")]
 gravity = 0.0
@@ -78,3 +93,29 @@ skeleton = NodePath("")
 
 [node name="TeleporterFrequency" parent="." instance=ExtResource("6_h8gmu")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.17723, -1.49721, 1.00458)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.67704, -0.686829, 0.136292)
+shape = SubResource("BoxShape3D_tfv2b")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.145541, 1.19166, 0.161087)
+shape = SubResource("BoxShape3D_qqikq")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.28297, -0.686829, 0.136292)
+shape = SubResource("BoxShape3D_tfv2b")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.26327, -2.18659, 0.428307)
+shape = SubResource("BoxShape3D_rxenr")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.26327, -2.23479, 0.421293)
+shape = SubResource("BoxShape3D_q61ej")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.929326, -0.36926, 0, 0.36926, 0.929326, -0.138495, -2.2524, 1.68508)
+shape = SubResource("BoxShape3D_f2sxm")
