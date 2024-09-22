@@ -120,7 +120,7 @@ func _process(delta: float) -> void:
 			mask_animator.play("Mask_Place")
 			has_put_on_mask = true
 		elif !mask_animator.is_playing():
-			if breath < 1.0 && oxygen_depletion_rate > 0.0:
+			if breath < 1.0 && oxygen_reserve > 0.0:
 				breath += (breath_depletion_rate + breath_replenishment_rate) * delta
 				oxygen_reserve -= oxygen_depletion_rate * delta
 	elif has_put_on_mask:
