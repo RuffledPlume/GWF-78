@@ -441,7 +441,7 @@ fov = 37.8493
 script = ExtResource("2_1ye7i")
 
 [node name="fuel_cell" parent="CameraPivot/Camera3D" instance=ExtResource("3_w701h")]
-transform = Transform3D(0.448516, 0.199401, -0.384207, 0, 0.553258, 0.287137, 0.432869, -0.206608, 0.398095, 0.61, -0.26, -1.06)
+transform = Transform3D(0.448516, 0.199401, -0.384207, 0, 0.553258, 0.287137, 0.432869, -0.206608, 0.398095, 0.835, -0.585, -1.06)
 
 [node name="Mask" parent="CameraPivot/Camera3D" instance=ExtResource("3_61m2a")]
 transform = Transform3D(0.769831, 0, 0, 0, -2.78678e-06, 0.769831, 0, -0.769831, -2.78678e-06, 0, -0.5, -0.7)
