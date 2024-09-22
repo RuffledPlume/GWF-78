@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://cj4pyfy2p4vpi"]
+[gd_scene load_steps=13 format=3 uid="uid://cj4pyfy2p4vpi"]
 
+[ext_resource type="Script" path="res://Scripts/EndScreen.gd" id="1_pcxte"]
 [ext_resource type="PackedScene" uid="uid://ybeds6h2jy6x" path="res://Levels/background.tscn" id="2_ko2u6"]
 [ext_resource type="Texture2D" uid="uid://dt48n212okjo6" path="res://Materials/prototype-texture-with-size.png" id="3_7ksma"]
 [ext_resource type="PackedScene" uid="uid://co51g5vsdgrm0" path="res://Prefabs/FogBarrier.tscn" id="4_y3gw5"]
@@ -51,7 +52,10 @@ uv1_triplanar = true
 albedo_texture = ExtResource("3_7ksma")
 uv1_triplanar = true
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_gp4qy"]
+
 [node name="EndScreen" type="Node3D"]
+script = ExtResource("1_pcxte")
 
 [node name="Background" parent="." instance=ExtResource("2_ko2u6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -393.278, 141.95, -49.9622)
@@ -220,3 +224,14 @@ offset_bottom = 201.53
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 66
 text = "Mother Tower"
+
+[node name="Fade" type="TextureRect" parent="CanvasLayer/Control2"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_gp4qy")
+expand_mode = 3
