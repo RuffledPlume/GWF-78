@@ -1,6 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://dryx1i837lreu"]
+[gd_scene load_steps=14 format=3 uid="uid://dryx1i837lreu"]
 
 [ext_resource type="Texture2D" uid="uid://dt48n212okjo6" path="res://Materials/prototype-texture-with-size.png" id="3_5bmeo"]
+[ext_resource type="Texture2D" uid="uid://b02eorgwbaydb" path="res://Textures/WarpSpeed.png" id="4_r2hib"]
+[ext_resource type="Texture2D" uid="uid://dir5ml54bkv3i" path="res://Textures/Wildcard_DidYouKnow.png" id="5_occph"]
+[ext_resource type="Texture2D" uid="uid://cn0y01s4aehda" path="res://Textures/GWJ-Full-Logo-tag-Orange2.svg" id="6_knhhh"]
 [ext_resource type="PackedScene" uid="uid://co51g5vsdgrm0" path="res://Prefabs/FogBarrier.tscn" id="24_ignn3"]
 [ext_resource type="PackedScene" uid="uid://ybeds6h2jy6x" path="res://Levels/background.tscn" id="27_w6sbu"]
 
@@ -174,27 +177,77 @@ transform = Transform3D(-0.699526, 0.457398, -0.549045, -1.11759e-08, 0.768317, 
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Title" type="Label" parent="CanvasLayer"]
-anchors_preset = 1
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 138.0
+offset_top = -180.0
+offset_right = 260.0
+offset_bottom = -9.0
+grow_vertical = 0
+texture = ExtResource("4_r2hib")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = -181.0
+offset_right = 134.0
+offset_bottom = -10.0
+grow_vertical = 0
+texture = ExtResource("5_occph")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -250.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("6_knhhh")
+expand_mode = 1
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -657.0
-offset_top = 106.0
-offset_right = -206.0
-offset_bottom = 197.0
+anchor_bottom = 1.0
+offset_left = -790.04
+offset_right = -290.04
 grow_horizontal = 0
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="Play" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -29.0
+offset_top = -159.385
+offset_right = 29.0
+offset_bottom = -104.385
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "Press any button to continue"
+horizontal_alignment = 1
+
+[node name="Title" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 110.53
+offset_bottom = 201.53
+grow_horizontal = 2
 theme_override_font_sizes/font_size = 66
 text = "Mother Tower"
-
-[node name="Play" type="Label" parent="CanvasLayer"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -653.0
-offset_top = 574.0
-offset_right = -202.0
-offset_bottom = 665.0
-grow_horizontal = 0
-theme_override_font_sizes/font_size = 40
-text = "Play"
-horizontal_alignment = 1
