@@ -80,7 +80,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_jwoie")
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.04509, 1.18785, -2.47695)
 
 [node name="Amplitude Crank" parent="." instance=ExtResource("1_fn2p3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.423957, 0.612201)
+transform = Transform3D(-3.33623e-08, 0, -0.76324, 0, 0.76324, 0, 0.76324, 0, -3.33623e-08, -0.310557, -0.246581, 0.324931)
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="Amplitude Crank" node_paths=PackedStringArray("wheel_root")]
 transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0.0479883, 1.19209e-07, 0.059347)
@@ -93,7 +93,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00177002, 0.00994873, 0.115
 shape = SubResource("BoxShape3D_yl5l2")
 
 [node name="Frequency Crank" parent="." instance=ExtResource("1_fn2p3")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.30492, -0.252552, -0.00917566)
+transform = Transform3D(-2.88059e-08, 0, -0.659002, 0, 0.659002, 0, 0.659002, 0, -2.88059e-08, -0.30492, -0.252552, -0.257274)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Frequency Crank" node_paths=PackedStringArray("wheel_root")]
 script = ExtResource("2_1wno0")
