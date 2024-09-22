@@ -31,6 +31,9 @@ func _process(delta: float) -> void:
 		
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body == Player.instance and !is_off:
+		if Player.instance.is_dead:
+			return
+		
 		Player.instance._handle_cough_audio()
 		if Player.instance.breath > 0.0:
 			Player.instance.breath -= Player.instance.breath / 0.25

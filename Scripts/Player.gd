@@ -21,6 +21,8 @@ const JUMP_VELOCITY = 4.5
 @onready var run_audio: AudioStreamPlayer3D = $CameraPivot/Camera3D/RunAudio
 @onready var breath_audio: AudioStreamPlayer3D = $CameraPivot/Camera3D/BreathAudio
 @onready var cough_audio: AudioStreamPlayer3D = $CameraPivot/Camera3D/CoughAudio
+@onready var wheeze_audio: AudioStreamPlayer3D = $CameraPivot/Camera3D/WheezeAudio
+@onready var death_audio: AudioStreamPlayer3D = $CameraPivot/Camera3D/DeathWheeze
 
 
 var current_speed: float
@@ -38,6 +40,7 @@ var is_walking: bool
 var is_sprinting: bool
 var shown_breath_dyk: bool
 var fall_time: float
+var wheeze_cooldown: float
 
 var hovering_interactable : Interactable
 var hovering_interactable_position : Vector3
@@ -46,6 +49,23 @@ func _ready() -> void:
 	instance = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	mask_root.visible = false
+	
+func kill() -> void:
+	if is_dead:
+		return
+		
+	footsteps_audio.stop()
+	run_audio.stop()
+	breath_audio.stop()
+	cough_audio.stop()
+	wheeze_audio.stop()
+	
+	death_audio.play()
+	
+	health = 0.0
+	breath = 0.0
+	is_dead = true
+	is_dead_delay = 2.5
 	
 func _process(delta: float) -> void:
 	if is_dead:
@@ -71,19 +91,26 @@ func _process(delta: float) -> void:
 			depltion_rate *= 1.5
 	breath -= depltion_rate * delta
 
-	if breath < 0.4 && !shown_breath_dyk:
-		PlayerHUD.instance.show_didyouknow("You can hold right click to take a breath of oxygen!")
-		shown_breath_dyk = true
+	if breath < 0.4:			
+		if !shown_breath_dyk:
+			PlayerHUD.instance.show_didyouknow("You can hold right click to take a breath of oxygen!")
+			shown_breath_dyk = true
+		
+	if breath < 0.2 && !wheeze_audio.playing:
+		wheeze_cooldown -= delta
+		if wheeze_cooldown < 0.0:
+			wheeze_audio.play()
+			wheeze_audio.pitch_scale = randf_range(0.9, 1.0)
+			wheeze_cooldown = 2.0 * randf()
 		
 	if health <= 0.0:
-		is_dead = true
-		is_dead_delay = 1.0
+		kill()
+		return
 		
 	if breath <= 0.0:
 		health -= health_depletion_rate * delta
 	elif health < 1.0:
 		health += health_depletion_rate * delta
-		
 	
 	var is_above_cloud := camera_pivot.global_position.y > (CloudBarrier.instance.global_position.y + 5.0)
 	if Input.is_action_pressed("UseMask") && is_above_cloud:
