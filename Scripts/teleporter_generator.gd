@@ -1,26 +1,44 @@
-extends Node3D
+extends Interactable
 
 @export var target_teleporter: Node3D
 @export var generator_working = false
+@export var generator_audio: AudioStreamPlayer3D
+@export var generator_light: OmniLight3D
+@export var generator_fuelcell: Node3D
+@export var generator_mesh_emission : Array[MeshInstance3D]
 
-var is_within = false
 var has_fuel = false
-
-@onready var generator_audio: AudioStreamPlayer3D = $GeneratorAudio
-@onready var generator_light: OmniLight3D = $GeneratorLight
-
 
 func _ready() -> void:
 	generator_light.visible = false
+	generator_fuelcell.visible = false
+	
+	for mesh in generator_mesh_emission:
+		var material := mesh.get_active_material(0) as StandardMaterial3D
+		material.emission_enabled = false
+		
+func get_interact_text() -> String:
+	if !Player.instance.has_fuel_cell:
+		return "Requires Fuel Cell"
+	return "Insert Fuel Cell"
 
-func _process(delta: float) -> void:
-	if is_within:
-		if Input.is_action_just_pressed("Interact"):
-			generator_working = true
-			generator_light.visible = true
-			generator_audio.play()
-			target_teleporter.power_teleporter()
+func can_interact_with() -> bool:
+	return !has_fuel
 
-func _on_area_3d_body_entered(body: Node3D) -> void:
-	if body == Player.instance:
-		is_within = true
+func on_interact_with_pressed() -> void:
+	if !Player.instance.has_fuel_cell:
+		return
+		
+	Player.instance.has_fuel_cell = false
+	has_fuel = true
+	generator_working = true
+	generator_light.visible = true
+	generator_fuelcell.visible = true
+	generator_audio.play()
+	
+	for mesh in generator_mesh_emission:
+		var material := mesh.get_active_material(0) as StandardMaterial3D
+		material.emission_enabled = true
+	
+	if target_teleporter != null:
+		target_teleporter.power_teleporter()

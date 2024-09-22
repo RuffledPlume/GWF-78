@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://rf8st73cwaom" path="res://Prefabs/teleporter_frequency.tscn" id="6_h8gmu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nx65m"]
+size = Vector3(0.87915, 0.951904, 0.292381)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_511ui"]
 render_priority = 0
@@ -35,7 +36,7 @@ size = Vector3(3.14122, 0.10836, 2.57191)
 [sub_resource type="BoxShape3D" id="BoxShape3D_f2sxm"]
 size = Vector3(3.58603, 0.156597, 0.547044)
 
-[node name="Teleporter" type="Area3D" node_paths=PackedStringArray("console", "exit_target", "portal_mesh", "teleport_audio", "generation_audio", "transit_audio", "timer")]
+[node name="Teleporter" type="Area3D" node_paths=PackedStringArray("console", "exit_target", "portal_mesh", "teleport_audio", "generation_audio", "transit_audio")]
 gravity = 0.0
 script = ExtResource("1_4dur1")
 console = NodePath("TeleporterFrequency")
@@ -44,7 +45,6 @@ portal_mesh = NodePath("Portal")
 teleport_audio = NodePath("TeleportAudio")
 generation_audio = NodePath("GenerationAudio")
 transit_audio = NodePath("TransitAudio")
-timer = NodePath("Timer")
 
 [node name="Portal_Arch" parent="." instance=ExtResource("2_ij1vt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.283696, -0.330192, 0)
@@ -57,11 +57,11 @@ wait_time = 2.0
 one_shot = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.200317, -0.647827, 0.604786)
 shape = SubResource("BoxShape3D_nx65m")
 
 [node name="Teleporter_Exit" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.38052, 1.13946)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.62432, 3.14549)
 
 [node name="TeleportAudio" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_knwcf")

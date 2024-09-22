@@ -4,6 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://df2h75uyqjcfu" path="res://Prefabs/fuel_cell.tscn" id="2_qugbq"]
 [ext_resource type="AudioStream" uid="uid://ue3bcueu45xw" path="res://Audio/GeneratorAudio.mp3" id="3_n1odl"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_xb32o"]
+size = Vector3(0.561584, 0.40166, 0.731262)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xu6ij"]
 albedo_color = Color(0.65, 0.5967, 0.117, 1)
 
@@ -39,11 +42,16 @@ albedo_color = Color(0.37056, 0.48, 0.3648, 1)
 albedo_color = Color(0.132, 0.2, 0.132, 1)
 metallic = 0.5
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_xb32o"]
-size = Vector3(1, 0.6, 1)
-
-[node name="Generator" type="Node3D"]
+[node name="Generator" type="StaticBody3D" node_paths=PackedStringArray("generator_audio", "generator_light", "generator_fuelcell", "generator_mesh_emission")]
 script = ExtResource("1_x1uft")
+generator_audio = NodePath("GeneratorAudio")
+generator_light = NodePath("GeneratorLight")
+generator_fuelcell = NodePath("fuel_cell")
+generator_mesh_emission = [NodePath("Mesh/Panel3"), NodePath("Mesh/Panel2"), NodePath("Mesh/Panel")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.0105286, 0.177393, -0.0374451)
+shape = SubResource("BoxShape3D_xb32o")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.5, 6.39488e-14, 0, -6.39488e-14, 0.5, 0, 0, 0, 0.5, 0.5, 0.520482, -0.4)
@@ -215,12 +223,6 @@ operation = 2
 radius = 0.253172
 height = 0.902886
 
-[node name="Area3D" type="Area3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0.6, 0)
-shape = SubResource("BoxShape3D_xb32o")
-
 [node name="GeneratorAudio" type="AudioStreamPlayer3D" parent="."]
 process_priority = 3
 stream = ExtResource("3_n1odl")
@@ -234,5 +236,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.994876, 0.4)
 light_color = Color(1, 1, 0.576471, 1)
 omni_range = 1.0
 omni_attenuation = 0.5
-
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

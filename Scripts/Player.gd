@@ -23,11 +23,10 @@ const JUMP_VELOCITY = 4.5
 @onready var cough_audio: AudioStreamPlayer3D = $CameraPivot/Camera3D/CoughAudio
 @onready var wheeze_audio: AudioStreamPlayer3D = $CameraPivot/Camera3D/WheezeAudio
 @onready var death_audio: AudioStreamPlayer3D = $CameraPivot/Camera3D/DeathWheeze
-
+@onready var fuel_cell: Node3D = $CameraPivot/Camera3D/fuel_cell
 
 var current_speed: float
 var mouse_motion := Vector2.ZERO
-var is_teleporting: bool
 var has_put_on_mask : bool
 var oxygen_reserve : float = 1.0
 var breath : float = 1.0
@@ -41,6 +40,7 @@ var is_sprinting: bool
 var shown_breath_dyk: bool
 var fall_time: float
 var wheeze_cooldown: float
+var has_fuel_cell: bool = true
 
 var hovering_interactable : Interactable
 var hovering_interactable_position : Vector3
@@ -83,6 +83,8 @@ func _process(delta: float) -> void:
 			oxygen_reserve += breath_replenishment_rate * delta
 		return
 	
+	fuel_cell.visible = has_fuel_cell
+		
 	var depltion_rate := breath_depletion_rate
 	if last_input.length() > 0.1:
 		if Input.is_action_pressed("UseMask"):
