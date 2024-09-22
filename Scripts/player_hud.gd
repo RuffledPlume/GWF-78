@@ -18,6 +18,8 @@ var _show_didyouknow := false
 var _frac_didyouknow := 0.0
 var _delay_didyouknow := 0.0
 var _delay_random_trivia := -1.0
+var _should_fade_out: bool
+var _fade_t: float
 
 func _ready() -> void:
 	instance = self
@@ -63,7 +65,13 @@ func _process(delta: float) -> void:
 		fog_overlay_modulate.a = 0.0
 		
 	fog_overlay.modulate = fog_overlay_modulate
-	fade_overlay.modulate = Color(0.0, 0.0, 0.0, 1.0 - Player.instance.health)
+	
+	if _should_fade_out:
+		fade_overlay.modulate = Color(0.0, 0.0, 0.0, _fade_t)
+		if _fade_t < 1.0:
+			_fade_t += delta * 0.5
+	else:
+		fade_overlay.modulate = Color(0.0, 0.0, 0.0, 1.0 - Player.instance.health)
 			
 
 func update_interactable_label(target : Interactable) -> void:

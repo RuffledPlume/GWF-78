@@ -45,7 +45,7 @@ func _camera_finish_following_path() -> void:
 	transit_audio.play(6)
 	
 	if is_end_game_portal:
-		get_tree().change_scene_to_file()
+		get_tree().change_scene_to_file("res://Levels/EndScreen.tscn")
 		return
 	
 	Player.instance.global_position = teleporter_target.exit_target.global_position
@@ -89,6 +89,9 @@ func _process(delta: float) -> void:
 		await get_tree().create_timer(2).timeout
 		teleport_audio.play(0.4)
 		generation_audio.stop()
+		
+		if is_end_game_portal:
+			PlayerHUD.instance._should_fade_out = true
 		
 		if teleporter_path != null:
 			PlayerCamera.instance.on_finish_following_path.connect(_camera_finish_following_path)
