@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://b3dlaled8sw0h"]
+
+[node name="Cup" type="Node3D"]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D"]
+radius = 0.1
+height = 0.2
+sides = 16
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00626995, 0)
+operation = 2
+radius = 0.075
+height = 0.2
+sides = 16
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="CSGCombiner3D"]
+transform = Transform3D(-6.11959e-08, 4.1, 0, -1.4, -1.79217e-07, 0, 0, 0, 1, 0, 0, -0.125169)
+inner_radius = 0.04
+outer_radius = 0.055

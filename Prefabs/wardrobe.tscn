@@ -5,7 +5,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_ifjqr"]
 size = Vector3(1.0907, 3.04877, 1.83191)
 
-[node name="Node3D" type="Node3D"]
+[node name="Wardrobe" type="Node3D"]
 
 [node name="Interior_Wardrobe" parent="." instance=ExtResource("1_2oaax")]
 

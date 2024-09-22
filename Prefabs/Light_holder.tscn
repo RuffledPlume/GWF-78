@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dnqfk684sxdhx" path="res://Models/Interior_Light_Holder.glb" id="1_vjkrb"]
 
-[node name="Node3D" type="Node3D"]
+[node name="LightCasing" type="Node3D"]
 
 [node name="Interior_Light_Holder" parent="." instance=ExtResource("1_vjkrb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.24748, 0, 0, 0)
