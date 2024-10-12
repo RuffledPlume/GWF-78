@@ -1,0 +1,657 @@
+[gd_scene load_steps=42 format=3 uid="uid://b5t2ctcid65wf"]
+
+[ext_resource type="Texture2D" uid="uid://dt48n212okjo6" path="res://Materials/prototype-texture-with-size.png" id="1_evonv"]
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="2_qrofv"]
+[ext_resource type="Script" path="res://Scripts/camera_3d.gd" id="3_xt3dj"]
+[ext_resource type="PackedScene" uid="uid://df2h75uyqjcfu" path="res://Prefabs/fuel_cell.tscn" id="4_derxo"]
+[ext_resource type="PackedScene" uid="uid://c57h31f2dn6c1" path="res://Prefabs/Oxygen_Mask.tscn" id="5_2618h"]
+[ext_resource type="AudioStream" uid="uid://cgbs6ws1m5ak2" path="res://Audio/Footstep.mp3" id="6_7sjoe"]
+[ext_resource type="AudioStream" uid="uid://dspjlp2adw0p2" path="res://Audio/Breath.mp3" id="7_jyp8q"]
+[ext_resource type="AudioStream" uid="uid://doo3yxw5ftheg" path="res://Audio/Coughing.mp3" id="8_c3lss"]
+[ext_resource type="AudioStream" uid="uid://ce1mqopx4bmpr" path="res://Audio/Wheeze.mp3" id="9_dnc3h"]
+[ext_resource type="AudioStream" uid="uid://bni40vfsdpesu" path="res://Audio/DeathWheeze.mp3" id="10_1itvf"]
+[ext_resource type="Script" path="res://Scripts/player_hud.gd" id="11_ikia0"]
+[ext_resource type="Texture2D" uid="uid://dqjbpg6mxnpvj" path="res://Textures/O2Mask.png" id="12_2mv0r"]
+[ext_resource type="Texture2D" uid="uid://bgv1n7rcauoib" path="res://Textures/vignette.png" id="13_p1ws0"]
+[ext_resource type="Texture2D" uid="uid://dwul2rj1w772l" path="res://Textures/LightBulb.png" id="14_pedbc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5nqo3"]
+albedo_texture = ExtResource("1_evonv")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_esqpa"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_uh5sm"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_b6up7"]
+dof_blur_far_enabled = true
+dof_blur_far_distance = 200.0
+dof_blur_far_transition = 20.0
+dof_blur_amount = 0.01
+
+[sub_resource type="Animation" id="Animation_ggd2m"]
+resource_name = "Mask_Place"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mask:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -1.13, -0.7), Vector3(0, -0.2, -0.7), Vector3(0, -0.155, 0.075)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mask:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.5708, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Mask:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.933333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Mask:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.769831, 0.769831, 0.769831)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../HUD/OxygenMask:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../../HUD/OxygenMask:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.933333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("%CameraPivot/..")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.933333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_handle_breath_audio"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_n3o8t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mask:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.5, -0.7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mask:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5708, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Mask:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Mask:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.769831, 0.769831, 0.769831)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../HUD/OxygenMask:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../../HUD/OxygenMask:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ihohy"]
+_data = {
+"Mask_Place": SubResource("Animation_ggd2m"),
+"RESET": SubResource("Animation_n3o8t")
+}
+
+[sub_resource type="Animation" id="Animation_l46fl"]
+resource_name = "Idle"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(-2),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(-2),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1hs5o"]
+resource_name = "IdleLookAround"
+
+[sub_resource type="Animation" id="Animation_56b6o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_beei6"]
+resource_name = "Head_Bob"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.8, 1),
+"transitions": PackedFloat32Array(-2, -2, -2, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.2, 0), Vector3(0, 0, 0), Vector3(0, 0.2, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.8, 1),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.0872665), Vector3(0, 0, 0), Vector3(0, 0, -0.0872665), Vector3(0, 0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%CameraPivot/..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_handle_run_audio"
+}, {
+"args": [],
+"method": &"_handle_run_audio"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_g2mpl"]
+resource_name = "Head_Bob_Walk"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.15, 0), Vector3(0, 0, 0), Vector3(0, 0.15, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.0174533), Vector3(0, 0, 0), Vector3(0, 0, -0.0174533), Vector3(0, 0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%CameraPivot/..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.766667),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_handle_footstep_audio"
+}, {
+"args": [],
+"method": &"_handle_footstep_audio"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uf5qs"]
+_data = {
+"Idle": SubResource("Animation_l46fl"),
+"IdleLookAround": SubResource("Animation_1hs5o"),
+"RESET": SubResource("Animation_56b6o"),
+"Run": SubResource("Animation_beei6"),
+"Walk": SubResource("Animation_g2mpl")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4gxfc"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_76i1b"]
+animation = &"Run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bjsrs"]
+animation = &"Walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h108l"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4fxa3"]
+priority = 2
+advance_mode = 2
+advance_condition = &"is_walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uon3e"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"is_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g0rvy"]
+priority = 3
+advance_mode = 2
+advance_condition = &"is_sprinting"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_almk3"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"is_walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_416n0"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"is_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q03ka"]
+priority = 3
+advance_mode = 2
+advance_condition = &"is_sprinting"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_msst4"]
+states/Idle/node = SubResource("AnimationNodeAnimation_4gxfc")
+states/Idle/position = Vector2(316, 161)
+states/Run/node = SubResource("AnimationNodeAnimation_76i1b")
+states/Run/position = Vector2(576, 161)
+states/Start/position = Vector2(203, 161)
+states/Walk/node = SubResource("AnimationNodeAnimation_bjsrs")
+states/Walk/position = Vector2(435, 57)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_h108l"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_4fxa3"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_uon3e"), "Walk", "Run", SubResource("AnimationNodeStateMachineTransition_g0rvy"), "Run", "Walk", SubResource("AnimationNodeStateMachineTransition_almk3"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_416n0"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_q03ka")]
+graph_offset = Vector2(-90, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_6fh5j"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6hp2n"]
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_bhwob"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+material_override = SubResource("StandardMaterial3D_5nqo3")
+use_collision = true
+size = Vector3(50, 1, 8)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(-2.23517e-08, 0, -1, 0, 1, 0, 1, 0, -2.23517e-08, -24, 1.5, 0)
+script = ExtResource("2_qrofv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_esqpa")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/CollisionShape3D"]
+cast_shadow = 0
+mesh = SubResource("CapsuleMesh_uh5sm")
+
+[node name="CameraPivot" type="Node3D" parent="CharacterBody3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+attributes = SubResource("CameraAttributesPractical_b6up7")
+script = ExtResource("3_xt3dj")
+
+[node name="fuel_cell" parent="CharacterBody3D/CameraPivot/Camera3D" instance=ExtResource("4_derxo")]
+transform = Transform3D(0.448516, 0.199401, -0.384207, 0, 0.553258, 0.287137, 0.432869, -0.206608, 0.398095, 0.835, -0.585, -1.06)
+
+[node name="Mask" parent="CharacterBody3D/CameraPivot/Camera3D" instance=ExtResource("5_2618h")]
+transform = Transform3D(0.769831, 0, 0, 0, -2.78678e-06, 0.769831, 0, -0.769831, -2.78678e-06, 0, -0.5, -0.7)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody3D/CameraPivot/Camera3D"]
+libraries = {
+"": SubResource("AnimationLibrary_ihohy")
+}
+
+[node name="CameraAnimator" type="AnimationPlayer" parent="CharacterBody3D/CameraPivot/Camera3D"]
+libraries = {
+"": SubResource("AnimationLibrary_uf5qs")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="CharacterBody3D/CameraPivot/Camera3D"]
+tree_root = SubResource("AnimationNodeStateMachine_msst4")
+anim_player = NodePath("../CameraAnimator")
+parameters/conditions/is_idle = false
+parameters/conditions/is_sprinting = false
+parameters/conditions/is_walking = false
+
+[node name="FootstepsAudio" type="AudioStreamPlayer3D" parent="CharacterBody3D/CameraPivot/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4, 0)
+stream = ExtResource("6_7sjoe")
+volume_db = -14.0
+unit_size = 5.0
+max_db = -5.0
+pitch_scale = 0.5
+
+[node name="RunAudio" type="AudioStreamPlayer3D" parent="CharacterBody3D/CameraPivot/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4, 0)
+stream = ExtResource("6_7sjoe")
+volume_db = -8.0
+unit_size = 5.0
+max_db = 1.0
+
+[node name="BreathAudio" type="AudioStreamPlayer3D" parent="CharacterBody3D/CameraPivot/Camera3D"]
+stream = ExtResource("7_jyp8q")
+volume_db = -10.0
+unit_size = 5.0
+max_db = 0.0
+
+[node name="CoughAudio" type="AudioStreamPlayer3D" parent="CharacterBody3D/CameraPivot/Camera3D"]
+stream = ExtResource("8_c3lss")
+volume_db = -10.0
+unit_size = 2.0
+max_db = 0.0
+
+[node name="WheezeAudio" type="AudioStreamPlayer3D" parent="CharacterBody3D/CameraPivot/Camera3D"]
+stream = ExtResource("9_dnc3h")
+volume_db = -10.0
+max_db = 0.0
+
+[node name="DeathWheeze" type="AudioStreamPlayer3D" parent="CharacterBody3D/CameraPivot/Camera3D"]
+stream = ExtResource("10_1itvf")
+volume_db = -5.0
+max_db = 0.0
+
+[node name="HUD" type="CanvasLayer" parent="CharacterBody3D"]
+script = ExtResource("11_ikia0")
+didyouknow_trivia = Array[String](["The current year is 3079!", "Global warming has made ground level inhabitable", "You are a porter!", "Humans now live in the sky of old apartment buildings to escape the smog below"])
+
+[node name="Fade" type="TextureRect" parent="CharacterBody3D/HUD"]
+modulate = Color(0, 0, 0, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_6fh5j")
+expand_mode = 3
+
+[node name="FogBarrier" type="TextureRect" parent="CharacterBody3D/HUD"]
+modulate = Color(0.360784, 0.541176, 0, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_6fh5j")
+expand_mode = 3
+
+[node name="Interaction_Text" type="Label" parent="CharacterBody3D/HUD"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Test"
+label_settings = SubResource("LabelSettings_6hp2n")
+horizontal_alignment = 1
+
+[node name="OxygenMask" type="TextureRect" parent="CharacterBody3D/HUD"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_2mv0r")
+expand_mode = 3
+
+[node name="Vignette" type="TextureRect" parent="CharacterBody3D/HUD"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_p1ws0")
+expand_mode = 3
+
+[node name="Bars" type="Panel" parent="CharacterBody3D/HUD"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 250.0
+grow_vertical = 0
+
+[node name="O2_Bar" type="ProgressBar" parent="CharacterBody3D/HUD/Bars"]
+modulate = Color(0.203922, 1, 1, 1)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 20.0
+grow_horizontal = 2
+show_percentage = false
+
+[node name="Breath_Bar" type="ProgressBar" parent="CharacterBody3D/HUD/Bars"]
+modulate = Color(0.996078, 0.403922, 0.717647, 1)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+show_percentage = false
+
+[node name="Crosshair" type="TextureRect" parent="CharacterBody3D/HUD"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 3.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(3, 3)
+texture = SubResource("CanvasTexture_bhwob")
+
+[node name="DidYouKnow" type="Panel" parent="CharacterBody3D/HUD"]
+offset_left = -1.0
+offset_top = 94.0
+offset_right = 242.0
+offset_bottom = 174.0
+
+[node name="Title" type="Label" parent="CharacterBody3D/HUD/DidYouKnow"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Did you know?"
+
+[node name="Label" type="Label" parent="CharacterBody3D/HUD/DidYouKnow"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 12
+text = "Blah Blah blah blah blahBlah Blah blah blah blahBlah Blah blah blah blah"
+autowrap_mode = 3
+clip_text = true
+
+[node name="TextureRect" type="TextureRect" parent="CharacterBody3D/HUD/DidYouKnow"]
+layout_mode = 0
+offset_left = 216.0
+offset_top = -19.0
+offset_right = 263.0
+offset_bottom = 22.0
+texture = ExtResource("14_pedbc")
+expand_mode = 2

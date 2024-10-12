@@ -58,15 +58,15 @@ func _process(delta: float) -> void:
 			show_didyouknow(didyouknow_trivia.pick_random())
 			
 			
-	var fog_overlay_modulate = fog_overlay.modulate
-	var cloud_distance := Player.instance.global_position.y - (CloudBarrier.instance.global_position.y + 5.0)
-	if cloud_distance < 5.0:
-		fog_overlay_modulate.a = 0.5 * (1.0 - clamp(cloud_distance / 5.0, 0.0, 1.0))
-	else:
-		fog_overlay_modulate.a = 0.0
-		
-	fog_overlay.modulate = fog_overlay_modulate
-	
+	#var fog_overlay_modulate = fog_overlay.modulate
+	#var cloud_distance := Player.instance.global_position.y - (CloudBarrier.instance.global_position.y + 5.0)
+	#if cloud_distance < 5.0:
+		#fog_overlay_modulate.a = 0.5 * (1.0 - clamp(cloud_distance / 5.0, 0.0, 1.0))
+	#else:
+		#fog_overlay_modulate.a = 0.0
+		#
+	#fog_overlay.modulate = fog_overlay_modulate
+	#
 	if _should_fade_in:
 		fade_overlay.modulate = Color(0.0, 0.0, 0.0, 1.0 - _fade_t)
 		if _fade_t < 1.0:
